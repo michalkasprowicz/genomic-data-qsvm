@@ -1,0 +1,219 @@
+======= INFORMACJE O ŚRODOWISKU =======
+Data i czas rozpoczęcia: 2025-08-20 15:33:20
+Wersja NumPy: 1.24.3
+Wersja Pandas: 2.0.3
+Wersja scikit-learn: 1.3.0
+Wersja Qiskit: 0.25.1
+Wersja qiskit-machine-learning: 0.6.0
+Wersja dimod: 0.12.20
+Wersja neal: 0.6.0
+
+======= WYBRANE EKSPERYMENTY =======
+Eksperyment 1 (Wpływ złożoności danych): TAK
+Eksperyment 2 (Podzbiory genów): TAK
+Eksperyment 3 (Mapowania cech): TAK
+
+======= WCZYTYWANIE DANYCH =======
+Czas wczytywania danych: 0.01 sekund
+Wymiary danych: (858, 27)
+
+======= STRUKTURA DANYCH =======
+Kolumny w zbiorze danych: ['Grade', 'Project', 'Case_ID', 'Gender', 'Age_at_diagnosis']...
+Typy danych w kolumnach:
+Grade               object
+Project             object
+Case_ID             object
+Gender              object
+Age_at_diagnosis    object
+dtype: object
+Przykładowe dane:
+  Grade   Project       Case_ID Gender  ...       GRIN2A         IDH2         FAT4       PDGFRA
+0   LGG  TCGA-LGG  TCGA-DU-8164   Male  ...  NOT_MUTATED  NOT_MUTATED  NOT_MUTATED  NOT_MUTATED
+1   LGG  TCGA-LGG  TCGA-QH-A6CY   Male  ...  NOT_MUTATED  NOT_MUTATED  NOT_MUTATED  NOT_MUTATED
+
+[2 rows x 27 columns]
+
+Unikalne wartości w kolumnie 'Primary_Diagnosis': ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Liczba próbek dla każdej klasy:
+Primary_Diagnosis
+Glioblastoma                     360
+Astrocytoma, anaplastic          129
+Mixed glioma                     128
+Oligodendroglioma, NOS           108
+Oligodendroglioma, anaplastic     75
+Astrocytoma, NOS                  58
+Name: count, dtype: int64
+
+======= PRZYGOTOWANIE DANYCH DO EKSPERYMENTÓW =======
+Przykładowe wartości w kolumnach genów: ['MUTATED' 'NOT_MUTATED' 'NOT_MUTATED' 'NOT_MUTATED' 'NOT_MUTATED']
+
+Wybrana zmienna docelowa: Primary_Diagnosis
+Unikalne wartości w kolumnie 'Primary_Diagnosis': ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Liczba próbek dla każdej klasy:
+Primary_Diagnosis
+Glioblastoma                     360
+Astrocytoma, anaplastic          129
+Mixed glioma                     128
+Oligodendroglioma, NOS           108
+Oligodendroglioma, anaplastic     75
+Astrocytoma, NOS                  58
+Name: count, dtype: int64
+Średnia liczba mutacji na przypadek: 2.29
+Mediana liczby mutacji: 2.00
+Min/Max liczby mutacji: 0/17
+
+======= EKSPERYMENT 1: WPŁYW ZŁOŻONOŚCI DANYCH =======
+
+Poziomy złożoności danych:
+  Low Complexity: 250 przypadków
+    Średnia liczba mutacji: 0.72
+  Medium Complexity: 230 przypadków
+    Średnia liczba mutacji: 2.00
+  High Complexity: 378 przypadków
+    Średnia liczba mutacji: 3.50
+
+Testowanie poziomu złożoności: Low Complexity
+Aktywne mapy cech: ['Amplitude_l2_C1', 'Amplitude_l1_C1', 'Amplitude_min-max_C1']
+  Testowanie mapy cech: Amplitude_l2_C1
+    Dokładność: 0.7600
+  Testowanie mapy cech: Amplitude_l1_C1
+    Dokładność: 0.7600
+  Testowanie mapy cech: Amplitude_min-max_C1
+    Dokładność: 0.7600
+  Linear SVM: 0.7600
+  RBF SVM: 0.7600
+  Best Quantum SVM: 0.7600 (Amplitude_l2_C1)
+
+Testowanie poziomu złożoności: Medium Complexity
+Aktywne mapy cech: ['Amplitude_l2_C1', 'Amplitude_l1_C1', 'Amplitude_min-max_C1']
+  Testowanie mapy cech: Amplitude_l2_C1
+    Dokładność: 0.6232
+  Testowanie mapy cech: Amplitude_l1_C1
+    Dokładność: 0.6232
+  Testowanie mapy cech: Amplitude_min-max_C1
+    Dokładność: 0.6232
+  Linear SVM: 0.5797
+  RBF SVM: 0.5942
+  Best Quantum SVM: 0.6232 (Amplitude_l2_C1)
+
+Testowanie poziomu złożoności: High Complexity
+Aktywne mapy cech: ['Amplitude_l2_C1', 'Amplitude_l1_C1', 'Amplitude_min-max_C1']
+  Testowanie mapy cech: Amplitude_l2_C1
+    Dokładność: 0.3333
+  Testowanie mapy cech: Amplitude_l1_C1
+    Dokładność: 0.3333
+  Testowanie mapy cech: Amplitude_min-max_C1
+    Dokładność: 0.3333
+  Linear SVM: 0.3509
+  RBF SVM: 0.3421
+  Best Quantum SVM: 0.3333 (Amplitude_l2_C1)
+
+Czas wykonania eksperymentu złożoności: 32054.69 sekund
+Wyniki zapisane do pliku: wyniki/eksperymenty_poboczne-1/wyniki_eksperymentu_zlozonosc.csv
+
+======= EKSPERYMENT 2: PODZBIORY GENÓW =======
+
+Liczba genów w każdym podzbiorze:
+  Wszystkie geny: 20 genów (dostępne: 20, brakujące: 0)
+  Geny często mutowane: 4 genów (dostępne: 4, brakujące: 0)
+  Geny średnio mutowane: 7 genów (dostępne: 7, brakujące: 0)
+  Geny rzadko mutowane: 8 genów (dostępne: 8, brakujące: 0)
+
+Testing gene subset: Wszystkie geny (n=all)
+  Testing ZZ1, C=10.0
+    Accuracy: 0.5388
+  Testing ZZ2, C=0.1
+    Accuracy: 0.4690
+  Testing Pauli1, C=10.0
+    Accuracy: 0.5349
+  Linear SVM: 0.5426
+  RBF SVM: 0.5349
+  Best Quantum SVM: 0.5388 (ZZ1_C10)
+
+Testing gene subset: Geny często mutowane (n=4)
+  Testing ZZ1, C=10.0
+    Accuracy: 0.5426
+  Testing ZZ2, C=0.1
+    Accuracy: 0.5426
+  Testing Pauli1, C=10.0
+    Accuracy: 0.5194
+  Linear SVM: 0.5426
+  RBF SVM: 0.5543
+  Best Quantum SVM: 0.5426 (ZZ1_C10)
+
+Testing gene subset: Geny średnio mutowane (n=7)
+  Testing ZZ1, C=10.0
+    Accuracy: 0.4341
+  Testing ZZ2, C=0.1
+    Accuracy: 0.4612
+  Testing Pauli1, C=10.0
+    Accuracy: 0.3992
+  Linear SVM: 0.4651
+  RBF SVM: 0.4690
+  Best Quantum SVM: 0.4612 (ZZ2_C01)
+
+Testing gene subset: Geny rzadko mutowane (n=8)
+  Testing ZZ1, C=10.0
+    Accuracy: 0.4264
+  Testing ZZ2, C=0.1
+    Accuracy: 0.4225
+  Testing Pauli1, C=10.0
+    Accuracy: 0.4264
+  Linear SVM: 0.4225
+  RBF SVM: 0.4341
+  Best Quantum SVM: 0.4264 (ZZ1_C10)
+
+Czas wykonania eksperymentu podzbiorów genów: 96842.45 sekund
+Wyniki zapisane do pliku: wyniki/eksperymenty_poboczne-1/wyniki_eksperymentu_geny.csv
+
+======= EKSPERYMENT 3: MAPOWANIA CECH =======
+Aktywne mapy cech: ['Amplitude_l2_C1', 'Amplitude_l1_C1', 'Amplitude_min-max_C1']
+Dokładność klasycznego SVM (RBF): 0.5504
+
+Testowanie mapowania: Amplitude_l2_C1
+  Dokładność: 0.5349
+  Właściwości macierzy jądra: śr=0.069, std=0.250, min=-0.000, max=1.002
+
+Testowanie mapowania: Amplitude_l1_C1
+  Dokładność: 0.5426
+  Właściwości macierzy jądra: śr=0.043, std=0.197, min=-0.000, max=1.002
+
+Testowanie mapowania: Amplitude_min-max_C1
+  Dokładność: 0.5388
+  Właściwości macierzy jądra: śr=0.061, std=0.236, min=-0.000, max=1.003
+
+Najlepsze mapowanie kwantowe: Amplitude_l1_C1 (dokładność: 0.5426)
+Różnica względem klasycznego SVM: -0.0078
+
+Czas wykonania eksperymentu mapowania cech: 93077.23 sekund
+Wyniki zapisane do pliku: wyniki/eksperymenty_poboczne-1/wyniki_eksperymentu_mapowania.csv
+
+======= PODSUMOWANIE EKSPERYMENTÓW =======
+Całkowity czas wykonania eksperymentów: 221974.37 sekund (3699.57 minut)
+
+Wyniki eksperymentu złożoności danych:
+                  linear_svm   rbf_svm  ... Amplitude_l1_C1 Amplitude_min-max_C1
+Low Complexity          0.76      0.76  ...            0.76                 0.76
+Medium Complexity    0.57971  0.594203  ...        0.623188             0.623188
+High Complexity     0.350877  0.342105  ...        0.333333             0.333333
+
+[3 rows x 7 columns]
+
+Wyniki eksperymentu podzbiorów genów:
+                      linear_svm   rbf_svm  ... Pauli1_C10 sample_size
+Wszystkie geny          0.542636  0.534884  ...   0.534884          20
+Geny często mutowane    0.542636  0.554264  ...    0.51938           4
+Geny średnio mutowane   0.465116  0.468992  ...   0.399225           7
+Geny rzadko mutowane    0.422481  0.434109  ...   0.426357           8
+
+[4 rows x 8 columns]
+
+Wyniki eksperymentu mapowania cech:
+                      accuracy
+Amplitude_l2_C1       0.534884
+Amplitude_l1_C1       0.542636
+Amplitude_min-max_C1  0.538760
+
+Wszystkie wyniki zostały zapisane w katalogu: wyniki/eksperymenty_poboczne-1

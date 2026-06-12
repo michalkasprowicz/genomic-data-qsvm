@@ -1,0 +1,32 @@
+method,n_components,silhouette_score,explained_variance,parameters
+PCA,2,0.14904180882848342,0.008802910896059956,n_components=2
+PCA,3,0.10221491226053686,0.012240117966724504,n_components=3
+PCA,4,0.0773964303511667,0.015297012634861103,n_components=4
+PCA,5,0.14543883098116248,0.01787716900465801,n_components=5
+PCA,6,0.17877411724567227,0.020354480407368848,n_components=6
+PCA,7,0.1755927691537697,0.022839179821124798,n_components=7
+PCA,8,0.13591111808478173,0.025322954942548763,n_components=8
+PCA,10,0.13322780149739052,0.030135259955215106,n_components=10
+PCA,12,0.11560369927347439,0.034814435802109016,n_components=12
+PCA,14,0.09415115596953195,0.03934776652611656,n_components=14
+PCA,16,0.07706212705432497,0.04374803764763278,n_components=16
+PCA,20,0.05145008147795156,0.05212480766322123,n_components=20
+PCA,25,0.025907086416149434,0.061557460843560945,n_components=25
+PCA,30,0.02451858042036104,0.06817089731967414,n_components=30
+t-SNE,2,0.056376129388809204,,"n_components=2, perplexity=30, lr=50"
+t-SNE,2,0.1245468333363533,,"n_components=2, perplexity=30, lr=100"
+t-SNE,2,-0.014841650612652302,,"n_components=2, perplexity=30, lr=200"
+t-SNE,2,0.09407472610473633,,"n_components=2, perplexity=50, lr=50"
+t-SNE,2,0.08164428174495697,,"n_components=2, perplexity=50, lr=100"
+t-SNE,2,0.08889631927013397,,"n_components=2, perplexity=50, lr=200"
+t-SNE,3,0.054064903408288956,,"n_components=3, perplexity=30, lr=100"
+t-SNE,3,0.06979238986968994,,"n_components=3, perplexity=50, lr=100"
+UMAP,2,0.019399110227823257,,"n_components=2, n_neighbors=5, min_dist=0.1"
+UMAP,2,0.03806114196777344,,"n_components=2, n_neighbors=15, min_dist=0.1"
+UMAP,2,-0.13338957726955414,,"n_components=2, n_neighbors=30, min_dist=0.1"
+UMAP,2,0.020280905067920685,,"n_components=2, n_neighbors=15, min_dist=0.5"
+UMAP,2,0.021079763770103455,,"n_components=2, n_neighbors=15, min_dist=0.8"
+UMAP,3,0.030341865494847298,,"n_components=3, n_neighbors=15, min_dist=0.1"
+UMAP,5,0.052635736763477325,,"n_components=5, n_neighbors=15, min_dist=0.1"
+UMAP,8,0.06430219113826752,,"n_components=8, n_neighbors=15, min_dist=0.1"
+UMAP,10,0.06585823744535446,,"n_components=10, n_neighbors=15, min_dist=0.1"

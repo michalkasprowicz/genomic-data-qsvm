@@ -1,0 +1,53 @@
+================================================================================
+RAPORT ANALIZY WYNIKÓW EKSPERYMENTÓW
+================================================================================
+Data generowania: 2025-08-19 10:45:18
+
+KLASYCZNY SVM:
+----------------------------------------
+Liczba testów: 69
+Najlepsza dokładność: 0.9845
+Średnia dokładność: 0.7291
+Odchylenie standardowe: 0.1248
+
+Top 5 najlepszych wyników:
+1. pca_10: 0.9845 (C=1, gamma=scale, kernel=linear)
+2. pca_16: 0.9845 (C=1, gamma=scale, kernel=linear)
+3. pca_12: 0.9806 (C=1, gamma=scale, kernel=linear)
+4. pca_14: 0.9767 (C=1, gamma=scale, kernel=linear)
+5. pca_8: 0.9535 (C=1, gamma=scale, kernel=linear)
+
+KWANTOWY SVM:
+----------------------------------------
+Liczba testów: 9
+Najlepsza dokładność: 0.4867
+Średnia dokładność: 0.4459
+Odchylenie standardowe: 0.0318
+
+Wyniki według mapy cech:
+  Amplitude_l2: 0.4417
+  Amplitude_l1: 0.4367
+  Amplitude_min-max: 0.4867
+
+REDUKCJA WYMIAROWOŚCI:
+----------------------------------------
+Liczba metod: 68
+
+PCA:
+  Liczba wersji: 5
+  Średni czas: 0.10s
+  Najlepsza wyjaśniona wariancja: 0.0438
+
+t-SNE:
+  Liczba wersji: 18
+  Średni czas: 8.07s
+  Najlepszy Silhouette Score: 0.1245
+
+UMAP:
+  Liczba wersji: 45
+  Średni czas: 3.47s
+  Najlepszy Silhouette Score: 0.0688
+
+================================================================================
+KONIEC RAPORTU
+================================================================================

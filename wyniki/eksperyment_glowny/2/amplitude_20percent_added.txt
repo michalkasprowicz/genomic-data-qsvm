@@ -1,0 +1,60 @@
+======= KWANTOWY SVM Z AMPLITUDE ENCODING =======
+Testowanie Amplitude_l2 z C=0.1...
+Dokładność kwantowego SVM z Amplitude_l2, C=0.1: 0.7943 (czas: 11.97 s)
+Testowanie Amplitude_l2 z C=1.0...
+Dokładność kwantowego SVM z Amplitude_l2, C=1.0: 0.9092 (czas: 12.63 s)
+Testowanie Amplitude_l2 z C=10.0...
+Dokładność kwantowego SVM z Amplitude_l2, C=10.0: 0.9117 (czas: 12.54 s)
+Testowanie Amplitude_l1 z C=0.1...
+Dokładność kwantowego SVM z Amplitude_l1, C=0.1: 0.3930 (czas: 11.99 s)
+Testowanie Amplitude_l1 z C=1.0...
+Dokładność kwantowego SVM z Amplitude_l1, C=1.0: 0.4080 (czas: 11.93 s)
+Testowanie Amplitude_l1 z C=10.0...
+Dokładność kwantowego SVM z Amplitude_l1, C=10.0: 0.8368 (czas: 11.90 s)
+Testowanie Amplitude_min-max z C=0.1...
+Dokładność kwantowego SVM z Amplitude_min-max, C=0.1: 0.9442 (czas: 12.44 s)
+Testowanie Amplitude_min-max z C=1.0...
+Dokładność kwantowego SVM z Amplitude_min-max, C=1.0: 0.9425 (czas: 11.83 s)
+Testowanie Amplitude_min-max z C=10.0...
+Dokładność kwantowego SVM z Amplitude_min-max, C=10.0: 0.9325 (czas: 11.68 s)
+
+Najlepszy kwantowy SVM: Amplitude_min-max z C=0.1, dokładność: 0.9442
+Ewaluacja najlepszego modelu z kodowaniem amplitudowym (normalizacja: min-max)...
+Raport klasyfikacji (najlepszy kwantowy SVM z kodowaniem amplitudowym, normalizacja: min-max):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.90      0.61      0.73        46
+      Astrocytoma, anaplastic       1.00      1.00      1.00        77
+                 Glioblastoma       0.91      0.98      0.94       196
+                 Mixed glioma       0.97      0.96      0.97        77
+       Oligodendroglioma, NOS       0.96      0.99      0.97        70
+Oligodendroglioma, anaplastic       0.96      0.94      0.95        49
+
+                     accuracy                           0.94       515
+                    macro avg       0.95      0.91      0.93       515
+                 weighted avg       0.94      0.94      0.94       515
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM z kodowaniem amplitudowym (min-max):
+Accuracy: 0.9437
+Precision: 0.9435
+Recall: 0.9437
+F1 Score: 0.9405
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 28   0  13   2   2   1]
+ [  0  77   0   0   0   0]
+ [  2   0 192   0   1   1]
+ [  1   0   2  74   0   0]
+ [  0   0   1   0  69   0]
+ [  0   0   3   0   0  46]]
+
+Całkowity czas dla kwantowego SVM: 110.77 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Kwantowy SVM: 0.9437
+
+======= PODSUMOWANIE EKSPERYMENTU AMPLITUDE =======
+Data i czas zakończenia: 2025-08-30 19:59:42
+Całkowity czas eksperymentu: 1756576782.54 sekund

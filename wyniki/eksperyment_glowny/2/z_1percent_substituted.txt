@@ -1,0 +1,114 @@
+
+======= PRZYGOTOWANIE DANYCH =======
+Wymiary oryginalnych danych: (858, 27)
+Unikalne wartości zmiennej docelowej: ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Rozkład klas: {'Glioblastoma': 355, 'Astrocytoma, anaplastic': 133, 'Mixed glioma': 127, 'Oligodendroglioma, NOS': 109, 'Oligodendroglioma, anaplastic': 76, 'Astrocytoma, NOS': 58}
+Wymiary danych po usunięciu kolumn identyfikacyjnych: (858, 24)
+Przekształcanie kolumn kategorycznych na binarne...
+Kolumny kategoryczne do przekształcenia: ['Gender', 'Primary_Diagnosis', 'Race', 'IDH1', 'TP53', 'ATRX', 'PTEN', 'EGFR', 'CIC', 'MUC16', 'PIK3CA', 'NF1', 'PIK3R1', 'FUBP1', 'RB1', 'NOTCH1', 'BCOR', 'CSMD3', 'SMARCA4', 'GRIN2A', 'IDH2', 'FAT4', 'PDGFRA']
+Kolumna Gender zawiera wartości: ['Male' 'Female']
+Kolumna Primary_Diagnosis zawiera wartości: ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Kolumna Primary_Diagnosis zostanie zakodowana jako one-hot (6 kategorii).
+Kolumna Race zawiera wartości: ['white' 'asian' 'black or african american' 'not reported'
+ 'american indian or alaska native']
+Kolumna Race zostanie zakodowana jako one-hot (5 kategorii).
+Kolumna IDH1 zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna TP53 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna ATRX zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PTEN zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna EGFR zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna CIC zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna MUC16 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PIK3CA zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna NF1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PIK3R1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna FUBP1 zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna RB1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna NOTCH1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna BCOR zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna CSMD3 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna SMARCA4 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna GRIN2A zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna IDH2 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna FAT4 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PDGFRA zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Wymiary danych po przekształceniu: (858, 31)
+UWAGA: Zbyt wiele wymiarów (31)! Maksymalnie 27.
+Rozważ zwiększenie PCA_COMPONENTS lub ograniczenie one-hot encoding.
+Wypełnianie brakujących wartości...
+Wymiary danych wejściowych: (858, 31)
+Wymiary danych po skalowaniu: (858, 31)
+
+======= REDUKCJA WYMIAROWOŚCI =======
+Liczba komponentów PCA: 12
+Wymiary danych po redukcji PCA: (858, 12)
+Wyjaśniona wariancja: 0.5954
+Używanie danych zredukowanych przez PCA jako domyślnych.
+Wymiary zbioru treningowego: (600, 12)
+Wymiary zbioru testowego: (258, 12)
+
+Czas przygotowania danych: 0.02 sekund
+
+======= INICJALIZACJA LOKALNEGO SYMULATORA =======
+IBM Quantum Cloud wyłączone - używanie lokalnego symulatora
+✓ Zainicjalizowano lokalny symulator Qiskit Aer
+✓ Backend: <bound method BackendV1.name of QasmSimulator('qasm_simulator')>
+
+======= KLASYCZNY SVM (BASELINE) - POMINIĘTY =======
+
+======= KWANTOWY SVM Z Z1 i Z2 FEATURE MAPS =======
+Testowanie Z1 z C=0.1...
+Błąd dla Z1, C=0.1: Funkcja run_single_with_timeout przekroczyła limit 3600s
+Testowanie Z1 z C=1.0...
+Dokładność kwantowego SVM z Z1, C=1.0: 0.6717 (czas: 6073.25 s)
+Testowanie Z1 z C=10.0...
+Dokładność kwantowego SVM z Z1, C=10.0: 0.6833 (czas: 6074.46 s)
+Testowanie Z2 z C=0.1...
+Dokładność kwantowego SVM z Z2, C=0.1: 0.4450 (czas: 8151.13 s)
+Testowanie Z2 z C=1.0...
+Dokładność kwantowego SVM z Z2, C=1.0: 0.6767 (czas: 8151.26 s)
+Testowanie Z2 z C=10.0...
+Dokładność kwantowego SVM z Z2, C=10.0: 0.6900 (czas: 8147.88 s)
+
+Najlepszy kwantowy SVM: Z2 z C=10.0, dokładność: 0.6900
+Ewaluacja najlepszego modelu z Z2...
+Raport klasyfikacji (najlepszy kwantowy SVM z Z2):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      0.50      0.67        18
+      Astrocytoma, anaplastic       0.96      0.51      0.67        45
+                 Glioblastoma       0.63      0.98      0.77       106
+                 Mixed glioma       0.87      0.71      0.78        38
+       Oligodendroglioma, NOS       0.91      0.61      0.73        33
+Oligodendroglioma, anaplastic       0.88      0.39      0.54        18
+
+                     accuracy                           0.74       258
+                    macro avg       0.87      0.62      0.69       258
+                 weighted avg       0.80      0.74      0.73       258
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM z Z2:
+Accuracy: 0.7364
+Precision: 0.8031
+Recall: 0.7364
+F1 Score: 0.7252
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  9   1   7   0   0   1]
+ [  0  23  22   0   0   0]
+ [  0   0 104   2   0   0]
+ [  0   0  11  27   0   0]
+ [  0   0  12   1  20   0]
+ [  0   0   8   1   2   7]]
+
+Całkowity czas dla kwantowego SVM: 41734.28 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Kwantowy SVM: 0.7364
+
+======= PODSUMOWANIE EKSPERYMENTU Z1/Z2 =======
+Data i czas zakończenia: 2025-09-10 11:21:10
+Całkowity czas eksperymentu: 1757496070.47 sekund

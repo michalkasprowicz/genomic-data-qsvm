@@ -1,0 +1,110 @@
+======= KWANTOWY SVM Z PAULI1 i PAULI2 FEATURE MAPS =======
+Testowanie Pauli1 z C=0.1...
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 10/10: train (540, 14), val (60, 14)
+Dokładność kwantowego SVM z Pauli1, C=0.1: 0.4183 (czas: 82554.30 s)
+Testowanie Pauli1 z C=1.0...
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 10/10: train (540, 14), val (60, 14)
+Dokładność kwantowego SVM z Pauli1, C=1.0: 0.5567 (czas: 82055.28 s)
+Testowanie Pauli1 z C=10.0...
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 10/10: train (540, 14), val (60, 14)
+Dokładność kwantowego SVM z Pauli1, C=10.0: 0.5867 (czas: 82233.70 s)
+Testowanie Pauli2 z C=0.1...
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 10/10: train (540, 14), val (60, 14)
+Dokładność kwantowego SVM z Pauli2, C=0.1: 0.4183 (czas: 154112.35 s)
+Testowanie Pauli2 z C=1.0...
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 10/10: train (540, 14), val (60, 14)
+Dokładność kwantowego SVM z Pauli2, C=1.0: 0.5100 (czas: 154272.55 s)
+Testowanie Pauli2 z C=10.0...
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 10/10: train (540, 14), val (60, 14)
+Dokładność kwantowego SVM z Pauli2, C=10.0: 0.5300 (czas: 153976.15 s)
+
+Najlepszy kwantowy SVM: Pauli1 z C=10.0, dokładność: 0.5867
+Raport klasyfikacji (najlepszy kwantowy SVM):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      0.32      0.48        19
+      Astrocytoma, anaplastic       1.00      0.26      0.42        42
+                 Glioblastoma       0.50      1.00      0.66       109
+                 Mixed glioma       1.00      0.34      0.51        38
+       Oligodendroglioma, NOS       1.00      0.18      0.31        33
+Oligodendroglioma, anaplastic       1.00      0.12      0.21        17
+
+                     accuracy                           0.57       258
+                    macro avg       0.92      0.37      0.43       258
+                 weighted avg       0.79      0.57      0.51       258
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM Pauli1:
+Accuracy: 0.5698
+Precision: 0.7868
+Recall: 0.5698
+F1 Score: 0.5112
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  6   0  13   0   0   0]
+ [  0  11  31   0   0   0]
+ [  0   0 109   0   0   0]
+ [  0   0  25  13   0   0]
+ [  0   0  27   0   6   0]
+ [  0   0  15   0   0   2]]
+
+Całkowity czas dla kwantowego SVM: 724722.86 sekund
+
+======= PODSUMOWANIE EKSPERYMENTU PAULI =======
+Data i czas zakończenia: 2025-09-05 20:01:14
+Całkowity czas eksperymentu: 1757102474.65 sekund

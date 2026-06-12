@@ -1,0 +1,132 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 0.1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 1.0
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      1.00      1.00        19
+      Astrocytoma, anaplastic       1.00      1.00      1.00        42
+                 Glioblastoma       1.00      1.00      1.00       109
+                 Mixed glioma       1.00      1.00      1.00        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           1.00       258
+                    macro avg       1.00      1.00      1.00       258
+                 weighted avg       1.00      1.00      1.00       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 19   0   0   0   0   0]
+ [  0  42   0   0   0   0]
+ [  0   0 109   0   0   0]
+ [  0   0   0  38   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 17.97 sekund
+
+======= PODEJŚCIE HYBRYDOWE =======
+Wczytano 3 wyników z wyniki/2025-08-04-dim_reduction-10-fold/qsvm_zz_cache_TCGA_GBM_LGG_Mutations_all.json
+Wczytano 9 wyników z wyniki/2025-08-04-dim_reduction-10-fold/qsvm_amplitude_cache_TCGA_GBM_LGG_Mutations_all.json
+Łącznie wczytano 12 wyników kwantowych
+
+Wszystkie wyniki kwantowe:
+  Amplitude_min-max, C=1.0: 0.9767
+  Amplitude_min-max, C=10.0: 0.9767
+  Amplitude_min-max, C=0.1: 0.9583
+  Amplitude_l2, C=10.0: 0.9333
+  Amplitude_l2, C=1.0: 0.9117
+  Amplitude_l1, C=10.0: 0.8000
+  Amplitude_l2, C=0.1: 0.7650
+  ZZ1, C=10.0: 0.4950
+  ZZ1, C=1.0: 0.4633
+  ZZ1, C=0.1: 0.4183
+  Amplitude_l1, C=0.1: 0.4183
+  Amplitude_l1, C=1.0: 0.4183
+
+Najlepszy wynik: Amplitude_min-max z C=1.0, score=0.9767
+
+======= WYŻARZANIE SYMULOWANE =======
+Tworzenie problemu QUBO dla optymalizacji hiperparametrów...
+Wynik dla ZZ1, C=0.1: 0.4183
+Wynik dla ZZ1, C=1.0: 0.4633
+Wynik dla ZZ1, C=10.0: 0.4950
+Wynik dla ZZ2, C=0.1: 0.0000
+Wynik dla ZZ2, C=1.0: 0.0000
+Wynik dla ZZ2, C=10.0: 0.0000
+Wynik dla Pauli1, C=0.1: 0.0000
+Wynik dla Pauli1, C=1.0: 0.0000
+Wynik dla Pauli1, C=10.0: 0.0000
+Wynik dla Pauli2, C=0.1: 0.0000
+Wynik dla Pauli2, C=1.0: 0.0000
+Wynik dla Pauli2, C=10.0: 0.0000
+Wynik dla Z1, C=0.1: 0.0000
+Wynik dla Z1, C=1.0: 0.0000
+Wynik dla Z1, C=10.0: 0.0000
+Wynik dla Z2, C=0.1: 0.0000
+Wynik dla Z2, C=1.0: 0.0000
+Wynik dla Z2, C=10.0: 0.0000
+Czas tworzenia problemu QUBO: 0.00 sekund
+Rozwiązywanie problemu QUBO za pomocą wyżarzania symulowanego...
+Czas wyżarzania symulowanego: 9.07 sekund
+Optymalne hiperparametry z wyżarzania symulowanego: feature_map=ZZ1, C=10.0
+Czas trenowania modelu hybrydowego: 4402.55 sekund
+Czas ewaluacji modelu hybrydowego: 3551.13 sekund
+Dokładność ostatecznego modelu hybrydowego: 0.5581
+Raport klasyfikacji (model hybrydowy):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      0.16      0.27        19
+      Astrocytoma, anaplastic       1.00      0.21      0.35        42
+                 Glioblastoma       0.49      1.00      0.66       109
+                 Mixed glioma       1.00      0.45      0.62        38
+       Oligodendroglioma, NOS       1.00      0.18      0.31        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.56       258
+                    macro avg       0.75      0.33      0.37       258
+                 weighted avg       0.72      0.56      0.49       258
+
+
+Szczegółowe metryki dla modelu Model hybrydowy:
+Accuracy: 0.5581
+Precision: 0.7181
+Recall: 0.5581
+F1 Score: 0.4854
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  3   0  16   0   0   0]
+ [  0   9  33   0   0   0]
+ [  0   0 109   0   0   0]
+ [  0   0  21  17   0   0]
+ [  0   0  27   0   6   0]
+ [  0   0  17   0   0   0]]
+
+Całkowity czas dla podejścia hybrydowego: 7962.80 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 1.0000
+Model hybrydowy: 0.5581
+
+======= ANALIZA ZNACZENIA CECH =======
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Glioblastoma: 0.3267
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1795
+  Primary_Diagnosis_Mixed glioma: 0.1628
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1419
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.0709
+
+Czas analizy znaczenia cech: 244.57 sekund
+
+======= PODSUMOWANIE EKSPERYMENTU HYBRYDOWEGO =======
+Data i czas zakończenia: 2025-08-07 01:41:23
+Całkowity czas eksperymentu: 1754523683.35 sekund

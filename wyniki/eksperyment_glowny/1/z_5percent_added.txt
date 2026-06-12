@@ -1,0 +1,54 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 0.9983402489626556
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+                           --       1.00      1.00      1.00         2
+             Astrocytoma, NOS       1.00      1.00      1.00        27
+      Astrocytoma, anaplastic       1.00      1.00      1.00        84
+                 Glioblastoma       1.00      1.00      1.00       220
+                 Mixed glioma       1.00      1.00      1.00        69
+       Oligodendroglioma, NOS       1.00      1.00      1.00        73
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        43
+
+                     accuracy                           1.00       518
+                    macro avg       1.00      1.00      1.00       518
+                 weighted avg       1.00      1.00      1.00       518
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  2   0   0   0   0   0   0]
+ [  0  27   0   0   0   0   0]
+ [  0   0  84   0   0   0   0]
+ [  0   0   0 220   0   0   0]
+ [  0   0   0   0  69   0   0]
+ [  0   0   0   0   0  73   0]
+ [  0   0   0   0   0   0  43]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 51.54 sekund
+
+======= KWANTOWY SVM Z Z FEATURE MAPS =======
+Testowanie 2 map cech: ['Z1', 'Z2']
+Testowanie Z1 z C=0.1...
+Dokładność kwantowego SVM z Z1, C=0.1: 0.4453 (czas: 35561.63 s)
+Testowanie Z1 z C=1.0...
+Dokładność kwantowego SVM z Z1, C=1.0: 0.6219 (czas: 35746.35 s)
+Testowanie Z1 z C=10.0...
+Dokładność kwantowego SVM z Z1, C=10.0: 0.6551 (czas: 35656.26 s)
+Testowanie Z2 z C=0.1...
+Dokładność kwantowego SVM z Z2, C=0.1: 0.4378 (czas: 52562.44 s)
+Testowanie Z2 z C=1.0...
+Dokładność kwantowego SVM z Z2, C=1.0: 0.6468 (czas: 52641.36 s)
+Testowanie Z2 z C=10.0...
+
+
+======= PRZEKROCZONO MAKSYMALNY CZAS WYKONANIA =======
+Eksperyment został przerwany po 168.0 godzinach.

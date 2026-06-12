@@ -1,0 +1,1057 @@
+[
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 8
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "explained_variance": 0.02527665104580282,
+        "execution_time": 0.07939696311950684,
+        "version_name": "pca_8"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 10
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "explained_variance": 0.030105989265291584,
+        "execution_time": 0.0987086296081543,
+        "version_name": "pca_10"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 12
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "explained_variance": 0.034797233659616136,
+        "execution_time": 0.10386347770690918,
+        "version_name": "pca_12"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 14
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "explained_variance": 0.03937640055755956,
+        "execution_time": 0.10439658164978027,
+        "version_name": "pca_14"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 16
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "explained_variance": 0.04378131387996225,
+        "execution_time": 0.12072229385375977,
+        "version_name": "pca_16"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 30,
+            "learning_rate": 50
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.056376129388809204,
+        "execution_time": 2.9860270023345947,
+        "version_name": "tsne_comp2_perp30_lr50"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 30,
+            "learning_rate": 100
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.1245468333363533,
+        "execution_time": 2.5797622203826904,
+        "version_name": "tsne_comp2_perp30_lr100"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 30,
+            "learning_rate": 200
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": -0.014841650612652302,
+        "execution_time": 2.7930445671081543,
+        "version_name": "tsne_comp2_perp30_lr200"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 50,
+            "learning_rate": 50
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.09407472610473633,
+        "execution_time": 4.12095308303833,
+        "version_name": "tsne_comp2_perp50_lr50"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 50,
+            "learning_rate": 100
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.08164428174495697,
+        "execution_time": 3.362663507461548,
+        "version_name": "tsne_comp2_perp50_lr100"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 50,
+            "learning_rate": 200
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.08889631927013397,
+        "execution_time": 3.484262228012085,
+        "version_name": "tsne_comp2_perp50_lr200"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 100,
+            "learning_rate": 50
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.028273195028305054,
+        "execution_time": 5.1541197299957275,
+        "version_name": "tsne_comp2_perp100_lr50"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 100,
+            "learning_rate": 100
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": 0.02312299609184265,
+        "execution_time": 4.941918611526489,
+        "version_name": "tsne_comp2_perp100_lr100"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 2,
+            "perplexity": 100,
+            "learning_rate": 200
+        },
+        "dimensions": [
+            858,
+            2
+        ],
+        "silhouette_score": -0.06018061563372612,
+        "execution_time": 4.759885787963867,
+        "version_name": "tsne_comp2_perp100_lr200"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 30,
+            "learning_rate": 50
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": -0.037626128643751144,
+        "execution_time": 10.261586427688599,
+        "version_name": "tsne_comp3_perp30_lr50"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 30,
+            "learning_rate": 100
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.054064903408288956,
+        "execution_time": 9.857230186462402,
+        "version_name": "tsne_comp3_perp30_lr100"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 30,
+            "learning_rate": 200
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.07796803116798401,
+        "execution_time": 10.14761996269226,
+        "version_name": "tsne_comp3_perp30_lr200"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 50,
+            "learning_rate": 50
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.02826225757598877,
+        "execution_time": 9.748045444488525,
+        "version_name": "tsne_comp3_perp50_lr50"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 50,
+            "learning_rate": 100
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.06979238986968994,
+        "execution_time": 12.483913660049438,
+        "version_name": "tsne_comp3_perp50_lr100"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 50,
+            "learning_rate": 200
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.06078718230128288,
+        "execution_time": 13.833547115325928,
+        "version_name": "tsne_comp3_perp50_lr200"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 100,
+            "learning_rate": 50
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": -0.014079423621296883,
+        "execution_time": 14.883405447006226,
+        "version_name": "tsne_comp3_perp100_lr50"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 100,
+            "learning_rate": 100
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.027442069724202156,
+        "execution_time": 15.23533034324646,
+        "version_name": "tsne_comp3_perp100_lr100"
+    },
+    {
+        "method": "t-SNE",
+        "parameters": {
+            "n_components": 3,
+            "perplexity": 100,
+            "learning_rate": 200
+        },
+        "dimensions": [
+            858,
+            3
+        ],
+        "silhouette_score": 0.023984165862202644,
+        "execution_time": 14.572060585021973,
+        "version_name": "tsne_comp3_perp100_lr200"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 5,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": 0.042082779109478,
+        "execution_time": 8.416023015975952,
+        "version_name": "umap_comp8_neigh5_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 5,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": 0.042252592742443085,
+        "execution_time": 2.5304133892059326,
+        "version_name": "umap_comp8_neigh5_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 5,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": 0.05204271525144577,
+        "execution_time": 2.390441417694092,
+        "version_name": "umap_comp8_neigh5_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 15,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": 0.06430219113826752,
+        "execution_time": 3.210282564163208,
+        "version_name": "umap_comp8_neigh15_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 15,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": 0.0552825890481472,
+        "execution_time": 3.32401967048645,
+        "version_name": "umap_comp8_neigh15_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 15,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": 0.04829305037856102,
+        "execution_time": 3.1657803058624268,
+        "version_name": "umap_comp8_neigh15_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 30,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": -0.05873451009392738,
+        "execution_time": 3.665250301361084,
+        "version_name": "umap_comp8_neigh30_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 30,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": -0.02873360738158226,
+        "execution_time": 3.8071279525756836,
+        "version_name": "umap_comp8_neigh30_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 8,
+            "n_neighbors": 30,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "silhouette_score": -0.014661082997918129,
+        "execution_time": 3.870020627975464,
+        "version_name": "umap_comp8_neigh30_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 5,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": 0.039738092571496964,
+        "execution_time": 2.6300065517425537,
+        "version_name": "umap_comp10_neigh5_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 5,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": 0.04916706681251526,
+        "execution_time": 2.516627311706543,
+        "version_name": "umap_comp10_neigh5_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 5,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": 0.038959063589572906,
+        "execution_time": 2.518944263458252,
+        "version_name": "umap_comp10_neigh5_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 15,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": 0.06585823744535446,
+        "execution_time": 3.516777276992798,
+        "version_name": "umap_comp10_neigh15_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 15,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": 0.0595187284052372,
+        "execution_time": 3.342039108276367,
+        "version_name": "umap_comp10_neigh15_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 15,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": 0.05168359354138374,
+        "execution_time": 3.5115551948547363,
+        "version_name": "umap_comp10_neigh15_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 30,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": -0.0571100227534771,
+        "execution_time": 4.014117479324341,
+        "version_name": "umap_comp10_neigh30_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 30,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": -0.02157551608979702,
+        "execution_time": 3.871479034423828,
+        "version_name": "umap_comp10_neigh30_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 10,
+            "n_neighbors": 30,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "silhouette_score": -0.009318053722381592,
+        "execution_time": 3.9953930377960205,
+        "version_name": "umap_comp10_neigh30_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 5,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": 0.0633869469165802,
+        "execution_time": 2.507411479949951,
+        "version_name": "umap_comp12_neigh5_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 5,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": 0.0380033515393734,
+        "execution_time": 2.508430004119873,
+        "version_name": "umap_comp12_neigh5_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 5,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": 0.04470667988061905,
+        "execution_time": 2.649308681488037,
+        "version_name": "umap_comp12_neigh5_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 15,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": 0.06566815078258514,
+        "execution_time": 3.505385637283325,
+        "version_name": "umap_comp12_neigh15_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 15,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": 0.061639320105314255,
+        "execution_time": 3.4832682609558105,
+        "version_name": "umap_comp12_neigh15_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 15,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": 0.05699482560157776,
+        "execution_time": 3.364365577697754,
+        "version_name": "umap_comp12_neigh15_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 30,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": -0.05409557744860649,
+        "execution_time": 3.923560857772827,
+        "version_name": "umap_comp12_neigh30_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 30,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": -0.014581573195755482,
+        "execution_time": 4.04142951965332,
+        "version_name": "umap_comp12_neigh30_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 12,
+            "n_neighbors": 30,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "silhouette_score": -0.00516481650993228,
+        "execution_time": 3.8814215660095215,
+        "version_name": "umap_comp12_neigh30_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 5,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": 0.047020167112350464,
+        "execution_time": 2.7355871200561523,
+        "version_name": "umap_comp14_neigh5_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 5,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": 0.04119415208697319,
+        "execution_time": 2.6155340671539307,
+        "version_name": "umap_comp14_neigh5_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 5,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": 0.045894354581832886,
+        "execution_time": 2.6154394149780273,
+        "version_name": "umap_comp14_neigh5_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 15,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": 0.06882990151643753,
+        "execution_time": 3.6754209995269775,
+        "version_name": "umap_comp14_neigh15_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 15,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": 0.06687026470899582,
+        "execution_time": 3.5131380558013916,
+        "version_name": "umap_comp14_neigh15_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 15,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": 0.06324607133865356,
+        "execution_time": 3.6523256301879883,
+        "version_name": "umap_comp14_neigh15_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 30,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": -0.05228552967309952,
+        "execution_time": 4.092323541641235,
+        "version_name": "umap_comp14_neigh30_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 30,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": -0.015346134081482887,
+        "execution_time": 4.118331432342529,
+        "version_name": "umap_comp14_neigh30_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 14,
+            "n_neighbors": 30,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "silhouette_score": -0.0010853941785171628,
+        "execution_time": 4.242278575897217,
+        "version_name": "umap_comp14_neigh30_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 5,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": 0.04322965070605278,
+        "execution_time": 2.565621852874756,
+        "version_name": "umap_comp16_neigh5_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 5,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": 0.03628598153591156,
+        "execution_time": 2.6984806060791016,
+        "version_name": "umap_comp16_neigh5_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 5,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": 0.040140315890312195,
+        "execution_time": 2.584846258163452,
+        "version_name": "umap_comp16_neigh5_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 15,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": 0.06778804957866669,
+        "execution_time": 3.4599809646606445,
+        "version_name": "umap_comp16_neigh15_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 15,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": 0.06520756334066391,
+        "execution_time": 3.5976011753082275,
+        "version_name": "umap_comp16_neigh15_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 15,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": 0.06371365487575531,
+        "execution_time": 3.4766178131103516,
+        "version_name": "umap_comp16_neigh15_dist0.8"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 30,
+            "min_dist": 0.1,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": -0.05638979747891426,
+        "execution_time": 4.153176546096802,
+        "version_name": "umap_comp16_neigh30_dist0.1"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 30,
+            "min_dist": 0.5,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": -0.014723910950124264,
+        "execution_time": 4.04157567024231,
+        "version_name": "umap_comp16_neigh30_dist0.5"
+    },
+    {
+        "method": "UMAP",
+        "parameters": {
+            "n_components": 16,
+            "n_neighbors": 30,
+            "min_dist": 0.8,
+            "metric": "euclidean"
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "silhouette_score": -0.002732635475695133,
+        "execution_time": 4.019296646118164,
+        "version_name": "umap_comp16_neigh30_dist0.8"
+    }
+]

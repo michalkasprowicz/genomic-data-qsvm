@@ -1,0 +1,184 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 0.1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 1.0
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      1.00      1.00        19
+      Astrocytoma, anaplastic       1.00      1.00      1.00        42
+                 Glioblastoma       1.00      1.00      1.00       109
+                 Mixed glioma       1.00      1.00      1.00        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           1.00       258
+                    macro avg       1.00      1.00      1.00       258
+                 weighted avg       1.00      1.00      1.00       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 19   0   0   0   0   0]
+ [  0  42   0   0   0   0]
+ [  0   0 109   0   0   0]
+ [  0   0   0  38   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 18.06 sekund
+
+======= KWANTOWY SVM Z ZZ FEATURE MAPS =======
+Testowanie 2 map cech: ['ZZ1', 'ZZ2']
+Pomijanie już przetestowanej kombinacji: ZZ1, C=0.1
+Pomijanie już przetestowanej kombinacji: ZZ1, C=1.0
+Pomijanie już przetestowanej kombinacji: ZZ1, C=10.0
+Testowanie ZZ2 z C=0.1...
+  Wymiary danych: X_train_reduced (600, 14)
+  Sprawdzenie NaN: 0
+  Sprawdzenie inf: 0
+  Zakres danych: [-6.1714, 17.1218]
+  Testowanie quantum kernel...
+  Test kernel shape: (2, 2)
+  Test kernel range: [0.0000, 1.0000]
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 1 score: 0.3500
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 2 score: 0.3833
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 3 score: 0.3833
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 4 score: 0.4500
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 5 score: 0.3333
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 6 score: 0.4833
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 7 score: 0.4833
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 8 score: 0.4333
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 9 score: 0.3500
+    Fold 10/10: train (540, 14), val (60, 14)
+    Fold 10 score: 0.5333
+    Wszystkie scores: [0.35, 0.38333333333333336, 0.38333333333333336, 0.45, 0.3333333333333333, 0.48333333333333334, 0.48333333333333334, 0.43333333333333335, 0.35, 0.5333333333333333]
+    Mean score: 0.4183 ± 0.0647
+Dokładność kwantowego SVM z ZZ2, C=0.1: 0.4183 (czas: 72785.08 s)
+Testowanie ZZ2 z C=1.0...
+  Wymiary danych: X_train_reduced (600, 14)
+  Sprawdzenie NaN: 0
+  Sprawdzenie inf: 0
+  Zakres danych: [-6.1714, 17.1218]
+  Testowanie quantum kernel...
+  Test kernel shape: (2, 2)
+  Test kernel range: [0.0010, 1.0000]
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 1 score: 0.3500
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 2 score: 0.3833
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 3 score: 0.3833
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 4 score: 0.4500
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 5 score: 0.3333
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 6 score: 0.4833
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 7 score: 0.4833
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 8 score: 0.4333
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 9 score: 0.3500
+    Fold 10/10: train (540, 14), val (60, 14)
+    Fold 10 score: 0.5333
+    Wszystkie scores: [0.35, 0.38333333333333336, 0.38333333333333336, 0.45, 0.3333333333333333, 0.48333333333333334, 0.48333333333333334, 0.43333333333333335, 0.35, 0.5333333333333333]
+    Mean score: 0.4183 ± 0.0647
+Dokładność kwantowego SVM z ZZ2, C=1.0: 0.4183 (czas: 72898.90 s)
+Testowanie ZZ2 z C=10.0...
+  Wymiary danych: X_train_reduced (600, 14)
+  Sprawdzenie NaN: 0
+  Sprawdzenie inf: 0
+  Zakres danych: [-6.1714, 17.1218]
+  Testowanie quantum kernel...
+  Test kernel shape: (2, 2)
+  Test kernel range: [0.0000, 1.0000]
+    Fold 1/10: train (540, 14), val (60, 14)
+    Fold 1 score: 0.3500
+    Fold 2/10: train (540, 14), val (60, 14)
+    Fold 2 score: 0.3833
+    Fold 3/10: train (540, 14), val (60, 14)
+    Fold 3 score: 0.3833
+    Fold 4/10: train (540, 14), val (60, 14)
+    Fold 4 score: 0.4500
+    Fold 5/10: train (540, 14), val (60, 14)
+    Fold 5 score: 0.3333
+    Fold 6/10: train (540, 14), val (60, 14)
+    Fold 6 score: 0.4833
+    Fold 7/10: train (540, 14), val (60, 14)
+    Fold 7 score: 0.5000
+    Fold 8/10: train (540, 14), val (60, 14)
+    Fold 8 score: 0.4333
+    Fold 9/10: train (540, 14), val (60, 14)
+    Fold 9 score: 0.3667
+    Fold 10/10: train (540, 14), val (60, 14)
+    Fold 10 score: 0.5333
+    Wszystkie scores: [0.35, 0.38333333333333336, 0.38333333333333336, 0.45, 0.3333333333333333, 0.48333333333333334, 0.5, 0.43333333333333335, 0.36666666666666664, 0.5333333333333333]
+    Mean score: 0.4217 ± 0.0650
+Dokładność kwantowego SVM z ZZ2, C=10.0: 0.4217 (czas: 73245.70 s)
+
+Najlepszy kwantowy SVM: ZZ1 z C=10.0, dokładność: 0.4950
+Raport klasyfikacji (najlepszy kwantowy SVM):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      0.21      0.35        19
+      Astrocytoma, anaplastic       1.00      0.21      0.35        42
+                 Glioblastoma       0.49      1.00      0.66       109
+                 Mixed glioma       1.00      0.45      0.62        38
+       Oligodendroglioma, NOS       1.00      0.15      0.26        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.56       258
+                    macro avg       0.75      0.34      0.37       258
+                 weighted avg       0.72      0.56      0.49       258
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM ZZ1:
+Accuracy: 0.5581
+Precision: 0.7181
+Recall: 0.5581
+F1 Score: 0.4852
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  4   0  15   0   0   0]
+ [  0   9  33   0   0   0]
+ [  0   0 109   0   0   0]
+ [  0   0  21  17   0   0]
+ [  0   0  28   0   5   0]
+ [  0   0  17   0   0   0]]
+
+Całkowity czas dla kwantowego SVM: 227225.00 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 1.0000
+Kwantowy SVM: 0.5581
+
+======= ANALIZA ZNACZENIA CECH =======
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Glioblastoma: 0.3267
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1795
+  Primary_Diagnosis_Mixed glioma: 0.1628
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1419
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.0709
+
+Czas analizy znaczenia cech: 304.77 sekund
+
+======= PODSUMOWANIE EKSPERYMENTU ZZ =======
+Data i czas zakończenia: 2025-08-09 14:36:46
+Całkowity czas eksperymentu: 1754743005.78 sekund

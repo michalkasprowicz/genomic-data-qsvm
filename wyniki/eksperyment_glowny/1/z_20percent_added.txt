@@ -1,0 +1,105 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 0.1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 1.0
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+                           --       1.00      1.00      1.00         8
+             Astrocytoma, NOS       1.00      1.00      1.00        32
+      Astrocytoma, anaplastic       1.00      1.00      1.00        79
+                 Glioblastoma       1.00      1.00      1.00       203
+                 Mixed glioma       1.00      1.00      1.00        69
+       Oligodendroglioma, NOS       1.00      1.00      1.00        76
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        51
+
+                     accuracy                           1.00       518
+                    macro avg       1.00      1.00      1.00       518
+                 weighted avg       1.00      1.00      1.00       518
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  8   0   0   0   0   0   0]
+ [  0  32   0   0   0   0   0]
+ [  0   0  79   0   0   0   0]
+ [  0   0   0 203   0   0   0]
+ [  0   0   0   0  69   0   0]
+ [  0   0   0   0   0  76   0]
+ [  0   0   0   0   0   0  51]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 59.94 sekund
+
+======= KWANTOWY SVM Z Z FEATURE MAPS =======
+Testowanie 2 map cech: ['Z1', 'Z2']
+Testowanie Z1 z C=0.1...
+Dokładność kwantowego SVM z Z1, C=0.1: 0.3873 (czas: 35749.63 s)
+Testowanie Z1 z C=1.0...
+Dokładność kwantowego SVM z Z1, C=1.0: 0.4329 (czas: 36047.64 s)
+Testowanie Z1 z C=10.0...
+Dokładność kwantowego SVM z Z1, C=10.0: 0.4486 (czas: 35880.68 s)
+Testowanie Z2 z C=0.1...
+Dokładność kwantowego SVM z Z2, C=0.1: 0.3873 (czas: 52941.61 s)
+Testowanie Z2 z C=1.0...
+Dokładność kwantowego SVM z Z2, C=1.0: 0.4859 (czas: 52630.07 s)
+Testowanie Z2 z C=10.0...
+Dokładność kwantowego SVM z Z2, C=10.0: 0.5149 (czas: 52626.82 s)
+
+Najlepszy kwantowy SVM: Z2 z C=10.0, dokładność: 0.5149
+Raport klasyfikacji (najlepszy kwantowy SVM):
+                               precision    recall  f1-score   support
+
+                           --       0.00      0.00      0.00         8
+             Astrocytoma, NOS       1.00      0.16      0.27        32
+      Astrocytoma, anaplastic       0.74      0.41      0.52        79
+                 Glioblastoma       0.48      0.99      0.64       203
+                 Mixed glioma       0.80      0.29      0.43        69
+       Oligodendroglioma, NOS       0.74      0.18      0.29        76
+Oligodendroglioma, anaplastic       0.75      0.06      0.11        51
+
+                     accuracy                           0.53       518
+                    macro avg       0.64      0.30      0.32       518
+                 weighted avg       0.65      0.53      0.46       518
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM Z2:
+Accuracy: 0.5309
+Precision: 0.6504
+Recall: 0.5309
+F1 Score: 0.4594
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   0   0   8   0   0   0]
+ [  0   5   3  24   0   0   0]
+ [  0   0  32  43   0   4   0]
+ [  0   0   0 201   1   1   0]
+ [  0   0   0  49  20   0   0]
+ [  0   0   8  51   2  14   1]
+ [  0   0   0  46   2   0   3]]
+
+Całkowity czas dla kwantowego SVM: 275772.32 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 1.0000
+Kwantowy SVM: 0.5309
+
+======= ANALIZA ZNACZENIA CECH =======
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Glioblastoma: 0.3268
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1573
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1448
+  Primary_Diagnosis_Mixed glioma: 0.1434
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.1087
+  Primary_Diagnosis_Astrocytoma, NOS: 0.0651
+
+Czas analizy znaczenia cech: 824.92 sekund
+
+======= PODSUMOWANIE EKSPERYMENTU Z =======
+Data i czas zakończenia: 2025-08-24 22:59:18
+Całkowity czas eksperymentu: 1756069158.04 sekund

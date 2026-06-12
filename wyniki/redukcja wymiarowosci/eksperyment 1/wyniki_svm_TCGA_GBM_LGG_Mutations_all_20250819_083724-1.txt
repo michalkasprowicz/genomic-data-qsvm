@@ -1,0 +1,3474 @@
+======= ROZPOCZĘCIE EKSPERYMENTU DLA PLIKU: dane/TCGA_GBM_LGG_Mutations_all.csv =======
+Wyniki będą zapisane w: wyniki/dim_reduction/19082025/wyniki_svm_TCGA_GBM_LGG_Mutations_all_20250819_083724.txt
+======= INFORMACJE O ŚRODOWISKU =======
+Data i czas rozpoczęcia: 2025-08-19 08:37:24
+Wersja NumPy: 1.24.3
+Wersja Pandas: 2.0.3
+Wersja scikit-learn: 1.3.0
+Wersja Qiskit: 0.25.1
+Wersja qiskit-machine-learning: 0.6.0
+Wersja dimod: 0.12.20
+Wersja neal: 0.6.0
+
+======= WYBRANE EKSPERYMENTY =======
+Klasyczny SVM: TAK
+Kwantowy SVM: TAK
+Podejście hybrydowe: TAK
+
+======= AKTYWOWANE MAPY CECH =======
+ZZ1: NIE
+ZZ2: NIE
+Pauli1: NIE
+Pauli2: NIE
+Z1: NIE
+Z2: NIE
+ZZ1_new: NIE
+ZZ2_new: NIE
+Amplitude_l2: TAK
+Amplitude_l1: TAK
+Amplitude_min-max: TAK
+
+======= PRZYGOTOWANIE DANYCH =======
+Wymiary oryginalnych danych: (858, 27)
+Unikalne wartości zmiennej docelowej: ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Rozkład klas: {'Glioblastoma': 360, 'Astrocytoma, anaplastic': 129, 'Mixed glioma': 128, 'Oligodendroglioma, NOS': 108, 'Oligodendroglioma, anaplastic': 75, 'Astrocytoma, NOS': 58}
+Wymiary danych po usunięciu kolumn identyfikacyjnych: (858, 24)
+Przekształcanie kolumn kategorycznych na binarne...
+Kolumny kategoryczne do przekształcenia: ['Gender', 'Age_at_diagnosis', 'Primary_Diagnosis', 'Race', 'IDH1', 'TP53', 'ATRX', 'PTEN', 'EGFR', 'CIC', 'MUC16', 'PIK3CA', 'NF1', 'PIK3R1', 'FUBP1', 'RB1', 'NOTCH1', 'BCOR', 'CSMD3', 'SMARCA4', 'GRIN2A', 'IDH2', 'FAT4', 'PDGFRA']
+Kolumna Gender zawiera wartości: ['Male' 'Female']
+Kolumna Age_at_diagnosis zawiera wartości: ['51 years 108 days' '38 years 261 days' '35 years 62 days'
+ '32 years 283 days' '31 years 187 days' '33 years 78 days'
+ '35 years 68 days' '44 years 239 days' '33 years 350 days' '87 years'
+ '51 years 328 days' '54 years 95 days' '52 years 214 days'
+ '47 years 123 days' '34 years 132 days' '40 years 192 days'
+ '53 years 352 days' '41 years 70 days' '43 years 161 days'
+ '37 years 159 days' '47 years 173 days' '31 years 8 days'
+ '25 years 191 days' '66 years 305 days' '56 years 250 days'
+ '35 years 362 days' '51 years 363 days' '37 years 32 days'
+ '54 years 183 days' '32 years 76 days' '65 years 28 days'
+ '43 years 131 days' '51 years 59 days' '43 years 221 days'
+ '25 years 214 days' '45 years 24 days' '50 years 153 days'
+ '27 years 166 days' '53 years 252 days' '46 years 144 days'
+ '24 years 239 days' '34 years 70 days' '29 years 198 days'
+ '45 years 124 days' '62 years 90 days' '46 years 224 days'
+ '36 years 247 days' '62 years 202 days' '70 years 159 days'
+ '53 years 41 days' '48 years 124 days' '40 years 69 days'
+ '40 years 7 days' '20 years 359 days' '57 years 200 days'
+ '38 years 322 days' '52 years 192 days' '56 years 104 days'
+ '59 years 275 days' '67 years 107 days' '48 years 346 days'
+ '59 years 254 days' '58 years 147 days' '27 years 247 days'
+ '51 years 230 days' '74 years 11 days' '52 years 230 days'
+ '61 years 62 days' '66 years 146 days' '42 years 32 days'
+ '31 years 344 days' '48 years 268 days' '33 years 340 days'
+ '34 years 213 days' '24 years 54 days' '55 years 48 days'
+ '27 years 323 days' '29 years 32 days' '39 years 131 days'
+ '70 years 3 days' '30 years 338 days' '39 years 178 days'
+ '25 years 41 days' '48 years 160 days' '57 years 17 days'
+ '34 years 307 days' '58 years 137 days' '55 years 208 days'
+ '60 years 49 days' '38 years 13 days' '56 years 113 days'
+ '54 years 180 days' '31 years 152 days' '54 years 146 days'
+ '52 years 241 days' '33 years 54 days' '42 years 173 days'
+ '20 years 75 days' '64 years 106 days' '29 years 232 days'
+ '36 years 222 days' '31 years 362 days' '36 years 67 days'
+ '32 years 173 days' '38 years 292 days' '29 years 298 days'
+ '41 years 76 days' '35 years 189 days' '33 years 39 days'
+ '32 years 50 days' '49 years 276 days' '69 years 217 days'
+ '14 years 154 days' '33 years 349 days' '47 years 92 days'
+ '33 years 58 days' '63 years 364 days' '62 years 205 days'
+ '37 years 83 days' '53 years 183 days' '53 years 74 days'
+ '45 years 76 days' '33 years 331 days' '53 years 359 days'
+ '52 years 156 days' '64 years 304 days' '71 years 70 days'
+ '40 years 300 days' '36 years 354 days' '25 years 249 days'
+ '63 years 170 days' '40 years 310 days' '47 years 215 days'
+ '73 years 241 days' '24 years 51 days' '48 years 342 days'
+ '41 years 325 days' '36 years 189 days' '45 years 334 days'
+ '44 years 204 days' '27 years 6 days' '50 years 181 days'
+ '42 years 141 days' '40 years 248 days' '62 years 192 days'
+ '33 years 195 days' '46 years 42 days' '41 years 117 days'
+ '47 years 333 days' '56 years 159 days' '38 years 64 days'
+ '60 years 64 days' '29 years 150 days' '59 years 196 days'
+ '44 years 66 days' '69 years 60 days' '63 years 253 days'
+ '43 years 142 days' '61 years 316 days' '39 years 66 days'
+ '31 years 315 days' '51 years 164 days' '41 years 203 days'
+ '60 years 360 days' '74 years 158 days' '63 years 81 days'
+ '66 years 170 days' '51 years 312 days' '39 years 62 days'
+ '38 years 111 days' '37 years 92 days' '30 years 32 days'
+ '54 years 143 days' '36 years 357 days' '48 years 197 days'
+ '29 years 81 days' '32 years 135 days' '44 years 35 days'
+ '30 years 329 days' '57 years 287 days' '19 years 55 days'
+ '70 years 242 days' '63 years 67 days' '41 years 255 days'
+ '29 years 291 days' '42 years 318 days' '51 years 172 days'
+ '38 years 25 days' '28 years 344 days' '32 years 166 days'
+ '26 years 43 days' '67 years 329 days' '40 years 326 days'
+ '59 years 295 days' '58 years 16 days' '56 years 171 days'
+ '20 years 276 days' '49 years 296 days' '37 years 31 days'
+ '48 years 243 days' '71 years 227 days' '43 years 316 days'
+ '27 years 309 days' '25 years 78 days' '30 years 126 days'
+ '47 years 335 days' '31 years 262 days' '30 years 295 days'
+ '30 years 276 days' '24 years 146 days' '41 years 66 days'
+ '34 years 189 days' '56 years 155 days' '39 years 348 days'
+ '23 years 3 days' '31 years 273 days' '17 years 271 days'
+ '64 years 110 days' '27 years 221 days' '69 years 64 days'
+ '37 years 51 days' '44 years 92 days' '25 years 97 days'
+ '29 years 235 days' '26 years 209 days' '47 years 294 days'
+ '39 years 252 days' '35 years 26 days' '33 years 287 days'
+ '74 years 204 days' '50 years 167 days' '65 years 314 days'
+ '60 years 116 days' '34 years 346 days' '44 years 229 days'
+ '21 years 243 days' '55 years 87 days' '43 years 361 days'
+ '36 years 49 days' '70 years 100 days' '23 years 352 days'
+ '43 years 195 days' '30 years 264 days' '38 years 140 days'
+ '34 years 188 days' '55 years 92 days' '30 years 238 days'
+ '61 years 68 days' '44 years 344 days' '35 years 238 days'
+ '68 years 129 days' '44 years 206 days' '38 years 89 days'
+ '36 years 304 days' '52 years 32 days' '36 years 183 days'
+ '33 years 176 days' '60 years 119 days' '44 years 90 days'
+ '58 years 157 days' '33 years 364 days' '62 years 235 days'
+ '44 years 226 days' '36 years 311 days' '29 years 132 days'
+ '25 years 282 days' '20 years 307 days' '61 years 305 days'
+ '41 years 222 days' '47 years 224 days' '59 years 212 days'
+ '48 years 311 days' '38 years 24 days' '27 years 58 days'
+ '58 years 15 days' '26 years 118 days' '44 years 209 days'
+ '32 years 196 days' '22 years 305 days' '25 years 316 days'
+ '34 years 27 days' '24 years 278 days' '30 years 348 days'
+ '39 years 280 days' '22 years 236 days' '53 years 286 days'
+ '30 years 355 days' '37 years 239 days' '36 years 73 days'
+ '41 years 314 days' '57 years 201 days' '52 years 243 days'
+ '31 years 346 days' '32 years 167 days' '44 years 131 days'
+ '40 years 106 days' '44 years 263 days' '39 years 5 days'
+ '62 years 93 days' '45 years 296 days' '48 years 131 days'
+ '49 years 187 days' '38 years 194 days' '28 years 115 days'
+ '38 years 273 days' '37 years 81 days' '41 years 179 days'
+ '60 years 15 days' '50 years 232 days' '75 years 292 days'
+ '43 years 143 days' '52 years 63 days' '38 years 333 days'
+ '66 years 344 days' '30 years 57 days' '59 years 262 days'
+ '35 years 37 days' '38 years 203 days' '42 years 310 days'
+ '59 years 166 days' '26 years 94 days' '58 years 266 days'
+ '31 years 10 days' '30 years 161 days' '45 years 231 days'
+ '37 years 166 days' '34 years 162 days' '34 years 339 days'
+ '32 years 53 days' '66 years 176 days' '46 years 89 days'
+ '38 years 326 days' '33 years 213 days' '40 years 61 days'
+ '52 years 145 days' '59 years 359 days' '58 years 55 days'
+ '43 years 281 days' '33 years 192 days' '55 years 40 days'
+ '43 years 226 days' '60 years 123 days' '33 years 332 days'
+ '48 years 80 days' '70 years 205 days' '53 years 197 days'
+ '66 years 136 days' '36 years 275 days' '40 years 49 days'
+ '73 years 103 days' '36 years 165 days' '74 years 56 days'
+ '43 years 145 days' '40 years 323 days' '38 years 128 days'
+ '54 years 291 days' '63 years 54 days' '62 years 303 days'
+ '35 years 53 days' '39 years 174 days' '29 years 341 days'
+ '46 years 333 days' '46 years 110 days' '51 years 329 days'
+ '54 years 221 days' '42 years 91 days' '64 years 108 days'
+ '29 years 220 days' '65 years 195 days' '41 years 91 days'
+ '31 years 206 days' '58 years 5 days' '54 years 318 days'
+ '28 years 26 days' '20 years 116 days' '34 years 160 days'
+ '54 years 198 days' '45 years 259 days' '48 years 325 days'
+ '29 years 86 days' '22 years 8 days' '32 years 161 days'
+ '40 years 50 days' '61 years 47 days' '57 years 276 days'
+ '54 years 100 days' '56 years 317 days' '34 years 139 days'
+ '27 years 289 days' '37 years 149 days' '43 years 332 days'
+ '41 years 10 days' '33 years 104 days' '39 years 35 days'
+ '31 years 300 days' '67 years 219 days' '30 years 140 days'
+ '48 years 212 days' '50 years 302 days' '45 years 34 days'
+ '47 years 299 days' '32 years 158 days' '26 years 171 days'
+ '29 years 213 days' '28 years 79 days' '66 years 16 days'
+ '39 years 304 days' '33 years 238 days' '60 years 75 days'
+ '35 years 65 days' '35 years 45 days' '58 years 168 days'
+ '26 years 50 days' '30 years 113 days' '38 years 82 days'
+ '35 years 325 days' '39 years 291 days' '55 years 306 days'
+ '49 years 337 days' '50 years 59 days' '52 years 163 days'
+ '51 years 121 days' '61 years 285 days' '52 years 149 days'
+ '35 years 66 days' '47 years 266 days' '35 years 70 days'
+ '31 years 105 days' '--' '31 years 35 days' '37 years 50 days'
+ '37 years 97 days' '42 years 249 days' '32 years 116 days'
+ '61 years 22 days' '48 years 78 days' '34 years 42 days'
+ '30 years 252 days' '30 years 86 days' '28 years 195 days'
+ '47 years 226 days' '35 years 91 days' '23 years 171 days'
+ '49 years 264 days' '36 years 78 days' '54 years 268 days'
+ '22 years 300 days' '42 years 5 days' '28 years 213 days'
+ '25 years 232 days' '66 years 3 days' '46 years 181 days'
+ '57 years 310 days' '43 years 22 days' '49 years 309 days'
+ '33 years 99 days' '27 years 306 days' '62 years 166 days'
+ '55 years 153 days' '37 years 285 days' '37 years 107 days'
+ '32 years 122 days' '38 years 143 days' '42 years 289 days'
+ '47 years 165 days' '54 years 227 days' '29 years 49 days'
+ '39 years 359 days' '28 years 249 days' '23 years 108 days'
+ '21 years 276 days' '38 years 229 days' '49 years 302 days'
+ '38 years 308 days' '22 years 205 days' '67 years 215 days'
+ '73 years 329 days' '62 years 100 days' '57 years 314 days'
+ '30 years 334 days' '24 years 181 days' '20 years 84 days'
+ '41 years 116 days' '53 years 258 days' '34 years 237 days'
+ '51 years 350 days' '57 years 364 days' '31 years 176 days'
+ '57 years 141 days' '49 years 263 days' '60 years 106 days'
+ '73 years 250 days' '64 years 298 days' '73 years 164 days'
+ '33 years 239 days' '67 years 151 days' '72 years 74 days'
+ '69 years 124 days' '79 years 39 days' '68 years 7 days'
+ '76 years 5 days' '82 years 14 days' '58 years 9 days'
+ '52 years 251 days' '81 years 217 days' '74 years 172 days'
+ '76 years 87 days' '57 years 110 days' '67 years 121 days'
+ '63 years 313 days' '64 years 143 days' '69 years 50 days'
+ '66 years 28 days' '54 years 347 days' '60 years 114 days'
+ '45 years 230 days' '36 years 219 days' '49 years 174 days'
+ '69 years 219 days' '54 years 340 days' '58 years 327 days'
+ '61 years 183 days' '64 years 191 days' '65 years 309 days'
+ '60 years 298 days' '53 years 309 days' '39 years 193 days'
+ '58 years 227 days' '56 years 172 days' '65 years 344 days'
+ '36 years 59 days' '72 years 192 days' '48 years 348 days'
+ '39 years 157 days' '54 years 176 days' '63 years 333 days'
+ '66 years 159 days' '52 years 97 days' '89 years 105 days'
+ '54 years 242 days' '60 years 262 days' '77 years 116 days'
+ '60 years 264 days' '80 years 61 days' '51 years 264 days'
+ '53 years 145 days' '43 years 313 days' '74 years 144 days'
+ '76 years 118 days' '49 years 228 days' '48 years 333 days'
+ '68 years 334 days' '74 years 359 days' '69 years 211 days'
+ '64 years 192 days' '58 years 144 days' '47 years 88 days'
+ '61 years 282 days' '75 years 194 days' '52 years 246 days'
+ '47 years 199 days' '21 years 288 days' '72 years 169 days'
+ '68 years 108 days' '67 years' '52 years 238 days' '59 years 11 days'
+ '59 years 149 days' '48 years 362 days' '76 years 58 days'
+ '72 years 193 days' '51 years 113 days' '67 years 187 days'
+ '82 years 115 days' '64 years 209 days' '75 years 265 days'
+ '85 years 221 days' '73 years 105 days' '78 years 273 days'
+ '45 years 136 days' '42 years 225 days' '53 years 299 days'
+ '68 years 290 days' '43 years 245 days' '59 years 289 days'
+ '52 years 137 days' '61 years 244 days' '40 years 207 days'
+ '63 years 263 days' '63 years 307 days' '70 years 98 days'
+ '59 years 362 days' '56 years 101 days' '62 years 190 days'
+ '24 years 83 days' '72 years 345 days' '67 years 161 days'
+ '54 years 200 days' '86 years 155 days' '62 years 222 days'
+ '63 years 97 days' '58 years 200 days' '60 years 5 days'
+ '67 years 17 days' '23 years 310 days' '58 years 59 days'
+ '64 years 18 days' '65 years 37 days' '61 years 32 days'
+ '52 years 161 days' '77 years 139 days' '58 years 280 days'
+ '78 years 264 days' '63 years 122 days' '63 years 86 days'
+ '23 years 133 days' '65 years 94 days' '50 years 79 days'
+ '55 years 209 days' '60 years 258 days' '62 years 220 days'
+ '69 years 95 days' '56 years 187 days' '76 years 72 days'
+ '76 years 252 days' '86 years 8 days' '69 years 80 days'
+ '59 years 219 days' '75 years 337 days' '57 years 202 days'
+ '69 years 257 days' '45 years 226 days' '47 years 130 days'
+ '74 years 57 days' '78 years 93 days' '59 years 64 days'
+ '21 years 266 days' '81 years 34 days' '70 years 60 days'
+ '62 years 153 days' '75 years 191 days' '60 years 136 days'
+ '63 years 53 days' '61 years 52 days' '47 years 71 days'
+ '76 years 150 days' '84 years 287 days' '77 years 153 days'
+ '48 years 182 days' '69 years 223 days' '56 years 12 days'
+ '76 years 171 days' '70 years 117 days' '34 years 267 days'
+ '68 years 341 days' '54 years 216 days' '74 years 313 days'
+ '73 years 193 days' '57 years 112 days' '44 years 230 days'
+ '83 years 265 days' '74 years 291 days' '51 years 275 days'
+ '52 years 60 days' '73 years 102 days' '81 years 307 days'
+ '78 years 94 days' '57 years 312 days' '53 years 147 days'
+ '50 years 330 days' '78 years 56 days' '76 years 236 days'
+ '57 years 118 days' '36 years 108 days' '72 years 284 days'
+ '31 years 11 days' '65 years 66 days' '63 years 201 days'
+ '49 years 351 days' '59 years 311 days' '69 years 232 days'
+ '62 years 304 days' '52 years 270 days' '56 years 294 days'
+ '81 years 168 days' '40 years 293 days' '81 years 319 days'
+ '50 years 171 days' '38 years 8 days' '48 years 183 days'
+ '51 years 86 days' '66 years 341 days' '71 years 315 days'
+ '24 years 156 days' '63 years 195 days' '69 years 116 days'
+ '78 years 7 days' '30 years 155 days' '52 years 288 days'
+ '65 years 57 days' '78 years 271 days' '61 years 37 days'
+ '50 years 173 days' '39 years 57 days' '66 years 81 days'
+ '49 years 6 days' '54 years 78 days' '58 years 48 days' '73 years 4 days'
+ '53 years 303 days' '63 years 292 days' '66 years 191 days'
+ '49 years 322 days' '59 years 335 days' '54 years 327 days'
+ '57 years 274 days' '59 years 157 days' '44 years 55 days'
+ '58 years 14 days' '65 years 18 days' '67 years 34 days'
+ '75 years 172 days' '88 years 209 days' '53 years 85 days'
+ '75 years 126 days' '66 years 269 days' '51 years 51 days'
+ '40 years 360 days' '58 years 6 days' '57 years 29 days'
+ '55 years 144 days' '40 years 268 days' '40 years 206 days'
+ '54 years 89 days' '53 years 136 days' '56 years 9 days'
+ '59 years 306 days' '75 years 118 days' '59 years 10 days'
+ '44 years 135 days' '46 years 236 days' '68 years 248 days'
+ '30 years 340 days' '36 years 302 days' '78 years 270 days'
+ '83 years 235 days' '51 years 201 days' '63 years 118 days'
+ '59 years 227 days' '53 years 233 days' '74 years 83 days'
+ '60 years 246 days' '54 years 295 days' '63 years 9 days'
+ '58 years 308 days' '60 years 274 days' '71 years 257 days'
+ '75 years 78 days' '50 years 309 days' '67 years 6 days'
+ '60 years 358 days' '65 years 143 days' '51 years 90 days'
+ '45 years 301 days' '39 years 316 days' '70 years 245 days'
+ '73 years 133 days' '65 years 360 days' '72 years 251 days'
+ '61 years 177 days' '65 years 22 days' '30 years 327 days'
+ '64 years 50 days' '55 years 267 days' '79 years 123 days'
+ '74 years 294 days' '63 years 24 days' '81 years 21 days'
+ '53 years 86 days' '69 years 343 days' '60 years 342 days'
+ '55 years 214 days' '75 years 342 days' '47 years 349 days'
+ '71 years 148 days' '25 years 82 days' '61 years 247 days'
+ '47 years 302 days' '50 years 129 days' '72 years 97 days'
+ '31 years 7 days' '86 years 216 days' '38 years 214 days'
+ '72 years 302 days' '55 years 46 days' '66 years 320 days'
+ '55 years 361 days' '72 years 57 days' '33 years 7 days'
+ '83 years 114 days' '43 years 259 days' '68 years 224 days'
+ '79 years 183 days' '67 years 326 days' '49 years 298 days'
+ '66 years 256 days' '68 years 221 days' '47 years 52 days'
+ '61 years 218 days' '49 years 157 days' '67 years 120 days'
+ '32 years 268 days' '65 years 41 days' '66 years 213 days'
+ '62 years 281 days' '50 years 16 days' '34 years 111 days'
+ '61 years 11 days' '77 years 353 days' '54 years 101 days'
+ '51 years 32 days' '53 years 8 days' '78 years 253 days'
+ '46 years 337 days' '52 years 244 days' '48 years 249 days'
+ '51 years 205 days' '62 years 41 days' '58 years 20 days'
+ '61 years 112 days' '66 years 111 days' '64 years 43 days'
+ '56 years 114 days' '77 years 325 days' '85 years 65 days'
+ '77 years 178 days' '63 years 121 days' '76 years 221 days']
+Kolumna Age_at_diagnosis zostanie zakodowana jako one-hot.
+Kolumna Primary_Diagnosis zawiera wartości: ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Kolumna Primary_Diagnosis zostanie zakodowana jako one-hot.
+Kolumna Race zawiera wartości: ['white' 'asian' 'black or african american' 'not reported'
+ 'american indian or alaska native']
+Kolumna Race zostanie zakodowana jako one-hot.
+Kolumna IDH1 zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna TP53 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna ATRX zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PTEN zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna EGFR zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna CIC zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna MUC16 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PIK3CA zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna NF1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PIK3R1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna FUBP1 zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna RB1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna NOTCH1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna BCOR zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna CSMD3 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna SMARCA4 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna GRIN2A zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna IDH2 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna FAT4 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PDGFRA zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Wymiary danych po przekształceniu: (858, 867)
+Wymiary danych wejściowych: (858, 867)
+Wymiary danych po skalowaniu: (858, 867)
+
+======= REDUKCJA WYMIAROWOŚCI =======
+
+Testowanie PCA z 8 komponentami...
+Wymiary danych po redukcji PCA: (858, 8)
+Wyjaśniona wariancja: 0.0253
+Czas wykonania PCA: 0.08 sekund
+
+Testowanie PCA z 10 komponentami...
+Wymiary danych po redukcji PCA: (858, 10)
+Wyjaśniona wariancja: 0.0301
+Czas wykonania PCA: 0.10 sekund
+
+Testowanie PCA z 12 komponentami...
+Wymiary danych po redukcji PCA: (858, 12)
+Wyjaśniona wariancja: 0.0348
+Czas wykonania PCA: 0.10 sekund
+
+Testowanie PCA z 14 komponentami...
+Wymiary danych po redukcji PCA: (858, 14)
+Wyjaśniona wariancja: 0.0394
+Czas wykonania PCA: 0.10 sekund
+
+Testowanie PCA z 16 komponentami...
+Wymiary danych po redukcji PCA: (858, 16)
+Wyjaśniona wariancja: 0.0438
+Czas wykonania PCA: 0.12 sekund
+
+Testowanie t-SNE z 2 komponentami, perplexity=30, learning_rate=50...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 2.99 sekund
+Silhouette Score dla t-SNE: 0.0564
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0144.
+
+Testowanie t-SNE z 2 komponentami, perplexity=30, learning_rate=100...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 2.58 sekund
+Silhouette Score dla t-SNE: 0.1245
+Uzyskany Silhouette Score jest równy lub lepszy od optymalnego.
+
+Testowanie t-SNE z 2 komponentami, perplexity=30, learning_rate=200...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 2.79 sekund
+Silhouette Score dla t-SNE: -0.0148
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0856.
+
+Testowanie t-SNE z 2 komponentami, perplexity=50, learning_rate=50...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 4.12 sekund
+Silhouette Score dla t-SNE: 0.0941
+Uzyskany Silhouette Score jest równy lub lepszy od optymalnego.
+
+Testowanie t-SNE z 2 komponentami, perplexity=50, learning_rate=100...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 3.36 sekund
+Silhouette Score dla t-SNE: 0.0816
+Uzyskany Silhouette Score jest równy lub lepszy od optymalnego.
+
+Testowanie t-SNE z 2 komponentami, perplexity=50, learning_rate=200...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 3.48 sekund
+Silhouette Score dla t-SNE: 0.0889
+Uzyskany Silhouette Score jest równy lub lepszy od optymalnego.
+
+Testowanie t-SNE z 2 komponentami, perplexity=100, learning_rate=50...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 5.15 sekund
+Silhouette Score dla t-SNE: 0.0283
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0425.
+
+Testowanie t-SNE z 2 komponentami, perplexity=100, learning_rate=100...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 4.94 sekund
+Silhouette Score dla t-SNE: 0.0231
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0477.
+
+Testowanie t-SNE z 2 komponentami, perplexity=100, learning_rate=200...
+Wymiary danych po redukcji t-SNE: (858, 2)
+Czas wykonania t-SNE: 4.76 sekund
+Silhouette Score dla t-SNE: -0.0602
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1310.
+
+Testowanie t-SNE z 3 komponentami, perplexity=30, learning_rate=50...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 10.26 sekund
+Silhouette Score dla t-SNE: -0.0376
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1084.
+
+Testowanie t-SNE z 3 komponentami, perplexity=30, learning_rate=100...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 9.86 sekund
+Silhouette Score dla t-SNE: 0.0541
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0167.
+
+Testowanie t-SNE z 3 komponentami, perplexity=30, learning_rate=200...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 10.15 sekund
+Silhouette Score dla t-SNE: 0.0780
+Uzyskany Silhouette Score jest równy lub lepszy od optymalnego.
+
+Testowanie t-SNE z 3 komponentami, perplexity=50, learning_rate=50...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 9.75 sekund
+Silhouette Score dla t-SNE: 0.0283
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0425.
+
+Testowanie t-SNE z 3 komponentami, perplexity=50, learning_rate=100...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 12.48 sekund
+Silhouette Score dla t-SNE: 0.0698
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0010.
+
+Testowanie t-SNE z 3 komponentami, perplexity=50, learning_rate=200...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 13.83 sekund
+Silhouette Score dla t-SNE: 0.0608
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0100.
+
+Testowanie t-SNE z 3 komponentami, perplexity=100, learning_rate=50...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 14.88 sekund
+Silhouette Score dla t-SNE: -0.0141
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0849.
+
+Testowanie t-SNE z 3 komponentami, perplexity=100, learning_rate=100...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 15.24 sekund
+Silhouette Score dla t-SNE: 0.0274
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0434.
+
+Testowanie t-SNE z 3 komponentami, perplexity=100, learning_rate=200...
+Wymiary danych po redukcji t-SNE: (858, 3)
+Czas wykonania t-SNE: 14.57 sekund
+Silhouette Score dla t-SNE: 0.0240
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0468.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=5, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 8.42 sekund
+Silhouette Score dla UMAP: 0.0421
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0287.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=5, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 2.53 sekund
+Silhouette Score dla UMAP: 0.0423
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0285.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=5, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 2.39 sekund
+Silhouette Score dla UMAP: 0.0520
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0188.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=15, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 3.21 sekund
+Silhouette Score dla UMAP: 0.0643
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0065.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=15, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 3.32 sekund
+Silhouette Score dla UMAP: 0.0553
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0155.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=15, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 3.17 sekund
+Silhouette Score dla UMAP: 0.0483
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0225.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=30, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 3.67 sekund
+Silhouette Score dla UMAP: -0.0587
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1295.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=30, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 3.81 sekund
+Silhouette Score dla UMAP: -0.0287
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0995.
+
+Testowanie UMAP z 8 komponentami, n_neighbors=30, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 8)
+Czas wykonania UMAP: 3.87 sekund
+Silhouette Score dla UMAP: -0.0147
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0855.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=5, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 2.63 sekund
+Silhouette Score dla UMAP: 0.0397
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0311.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=5, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 2.52 sekund
+Silhouette Score dla UMAP: 0.0492
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0216.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=5, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 2.52 sekund
+Silhouette Score dla UMAP: 0.0390
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0318.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=15, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 3.52 sekund
+Silhouette Score dla UMAP: 0.0659
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0049.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=15, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 3.34 sekund
+Silhouette Score dla UMAP: 0.0595
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0113.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=15, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 3.51 sekund
+Silhouette Score dla UMAP: 0.0517
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0191.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=30, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 4.01 sekund
+Silhouette Score dla UMAP: -0.0571
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1279.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=30, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 3.87 sekund
+Silhouette Score dla UMAP: -0.0216
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0924.
+
+Testowanie UMAP z 10 komponentami, n_neighbors=30, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 10)
+Czas wykonania UMAP: 4.00 sekund
+Silhouette Score dla UMAP: -0.0093
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0801.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=5, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 2.51 sekund
+Silhouette Score dla UMAP: 0.0634
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0074.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=5, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 2.51 sekund
+Silhouette Score dla UMAP: 0.0380
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0328.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=5, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 2.65 sekund
+Silhouette Score dla UMAP: 0.0447
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0261.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=15, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 3.51 sekund
+Silhouette Score dla UMAP: 0.0657
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0051.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=15, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 3.48 sekund
+Silhouette Score dla UMAP: 0.0616
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0092.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=15, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 3.36 sekund
+Silhouette Score dla UMAP: 0.0570
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0138.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=30, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 3.92 sekund
+Silhouette Score dla UMAP: -0.0541
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1249.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=30, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 4.04 sekund
+Silhouette Score dla UMAP: -0.0146
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0854.
+
+Testowanie UMAP z 12 komponentami, n_neighbors=30, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 12)
+Czas wykonania UMAP: 3.88 sekund
+Silhouette Score dla UMAP: -0.0052
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0760.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=5, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 2.74 sekund
+Silhouette Score dla UMAP: 0.0470
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0238.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=5, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 2.62 sekund
+Silhouette Score dla UMAP: 0.0412
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0296.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=5, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 2.62 sekund
+Silhouette Score dla UMAP: 0.0459
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0249.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=15, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 3.68 sekund
+Silhouette Score dla UMAP: 0.0688
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0020.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=15, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 3.51 sekund
+Silhouette Score dla UMAP: 0.0669
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0039.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=15, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 3.65 sekund
+Silhouette Score dla UMAP: 0.0632
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0076.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=30, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 4.09 sekund
+Silhouette Score dla UMAP: -0.0523
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1231.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=30, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 4.12 sekund
+Silhouette Score dla UMAP: -0.0153
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0861.
+
+Testowanie UMAP z 14 komponentami, n_neighbors=30, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 14)
+Czas wykonania UMAP: 4.24 sekund
+Silhouette Score dla UMAP: -0.0011
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0719.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=5, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 2.57 sekund
+Silhouette Score dla UMAP: 0.0432
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0276.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=5, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 2.70 sekund
+Silhouette Score dla UMAP: 0.0363
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0345.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=5, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 2.58 sekund
+Silhouette Score dla UMAP: 0.0401
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0307.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=15, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 3.46 sekund
+Silhouette Score dla UMAP: 0.0678
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0030.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=15, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 3.60 sekund
+Silhouette Score dla UMAP: 0.0652
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0056.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=15, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 3.48 sekund
+Silhouette Score dla UMAP: 0.0637
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0071.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=30, min_dist=0.1...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 4.15 sekund
+Silhouette Score dla UMAP: -0.0564
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.1272.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=30, min_dist=0.5...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 4.04 sekund
+Silhouette Score dla UMAP: -0.0147
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0855.
+
+Testowanie UMAP z 16 komponentami, n_neighbors=30, min_dist=0.8...
+Wymiary danych po redukcji UMAP: (858, 16)
+Czas wykonania UMAP: 4.02 sekund
+Silhouette Score dla UMAP: -0.0027
+Uzyskany Silhouette Score jest niższy od optymalnego o 0.0735.
+
+Wyniki redukcji wymiarowości zapisane do: wyniki/dim_reduction/19082025/dimension_reduction_results_TCGA_GBM_LGG_Mutations_all.json
+
+Wybrano najlepszą wersję redukcji wymiarowości: tsne_comp2_perp30_lr100
+Silhouette Score: 0.1245
+Wymiary domyślnego zbioru treningowego: (600, 2)
+Wymiary domyślnego zbioru testowego: (258, 2)
+
+Dostępne wersje zredukowanych danych:
+  pca_8: Train (600, 8), Test (258, 8)
+  pca_10: Train (600, 10), Test (258, 10)
+  pca_12: Train (600, 12), Test (258, 12)
+  pca_14: Train (600, 14), Test (258, 14)
+  pca_16: Train (600, 16), Test (258, 16)
+  tsne_comp2_perp30_lr50: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp30_lr100: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp30_lr200: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp50_lr50: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp50_lr100: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp50_lr200: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp100_lr50: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp100_lr100: Train (600, 2), Test (258, 2)
+  tsne_comp2_perp100_lr200: Train (600, 2), Test (258, 2)
+  tsne_comp3_perp30_lr50: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp30_lr100: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp30_lr200: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp50_lr50: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp50_lr100: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp50_lr200: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp100_lr50: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp100_lr100: Train (600, 3), Test (258, 3)
+  tsne_comp3_perp100_lr200: Train (600, 3), Test (258, 3)
+  umap_comp8_neigh5_dist0.1: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh5_dist0.5: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh5_dist0.8: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh15_dist0.1: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh15_dist0.5: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh15_dist0.8: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh30_dist0.1: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh30_dist0.5: Train (600, 8), Test (258, 8)
+  umap_comp8_neigh30_dist0.8: Train (600, 8), Test (258, 8)
+  umap_comp10_neigh5_dist0.1: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh5_dist0.5: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh5_dist0.8: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh15_dist0.1: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh15_dist0.5: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh15_dist0.8: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh30_dist0.1: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh30_dist0.5: Train (600, 10), Test (258, 10)
+  umap_comp10_neigh30_dist0.8: Train (600, 10), Test (258, 10)
+  umap_comp12_neigh5_dist0.1: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh5_dist0.5: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh5_dist0.8: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh15_dist0.1: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh15_dist0.5: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh15_dist0.8: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh30_dist0.1: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh30_dist0.5: Train (600, 12), Test (258, 12)
+  umap_comp12_neigh30_dist0.8: Train (600, 12), Test (258, 12)
+  umap_comp14_neigh5_dist0.1: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh5_dist0.5: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh5_dist0.8: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh15_dist0.1: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh15_dist0.5: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh15_dist0.8: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh30_dist0.1: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh30_dist0.5: Train (600, 14), Test (258, 14)
+  umap_comp14_neigh30_dist0.8: Train (600, 14), Test (258, 14)
+  umap_comp16_neigh5_dist0.1: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh5_dist0.5: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh5_dist0.8: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh15_dist0.1: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh15_dist0.5: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh15_dist0.8: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh30_dist0.1: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh30_dist0.5: Train (600, 16), Test (258, 16)
+  umap_comp16_neigh30_dist0.8: Train (600, 16), Test (258, 16)
+
+Czas przygotowania danych: 303.95 sekund
+
+======= KLASYCZNY SVM (BASELINE) =======
+
+Testowanie klasycznego SVM na wersji danych: default
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla default...
+Najlepsze parametry klasycznego SVM (default): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (default): 0.8583
+Raport klasyfikacji (klasyczny SVM - default):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.92      0.63      0.75        19
+      Astrocytoma, anaplastic       0.86      0.86      0.86        42
+                 Glioblastoma       0.88      0.94      0.91       109
+                 Mixed glioma       0.95      0.95      0.95        38
+       Oligodendroglioma, NOS       0.89      0.73      0.80        33
+Oligodendroglioma, anaplastic       0.59      0.76      0.67        17
+
+                     accuracy                           0.86       258
+                    macro avg       0.85      0.81      0.82       258
+                 weighted avg       0.87      0.86      0.86       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (default):
+Accuracy: 0.8643
+Precision: 0.8712
+Recall: 0.8643
+F1 Score: 0.8636
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 12   2   2   0   1   2]
+ [  0  36   6   0   0   0]
+ [  1   2 102   0   0   4]
+ [  0   0   1  36   1   0]
+ [  0   2   2   2  24   3]
+ [  0   0   3   0   1  13]]
+Czas trenowania i ewaluacji klasycznego SVM (default): 5.01 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_8
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla pca_8...
+Najlepsze parametry klasycznego SVM (pca_8): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_8): 0.9633
+Raport klasyfikacji (klasyczny SVM - pca_8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.79      0.79      0.79        19
+      Astrocytoma, anaplastic       0.91      0.98      0.94        42
+                 Glioblastoma       0.99      0.95      0.97       109
+                 Mixed glioma       0.95      0.97      0.96        38
+       Oligodendroglioma, NOS       1.00      0.97      0.98        33
+Oligodendroglioma, anaplastic       0.94      1.00      0.97        17
+
+                     accuracy                           0.95       258
+                    macro avg       0.93      0.94      0.94       258
+                 weighted avg       0.95      0.95      0.95       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_8):
+Accuracy: 0.9535
+Precision: 0.9548
+Recall: 0.9535
+F1 Score: 0.9537
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 15   3   0   1   0   0]
+ [  0  41   1   0   0   0]
+ [  2   1 104   1   0   1]
+ [  1   0   0  37   0   0]
+ [  1   0   0   0  32   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_8): 0.24 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_10
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla pca_10...
+Najlepsze parametry klasycznego SVM (pca_10): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_10): 0.9700
+Raport klasyfikacji (klasyczny SVM - pca_10):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.86      0.95      0.90        19
+      Astrocytoma, anaplastic       0.98      1.00      0.99        42
+                 Glioblastoma       1.00      0.98      0.99       109
+                 Mixed glioma       1.00      1.00      1.00        38
+       Oligodendroglioma, NOS       1.00      0.97      0.98        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.98       258
+                    macro avg       0.97      0.98      0.98       258
+                 weighted avg       0.99      0.98      0.98       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_10):
+Accuracy: 0.9845
+Precision: 0.9857
+Recall: 0.9845
+F1 Score: 0.9848
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 18   1   0   0   0   0]
+ [  0  42   0   0   0   0]
+ [  2   0 107   0   0   0]
+ [  0   0   0  38   0   0]
+ [  1   0   0   0  32   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_10): 0.26 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_12
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla pca_12...
+Najlepsze parametry klasycznego SVM (pca_12): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_12): 0.9767
+Raport klasyfikacji (klasyczny SVM - pca_12):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.89      0.84      0.86        19
+      Astrocytoma, anaplastic       0.98      1.00      0.99        42
+                 Glioblastoma       0.98      0.99      0.99       109
+                 Mixed glioma       1.00      0.97      0.99        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.98       258
+                    macro avg       0.97      0.97      0.97       258
+                 weighted avg       0.98      0.98      0.98       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_12):
+Accuracy: 0.9806
+Precision: 0.9804
+Recall: 0.9806
+F1 Score: 0.9804
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 16   1   2   0   0   0]
+ [  0  42   0   0   0   0]
+ [  1   0 108   0   0   0]
+ [  1   0   0  37   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_12): 0.26 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_14
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla pca_14...
+Najlepsze parametry klasycznego SVM (pca_14): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_14): 0.9883
+Raport klasyfikacji (klasyczny SVM - pca_14):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.88      0.79      0.83        19
+      Astrocytoma, anaplastic       0.98      1.00      0.99        42
+                 Glioblastoma       0.98      0.99      0.99       109
+                 Mixed glioma       1.00      0.97      0.99        38
+       Oligodendroglioma, NOS       0.97      1.00      0.99        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.98       258
+                    macro avg       0.97      0.96      0.96       258
+                 weighted avg       0.98      0.98      0.98       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_14):
+Accuracy: 0.9767
+Precision: 0.9761
+Recall: 0.9767
+F1 Score: 0.9762
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 15   1   2   0   1   0]
+ [  0  42   0   0   0   0]
+ [  1   0 108   0   0   0]
+ [  1   0   0  37   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_14): 0.27 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_16
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla pca_16...
+Najlepsze parametry klasycznego SVM (pca_16): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_16): 0.9917
+Raport klasyfikacji (klasyczny SVM - pca_16):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.94      0.84      0.89        19
+      Astrocytoma, anaplastic       0.98      1.00      0.99        42
+                 Glioblastoma       0.98      0.99      0.99       109
+                 Mixed glioma       1.00      1.00      1.00        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.98       258
+                    macro avg       0.98      0.97      0.98       258
+                 weighted avg       0.98      0.98      0.98       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_16):
+Accuracy: 0.9845
+Precision: 0.9842
+Recall: 0.9845
+F1 Score: 0.9841
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 16   1   2   0   0   0]
+ [  0  42   0   0   0   0]
+ [  1   0 108   0   0   0]
+ [  0   0   0  38   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_16): 0.29 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp30_lr50
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp30_lr50...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp30_lr50): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp30_lr50): 0.7867
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp30_lr50):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.68      0.68      0.68        19
+      Astrocytoma, anaplastic       0.72      0.69      0.71        42
+                 Glioblastoma       0.83      0.93      0.87       109
+                 Mixed glioma       0.97      0.87      0.92        38
+       Oligodendroglioma, NOS       0.96      0.73      0.83        33
+Oligodendroglioma, anaplastic       0.78      0.82      0.80        17
+
+                     accuracy                           0.83       258
+                    macro avg       0.82      0.79      0.80       258
+                 weighted avg       0.84      0.83      0.83       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp30_lr50):
+Accuracy: 0.8295
+Precision: 0.8352
+Recall: 0.8295
+F1 Score: 0.8286
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 13   4   2   0   0   0]
+ [  0  29  12   0   1   0]
+ [  4   4 101   0   0   0]
+ [  0   2   2  33   0   1]
+ [  1   1   3   1  24   3]
+ [  1   0   2   0   0  14]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp30_lr50): 0.28 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp30_lr100
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp30_lr100...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp30_lr100): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp30_lr100): 0.8583
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp30_lr100):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.92      0.63      0.75        19
+      Astrocytoma, anaplastic       0.86      0.86      0.86        42
+                 Glioblastoma       0.88      0.94      0.91       109
+                 Mixed glioma       0.95      0.95      0.95        38
+       Oligodendroglioma, NOS       0.89      0.73      0.80        33
+Oligodendroglioma, anaplastic       0.59      0.76      0.67        17
+
+                     accuracy                           0.86       258
+                    macro avg       0.85      0.81      0.82       258
+                 weighted avg       0.87      0.86      0.86       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp30_lr100):
+Accuracy: 0.8643
+Precision: 0.8712
+Recall: 0.8643
+F1 Score: 0.8636
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 12   2   2   0   1   2]
+ [  0  36   6   0   0   0]
+ [  1   2 102   0   0   4]
+ [  0   0   1  36   1   0]
+ [  0   2   2   2  24   3]
+ [  0   0   3   0   1  13]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp30_lr100): 5.01 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp30_lr200
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp30_lr200...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp30_lr200): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp30_lr200): 0.7250
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp30_lr200):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.73      0.58      0.65        19
+      Astrocytoma, anaplastic       0.73      0.64      0.68        42
+                 Glioblastoma       0.80      0.89      0.84       109
+                 Mixed glioma       0.84      0.82      0.83        38
+       Oligodendroglioma, NOS       0.78      0.55      0.64        33
+Oligodendroglioma, anaplastic       0.42      0.59      0.49        17
+
+                     accuracy                           0.75       258
+                    macro avg       0.72      0.68      0.69       258
+                 weighted avg       0.76      0.75      0.75       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp30_lr200):
+Accuracy: 0.7519
+Precision: 0.7597
+Recall: 0.7519
+F1 Score: 0.7499
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[11  1  3  0  0  4]
+ [ 1 27 12  2  0  0]
+ [ 2  7 97  2  1  0]
+ [ 0  1  3 31  1  2]
+ [ 1  1  4  1 18  8]
+ [ 0  0  3  1  3 10]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp30_lr200): 0.68 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp50_lr50
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp50_lr50...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp50_lr50): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp50_lr50): 0.7650
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp50_lr50):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.71      0.79      0.75        19
+      Astrocytoma, anaplastic       0.84      0.76      0.80        42
+                 Glioblastoma       0.85      0.94      0.90       109
+                 Mixed glioma       0.97      0.84      0.90        38
+       Oligodendroglioma, NOS       0.67      0.55      0.60        33
+Oligodendroglioma, anaplastic       0.44      0.47      0.46        17
+
+                     accuracy                           0.81       258
+                    macro avg       0.75      0.73      0.73       258
+                 weighted avg       0.81      0.81      0.80       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp50_lr50):
+Accuracy: 0.8062
+Precision: 0.8067
+Recall: 0.8062
+F1 Score: 0.8035
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 15   2   2   0   0   0]
+ [  0  32  10   0   0   0]
+ [  3   2 103   0   1   0]
+ [  0   2   1  32   2   1]
+ [  3   0   2   1  18   9]
+ [  0   0   3   0   6   8]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp50_lr50): 0.28 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp50_lr100
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp50_lr100...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp50_lr100): {'C': 1, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp50_lr100): 0.8400
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp50_lr100):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.76      0.68      0.72        19
+      Astrocytoma, anaplastic       0.89      0.79      0.84        42
+                 Glioblastoma       0.84      0.94      0.88       109
+                 Mixed glioma       0.97      0.87      0.92        38
+       Oligodendroglioma, NOS       0.79      0.67      0.72        33
+Oligodendroglioma, anaplastic       0.55      0.65      0.59        17
+
+                     accuracy                           0.83       258
+                    macro avg       0.80      0.76      0.78       258
+                 weighted avg       0.83      0.83      0.83       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp50_lr100):
+Accuracy: 0.8295
+Precision: 0.8344
+Recall: 0.8295
+F1 Score: 0.8287
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 13   2   4   0   0   0]
+ [  0  33   9   0   0   0]
+ [  3   1 102   0   1   2]
+ [  0   0   2  33   2   1]
+ [  1   1   2   1  22   6]
+ [  0   0   3   0   3  11]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp50_lr100): 0.29 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp50_lr200
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp50_lr200...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp50_lr200): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp50_lr200): 0.8000
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp50_lr200):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.87      0.68      0.76        19
+      Astrocytoma, anaplastic       0.84      0.74      0.78        42
+                 Glioblastoma       0.84      0.95      0.89       109
+                 Mixed glioma       0.94      0.87      0.90        38
+       Oligodendroglioma, NOS       0.80      0.85      0.82        33
+Oligodendroglioma, anaplastic       0.67      0.47      0.55        17
+
+                     accuracy                           0.84       258
+                    macro avg       0.83      0.76      0.79       258
+                 weighted avg       0.84      0.84      0.84       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp50_lr200):
+Accuracy: 0.8411
+Precision: 0.8397
+Recall: 0.8411
+F1 Score: 0.8361
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 13   2   3   0   0   1]
+ [  0  31  10   0   1   0]
+ [  1   2 104   0   1   1]
+ [  0   1   2  33   1   1]
+ [  0   1   3   0  28   1]
+ [  1   0   2   2   4   8]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp50_lr200): 0.31 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp100_lr50
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp100_lr50...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp100_lr50): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp100_lr50): 0.6517
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp100_lr50):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.81      0.68      0.74        19
+      Astrocytoma, anaplastic       0.59      0.45      0.51        42
+                 Glioblastoma       0.82      0.97      0.89       109
+                 Mixed glioma       0.61      0.71      0.66        38
+       Oligodendroglioma, NOS       0.48      0.33      0.39        33
+Oligodendroglioma, anaplastic       0.29      0.24      0.26        17
+
+                     accuracy                           0.70       258
+                    macro avg       0.60      0.56      0.58       258
+                 weighted avg       0.67      0.70      0.68       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp100_lr50):
+Accuracy: 0.6977
+Precision: 0.6740
+Recall: 0.6977
+F1 Score: 0.6789
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 13   3   2   1   0   0]
+ [  3  19  16   3   0   1]
+ [  0   2 106   0   1   0]
+ [  0   5   1  27   4   1]
+ [  0   2   2  10  11   8]
+ [  0   1   2   3   7   4]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp100_lr50): 0.30 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp100_lr100
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp100_lr100...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp100_lr100): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp100_lr100): 0.6467
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp100_lr100):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.81      0.68      0.74        19
+      Astrocytoma, anaplastic       0.71      0.52      0.60        42
+                 Glioblastoma       0.82      0.95      0.88       109
+                 Mixed glioma       0.65      0.74      0.69        38
+       Oligodendroglioma, NOS       0.56      0.42      0.48        33
+Oligodendroglioma, anaplastic       0.31      0.29      0.30        17
+
+                     accuracy                           0.72       258
+                    macro avg       0.64      0.60      0.62       258
+                 weighted avg       0.71      0.72      0.71       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp100_lr100):
+Accuracy: 0.7209
+Precision: 0.7095
+Recall: 0.7209
+F1 Score: 0.7087
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 13   0   2   2   0   2]
+ [  3  22  15   1   0   1]
+ [  0   3 104   1   0   1]
+ [  0   4   1  28   4   1]
+ [  0   2   3   8  14   6]
+ [  0   0   2   3   7   5]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp100_lr100): 0.30 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp2_perp100_lr200
+Wymiary danych: X_train (600, 2), X_test (258, 2)
+Rozpoczęcie GridSearchCV dla tsne_comp2_perp100_lr200...
+Najlepsze parametry klasycznego SVM (tsne_comp2_perp100_lr200): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp2_perp100_lr200): 0.5767
+Raport klasyfikacji (klasyczny SVM - tsne_comp2_perp100_lr200):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.43      0.07      0.12        42
+                 Glioblastoma       0.58      0.92      0.71       109
+                 Mixed glioma       0.44      0.39      0.42        38
+       Oligodendroglioma, NOS       0.50      0.55      0.52        33
+Oligodendroglioma, anaplastic       0.56      0.29      0.38        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.42      0.37      0.36       258
+                 weighted avg       0.48      0.55      0.47       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp2_perp100_lr200):
+Accuracy: 0.5465
+Precision: 0.4809
+Recall: 0.5465
+F1 Score: 0.4741
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   2  13   2   2   0]
+ [  0   3  36   3   0   0]
+ [  0   0 100   7   2   0]
+ [  0   1  15  15   7   0]
+ [  0   1   4   6  18   4]
+ [  0   0   4   1   7   5]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp2_perp100_lr200): 613.98 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp30_lr50
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp30_lr50...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp30_lr50): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp30_lr50): 0.6567
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp30_lr50):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.44      0.37      0.40        19
+      Astrocytoma, anaplastic       0.75      0.64      0.69        42
+                 Glioblastoma       0.69      0.86      0.77       109
+                 Mixed glioma       0.72      0.68      0.70        38
+       Oligodendroglioma, NOS       0.85      0.52      0.64        33
+Oligodendroglioma, anaplastic       0.43      0.35      0.39        17
+
+                     accuracy                           0.69       258
+                    macro avg       0.65      0.57      0.60       258
+                 weighted avg       0.69      0.69      0.68       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp30_lr50):
+Accuracy: 0.6860
+Precision: 0.6897
+Recall: 0.6860
+F1 Score: 0.6774
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 7  3  8  1  0  0]
+ [ 5 27  9  1  0  0]
+ [ 1  4 94  6  0  4]
+ [ 2  0  8 26  1  1]
+ [ 1  1  9  2 17  3]
+ [ 0  1  8  0  2  6]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp30_lr50): 252.85 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp30_lr100
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp30_lr100...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp30_lr100): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp30_lr100): 0.7933
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp30_lr100):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.37      0.42        19
+      Astrocytoma, anaplastic       0.71      0.64      0.67        42
+                 Glioblastoma       0.80      0.93      0.86       109
+                 Mixed glioma       0.84      0.82      0.83        38
+       Oligodendroglioma, NOS       0.87      0.79      0.83        33
+Oligodendroglioma, anaplastic       0.75      0.53      0.62        17
+
+                     accuracy                           0.78       258
+                    macro avg       0.74      0.68      0.70       258
+                 weighted avg       0.77      0.78      0.77       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp30_lr100):
+Accuracy: 0.7791
+Precision: 0.7722
+Recall: 0.7791
+F1 Score: 0.7710
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   5   2   1   3   1]
+ [  2  27  13   0   0   0]
+ [  1   4 101   3   0   0]
+ [  1   1   4  31   1   0]
+ [  1   0   4   0  26   2]
+ [  2   1   3   2   0   9]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp30_lr100): 72.89 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp30_lr200
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp30_lr200...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp30_lr200): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp30_lr200): 0.7767
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp30_lr200):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.67      0.11      0.18        19
+      Astrocytoma, anaplastic       0.72      0.79      0.75        42
+                 Glioblastoma       0.85      0.93      0.89       109
+                 Mixed glioma       0.82      0.87      0.85        38
+       Oligodendroglioma, NOS       0.74      0.70      0.72        33
+Oligodendroglioma, anaplastic       0.74      0.82      0.78        17
+
+                     accuracy                           0.80       258
+                    macro avg       0.76      0.70      0.69       258
+                 weighted avg       0.79      0.80      0.78       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp30_lr200):
+Accuracy: 0.7984
+Precision: 0.7894
+Recall: 0.7984
+F1 Score: 0.7776
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  2   8   3   2   4   0]
+ [  0  33   7   1   0   1]
+ [  0   2 101   2   2   2]
+ [  0   2   2  33   1   0]
+ [  1   0   5   2  23   2]
+ [  0   1   1   0   1  14]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp30_lr200): 323.68 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp50_lr50
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp50_lr50...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp50_lr50): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp50_lr50): 0.7383
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp50_lr50):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.32      0.39        19
+      Astrocytoma, anaplastic       0.71      0.52      0.60        42
+                 Glioblastoma       0.71      0.83      0.76       109
+                 Mixed glioma       0.56      0.61      0.58        38
+       Oligodendroglioma, NOS       0.70      0.70      0.70        33
+Oligodendroglioma, anaplastic       0.64      0.53      0.58        17
+
+                     accuracy                           0.67       258
+                    macro avg       0.64      0.58      0.60       258
+                 weighted avg       0.67      0.67      0.66       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp50_lr50):
+Accuracy: 0.6705
+Precision: 0.6659
+Recall: 0.6705
+F1 Score: 0.6620
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 6  3  6  4  0  0]
+ [ 1 22 13  6  0  0]
+ [ 1  3 90  7  5  3]
+ [ 2  2  8 23  3  0]
+ [ 0  1  6  1 23  2]
+ [ 2  0  4  0  2  9]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp50_lr50): 143.90 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp50_lr100
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp50_lr100...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp50_lr100): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp50_lr100): 0.7967
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp50_lr100):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.67      0.21      0.32        19
+      Astrocytoma, anaplastic       0.73      0.71      0.72        42
+                 Glioblastoma       0.84      0.94      0.89       109
+                 Mixed glioma       0.83      0.89      0.86        38
+       Oligodendroglioma, NOS       0.84      0.79      0.81        33
+Oligodendroglioma, anaplastic       0.75      0.71      0.73        17
+
+                     accuracy                           0.81       258
+                    macro avg       0.78      0.71      0.72       258
+                 weighted avg       0.80      0.81      0.80       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp50_lr100):
+Accuracy: 0.8101
+Precision: 0.8008
+Recall: 0.8101
+F1 Score: 0.7950
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  4   7   3   4   0   1]
+ [  1  30  10   1   0   0]
+ [  0   2 103   0   2   2]
+ [  0   0   3  34   1   0]
+ [  1   1   2   2  26   1]
+ [  0   1   2   0   2  12]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp50_lr100): 81.24 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp50_lr200
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp50_lr200...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp50_lr200): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp50_lr200): 0.7817
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp50_lr200):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.67      0.21      0.32        19
+      Astrocytoma, anaplastic       0.69      0.69      0.69        42
+                 Glioblastoma       0.81      0.94      0.87       109
+                 Mixed glioma       0.80      0.87      0.84        38
+       Oligodendroglioma, NOS       0.85      0.70      0.77        33
+Oligodendroglioma, anaplastic       0.88      0.82      0.85        17
+
+                     accuracy                           0.79       258
+                    macro avg       0.78      0.70      0.72       258
+                 weighted avg       0.79      0.79      0.78       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp50_lr200):
+Accuracy: 0.7946
+Precision: 0.7887
+Recall: 0.7946
+F1 Score: 0.7797
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  4   6   6   2   1   0]
+ [  0  29  12   1   0   0]
+ [  0   5 102   1   1   0]
+ [  1   0   3  33   1   0]
+ [  1   1   2   4  23   2]
+ [  0   1   1   0   1  14]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp50_lr200): 318.23 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp100_lr50
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp100_lr50...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp100_lr50): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp100_lr50): 0.6183
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp100_lr50):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.40      0.11      0.17        19
+      Astrocytoma, anaplastic       0.61      0.67      0.64        42
+                 Glioblastoma       0.75      0.84      0.79       109
+                 Mixed glioma       0.46      0.45      0.45        38
+       Oligodendroglioma, NOS       0.59      0.70      0.64        33
+Oligodendroglioma, anaplastic       0.50      0.24      0.32        17
+
+                     accuracy                           0.64       258
+                    macro avg       0.55      0.50      0.50       258
+                 weighted avg       0.62      0.64      0.62       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp100_lr50):
+Accuracy: 0.6434
+Precision: 0.6206
+Recall: 0.6434
+F1 Score: 0.6205
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 2  3  3 10  1  0]
+ [ 1 28 10  1  2  0]
+ [ 0  9 92  3  3  2]
+ [ 2  6  4 17  7  2]
+ [ 0  0  6  4 23  0]
+ [ 0  0  8  2  3  4]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp100_lr50): 497.03 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp100_lr100
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp100_lr100...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp100_lr100): {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp100_lr100): 0.6433
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp100_lr100):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.52      0.52      0.52        42
+                 Glioblastoma       0.82      0.94      0.88       109
+                 Mixed glioma       0.58      0.66      0.62        38
+       Oligodendroglioma, NOS       0.73      0.58      0.64        33
+Oligodendroglioma, anaplastic       0.55      0.65      0.59        17
+
+                     accuracy                           0.70       258
+                    macro avg       0.53      0.56      0.54       258
+                 weighted avg       0.65      0.70      0.67       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp100_lr100):
+Accuracy: 0.6977
+Precision: 0.6487
+Recall: 0.6977
+F1 Score: 0.6697
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   8   5   4   2   0]
+ [  0  22  13   6   0   1]
+ [  0   5 103   0   1   0]
+ [  1   6   1  25   2   3]
+ [  0   0   3   6  19   5]
+ [  1   1   0   2   2  11]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp100_lr100): 334.37 sekund
+
+Testowanie klasycznego SVM na wersji danych: tsne_comp3_perp100_lr200
+Wymiary danych: X_train (600, 3), X_test (258, 3)
+Rozpoczęcie GridSearchCV dla tsne_comp3_perp100_lr200...
+Najlepsze parametry klasycznego SVM (tsne_comp3_perp100_lr200): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (tsne_comp3_perp100_lr200): 0.5600
+Raport klasyfikacji (klasyczny SVM - tsne_comp3_perp100_lr200):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.42      0.26      0.32        19
+      Astrocytoma, anaplastic       0.20      0.10      0.13        42
+                 Glioblastoma       0.73      0.88      0.80       109
+                 Mixed glioma       0.34      0.58      0.43        38
+       Oligodendroglioma, NOS       0.50      0.27      0.35        33
+Oligodendroglioma, anaplastic       0.38      0.29      0.33        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.43      0.40      0.39       258
+                 weighted avg       0.51      0.55      0.51       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (tsne_comp3_perp100_lr200):
+Accuracy: 0.5465
+Precision: 0.5128
+Recall: 0.5465
+F1 Score: 0.5134
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 5  2  7  5  0  0]
+ [ 2  4 16 17  2  1]
+ [ 2  4 96  6  0  1]
+ [ 2  5  5 22  3  1]
+ [ 0  3  6 10  9  5]
+ [ 1  2  1  4  4  5]]
+Czas trenowania i ewaluacji klasycznego SVM (tsne_comp3_perp100_lr200): 821.05 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh5_dist0.1
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh5_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh5_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh5_dist0.1): 0.5567
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh5_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.30      0.33      0.32        42
+                 Glioblastoma       0.94      0.99      0.96       109
+                 Mixed glioma       0.21      0.32      0.25        38
+       Oligodendroglioma, NOS       0.24      0.24      0.24        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.28      0.31      0.30       258
+                 weighted avg       0.51      0.55      0.53       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh5_dist0.1):
+Accuracy: 0.5504
+Precision: 0.5069
+Recall: 0.5504
+F1 Score: 0.5266
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   3   1  11   4   0]
+ [  0  14   1  18   8   1]
+ [  0   0 108   0   0   1]
+ [  0  12   3  12  10   1]
+ [  0  10   2  11   8   2]
+ [  0   7   0   6   4   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh5_dist0.1): 0.44 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh5_dist0.5
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh5_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh5_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh5_dist0.5): 0.5567
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh5_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.28      0.33      0.30        42
+                 Glioblastoma       0.96      0.98      0.97       109
+                 Mixed glioma       0.14      0.16      0.15        38
+       Oligodendroglioma, NOS       0.27      0.33      0.30        33
+Oligodendroglioma, anaplastic       0.10      0.06      0.07        17
+
+                     accuracy                           0.54       258
+                    macro avg       0.29      0.31      0.30       258
+                 weighted avg       0.51      0.54      0.52       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh5_dist0.5):
+Accuracy: 0.5388
+Precision: 0.5138
+Recall: 0.5388
+F1 Score: 0.5250
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   6   0   8   4   1]
+ [  1  14   0  15   9   3]
+ [  0   0 107   1   1   0]
+ [  0  13   3   6  15   1]
+ [  0   9   0   9  11   4]
+ [  1   8   1   5   1   1]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh5_dist0.5): 0.44 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh5_dist0.8
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh5_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh5_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh5_dist0.8): 0.5800
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh5_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.33      0.36      0.34        42
+                 Glioblastoma       0.95      0.99      0.97       109
+                 Mixed glioma       0.19      0.26      0.22        38
+       Oligodendroglioma, NOS       0.28      0.27      0.28        33
+Oligodendroglioma, anaplastic       0.14      0.12      0.13        17
+
+                     accuracy                           0.56       258
+                    macro avg       0.31      0.33      0.32       258
+                 weighted avg       0.53      0.56      0.54       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh5_dist0.8):
+Accuracy: 0.5581
+Precision: 0.5270
+Recall: 0.5581
+F1 Score: 0.5414
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   7   1  10   1   0]
+ [  0  15   1  15  10   1]
+ [  0   1 108   0   0   0]
+ [  0  11   4  10   9   4]
+ [  0   7   0  10   9   7]
+ [  0   5   0   7   3   2]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh5_dist0.8): 0.46 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh15_dist0.1
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh15_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh15_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh15_dist0.1): 0.7100
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh15_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.33      0.05      0.09        19
+      Astrocytoma, anaplastic       0.63      0.69      0.66        42
+                 Glioblastoma       1.00      1.00      1.00       109
+                 Mixed glioma       0.51      0.71      0.59        38
+       Oligodendroglioma, NOS       0.65      0.73      0.69        33
+Oligodendroglioma, anaplastic       0.70      0.41      0.52        17
+
+                     accuracy                           0.76       258
+                    macro avg       0.64      0.60      0.59       258
+                 weighted avg       0.75      0.76      0.75       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh15_dist0.1):
+Accuracy: 0.7636
+Precision: 0.7538
+Recall: 0.7636
+F1 Score: 0.7457
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  1   4   0  14   0   0]
+ [  1  29   0   5   7   0]
+ [  0   0 109   0   0   0]
+ [  1   5   0  27   4   1]
+ [  0   4   0   3  24   2]
+ [  0   4   0   4   2   7]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh15_dist0.1): 0.28 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh15_dist0.5
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh15_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh15_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh15_dist0.5): 0.7283
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh15_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.14      0.05      0.08        19
+      Astrocytoma, anaplastic       0.72      0.67      0.69        42
+                 Glioblastoma       0.98      0.99      0.99       109
+                 Mixed glioma       0.40      0.58      0.47        38
+       Oligodendroglioma, NOS       0.71      0.76      0.74        33
+Oligodendroglioma, anaplastic       0.67      0.47      0.55        17
+
+                     accuracy                           0.74       258
+                    macro avg       0.60      0.59      0.59       258
+                 weighted avg       0.74      0.74      0.73       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh15_dist0.5):
+Accuracy: 0.7442
+Precision: 0.7364
+Recall: 0.7442
+F1 Score: 0.7350
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  1   1   0  16   1   0]
+ [  1  28   2   8   3   0]
+ [  0   0 108   1   0   0]
+ [  5   7   0  22   2   2]
+ [  0   3   0   3  25   2]
+ [  0   0   0   5   4   8]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh15_dist0.5): 0.33 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh15_dist0.8
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh15_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh15_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh15_dist0.8): 0.7350
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh15_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.58      0.37      0.45        19
+      Astrocytoma, anaplastic       0.75      0.71      0.73        42
+                 Glioblastoma       0.98      0.96      0.97       109
+                 Mixed glioma       0.45      0.53      0.49        38
+       Oligodendroglioma, NOS       0.66      0.76      0.70        33
+Oligodendroglioma, anaplastic       0.59      0.59      0.59        17
+
+                     accuracy                           0.76       258
+                    macro avg       0.67      0.65      0.66       258
+                 weighted avg       0.77      0.76      0.76       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh15_dist0.8):
+Accuracy: 0.7636
+Precision: 0.7695
+Recall: 0.7636
+F1 Score: 0.7638
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   1   1   9   0   1]
+ [  1  30   0   6   4   1]
+ [  1   0 105   2   0   1]
+ [  2   7   0  20   7   2]
+ [  0   1   1   4  25   2]
+ [  1   1   0   3   2  10]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh15_dist0.8): 0.31 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh30_dist0.1
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh30_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh30_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh30_dist0.1): 0.6583
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh30_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.60      0.32      0.41        19
+      Astrocytoma, anaplastic       0.47      0.55      0.51        42
+                 Glioblastoma       0.99      0.94      0.97       109
+                 Mixed glioma       0.48      0.58      0.52        38
+       Oligodendroglioma, NOS       0.47      0.45      0.46        33
+Oligodendroglioma, anaplastic       0.47      0.47      0.47        17
+
+                     accuracy                           0.69       258
+                    macro avg       0.58      0.55      0.56       258
+                 weighted avg       0.70      0.69      0.69       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh30_dist0.1):
+Accuracy: 0.6860
+Precision: 0.7004
+Recall: 0.6860
+F1 Score: 0.6886
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  6   8   0   5   0   0]
+ [  1  23   0   9   7   2]
+ [  2   2 103   1   1   0]
+ [  1   7   1  22   6   1]
+ [  0   5   0   7  15   6]
+ [  0   4   0   2   3   8]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh30_dist0.1): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh30_dist0.5
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh30_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh30_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh30_dist0.5): 0.6767
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh30_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.78      0.37      0.50        19
+      Astrocytoma, anaplastic       0.52      0.60      0.56        42
+                 Glioblastoma       0.97      0.98      0.98       109
+                 Mixed glioma       0.51      0.61      0.55        38
+       Oligodendroglioma, NOS       0.55      0.55      0.55        33
+Oligodendroglioma, anaplastic       0.31      0.24      0.27        17
+
+                     accuracy                           0.71       258
+                    macro avg       0.61      0.56      0.57       258
+                 weighted avg       0.72      0.71      0.71       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh30_dist0.5):
+Accuracy: 0.7132
+Precision: 0.7183
+Recall: 0.7132
+F1 Score: 0.7091
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   7   0   4   0   1]
+ [  0  25   1  10   4   2]
+ [  0   1 107   0   1   0]
+ [  1   8   1  23   4   1]
+ [  1   3   0   6  18   5]
+ [  0   4   1   2   6   4]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh30_dist0.5): 0.39 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp8_neigh30_dist0.8
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla umap_comp8_neigh30_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp8_neigh30_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp8_neigh30_dist0.8): 0.6883
+Raport klasyfikacji (klasyczny SVM - umap_comp8_neigh30_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.56      0.26      0.36        19
+      Astrocytoma, anaplastic       0.49      0.55      0.52        42
+                 Glioblastoma       0.97      0.95      0.96       109
+                 Mixed glioma       0.40      0.45      0.43        38
+       Oligodendroglioma, NOS       0.61      0.58      0.59        33
+Oligodendroglioma, anaplastic       0.45      0.59      0.51        17
+
+                     accuracy                           0.69       258
+                    macro avg       0.58      0.56      0.56       258
+                 weighted avg       0.70      0.69      0.69       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp8_neigh30_dist0.8):
+Accuracy: 0.6899
+Precision: 0.6992
+Recall: 0.6899
+F1 Score: 0.6896
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  5   5   0   8   1   0]
+ [  2  23   1   9   5   2]
+ [  0   3 104   2   0   0]
+ [  2   8   2  17   4   5]
+ [  0   4   0   5  19   5]
+ [  0   4   0   1   2  10]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp8_neigh30_dist0.8): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh5_dist0.1
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh5_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh5_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh5_dist0.1): 0.5400
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh5_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.29      0.38      0.33        42
+                 Glioblastoma       0.97      0.99      0.98       109
+                 Mixed glioma       0.18      0.26      0.21        38
+       Oligodendroglioma, NOS       0.27      0.27      0.27        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.28      0.32      0.30       258
+                 weighted avg       0.52      0.55      0.53       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh5_dist0.1):
+Accuracy: 0.5543
+Precision: 0.5183
+Recall: 0.5543
+F1 Score: 0.5338
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   3   1  11   4   0]
+ [  0  16   1  17   8   0]
+ [  0   0 108   0   0   1]
+ [  0  16   1  10  11   0]
+ [  0  10   0  14   9   0]
+ [  0  11   0   5   1   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh5_dist0.1): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh5_dist0.5
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh5_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh5_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh5_dist0.5): 0.5500
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh5_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.29      0.33      0.31        42
+                 Glioblastoma       0.96      0.99      0.97       109
+                 Mixed glioma       0.21      0.32      0.25        38
+       Oligodendroglioma, NOS       0.24      0.27      0.26        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.28      0.32      0.30       258
+                 weighted avg       0.51      0.55      0.53       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh5_dist0.5):
+Accuracy: 0.5543
+Precision: 0.5119
+Recall: 0.5543
+F1 Score: 0.5309
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   9   1   5   4   0]
+ [  0  14   0  18  10   0]
+ [  0   0 108   1   0   0]
+ [  0  11   4  12  10   1]
+ [  0   9   0  15   9   0]
+ [  0   6   0   7   4   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh5_dist0.5): 0.40 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh5_dist0.8
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh5_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh5_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh5_dist0.8): 0.5783
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh5_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.27      0.26      0.27        42
+                 Glioblastoma       0.98      0.98      0.98       109
+                 Mixed glioma       0.20      0.34      0.25        38
+       Oligodendroglioma, NOS       0.25      0.18      0.21        33
+Oligodendroglioma, anaplastic       0.16      0.18      0.17        17
+
+                     accuracy                           0.54       258
+                    macro avg       0.31      0.32      0.31       258
+                 weighted avg       0.53      0.54      0.53       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh5_dist0.8):
+Accuracy: 0.5426
+Precision: 0.5302
+Recall: 0.5426
+F1 Score: 0.5330
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   5   0  11   1   2]
+ [  0  11   1  19   9   2]
+ [  0   0 107   0   1   1]
+ [  0  14   0  13   6   5]
+ [  0   7   1  13   6   6]
+ [  0   4   0   9   1   3]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh5_dist0.8): 0.53 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh15_dist0.1
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh15_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh15_dist0.1): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh15_dist0.1): 0.7400
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh15_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.65      0.71      0.68        42
+                 Glioblastoma       1.00      0.99      1.00       109
+                 Mixed glioma       0.52      0.68      0.59        38
+       Oligodendroglioma, NOS       0.60      0.76      0.67        33
+Oligodendroglioma, anaplastic       0.83      0.59      0.69        17
+
+                     accuracy                           0.77       258
+                    macro avg       0.60      0.62      0.60       258
+                 weighted avg       0.74      0.77      0.75       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh15_dist0.1):
+Accuracy: 0.7713
+Precision: 0.7363
+Recall: 0.7713
+F1 Score: 0.7493
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   5   0  14   0   0]
+ [  0  30   0   5   7   0]
+ [  0   1 108   0   0   0]
+ [  0   4   0  26   7   1]
+ [  0   5   0   2  25   1]
+ [  0   1   0   3   3  10]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh15_dist0.1): 0.29 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh15_dist0.5
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh15_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh15_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh15_dist0.5): 0.7650
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh15_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.26      0.34        19
+      Astrocytoma, anaplastic       0.81      0.83      0.82        42
+                 Glioblastoma       0.98      0.98      0.98       109
+                 Mixed glioma       0.50      0.61      0.55        38
+       Oligodendroglioma, NOS       0.72      0.70      0.71        33
+Oligodendroglioma, anaplastic       0.61      0.65      0.63        17
+
+                     accuracy                           0.79       258
+                    macro avg       0.69      0.67      0.67       258
+                 weighted avg       0.79      0.79      0.79       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh15_dist0.5):
+Accuracy: 0.7907
+Precision: 0.7899
+Recall: 0.7907
+F1 Score: 0.7868
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  5   2   0  12   0   0]
+ [  1  35   0   4   2   0]
+ [  0   0 107   1   0   1]
+ [  4   4   1  23   5   1]
+ [  0   1   1   3  23   5]
+ [  0   1   0   3   2  11]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh15_dist0.5): 0.30 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh15_dist0.8
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh15_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh15_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh15_dist0.8): 0.7633
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh15_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.32      0.39        19
+      Astrocytoma, anaplastic       0.79      0.81      0.80        42
+                 Glioblastoma       0.99      0.97      0.98       109
+                 Mixed glioma       0.51      0.61      0.55        38
+       Oligodendroglioma, NOS       0.67      0.79      0.72        33
+Oligodendroglioma, anaplastic       0.58      0.41      0.48        17
+
+                     accuracy                           0.78       258
+                    macro avg       0.67      0.65      0.65       258
+                 weighted avg       0.78      0.78      0.78       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh15_dist0.8):
+Accuracy: 0.7829
+Precision: 0.7831
+Recall: 0.7829
+F1 Score: 0.7792
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  6   4   0   8   1   0]
+ [  1  34   0   4   2   1]
+ [  1   0 106   2   0   0]
+ [  2   4   1  23   6   2]
+ [  1   1   0   3  26   2]
+ [  1   0   0   5   4   7]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh15_dist0.8): 0.32 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh30_dist0.1
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh30_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh30_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh30_dist0.1): 0.6883
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh30_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.32      0.39        19
+      Astrocytoma, anaplastic       0.47      0.60      0.53        42
+                 Glioblastoma       0.97      0.96      0.97       109
+                 Mixed glioma       0.57      0.61      0.59        38
+       Oligodendroglioma, NOS       0.70      0.58      0.63        33
+Oligodendroglioma, anaplastic       0.56      0.59      0.57        17
+
+                     accuracy                           0.73       258
+                    macro avg       0.63      0.61      0.61       258
+                 weighted avg       0.74      0.73      0.73       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh30_dist0.1):
+Accuracy: 0.7287
+Precision: 0.7357
+Recall: 0.7287
+F1 Score: 0.7286
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  6   8   0   4   0   1]
+ [  1  25   1   9   3   3]
+ [  0   4 105   0   0   0]
+ [  2  10   0  23   3   0]
+ [  3   3   0   4  19   4]
+ [  0   3   2   0   2  10]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh30_dist0.1): 0.39 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh30_dist0.5
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh30_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh30_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh30_dist0.5): 0.7017
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh30_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.58      0.37      0.45        19
+      Astrocytoma, anaplastic       0.55      0.57      0.56        42
+                 Glioblastoma       0.96      0.96      0.96       109
+                 Mixed glioma       0.56      0.58      0.57        38
+       Oligodendroglioma, NOS       0.62      0.55      0.58        33
+Oligodendroglioma, anaplastic       0.48      0.71      0.57        17
+
+                     accuracy                           0.73       258
+                    macro avg       0.63      0.62      0.62       258
+                 weighted avg       0.73      0.73      0.73       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh30_dist0.5):
+Accuracy: 0.7287
+Precision: 0.7328
+Recall: 0.7287
+F1 Score: 0.7272
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   7   0   3   1   1]
+ [  4  24   1   6   3   4]
+ [  0   2 105   0   2   0]
+ [  1   9   0  22   4   2]
+ [  0   1   2   6  18   6]
+ [  0   1   1   2   1  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh30_dist0.5): 0.37 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp10_neigh30_dist0.8
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla umap_comp10_neigh30_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp10_neigh30_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp10_neigh30_dist0.8): 0.7350
+Raport klasyfikacji (klasyczny SVM - umap_comp10_neigh30_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.67      0.53      0.59        19
+      Astrocytoma, anaplastic       0.68      0.67      0.67        42
+                 Glioblastoma       0.97      0.97      0.97       109
+                 Mixed glioma       0.62      0.61      0.61        38
+       Oligodendroglioma, NOS       0.66      0.64      0.65        33
+Oligodendroglioma, anaplastic       0.58      0.82      0.68        17
+
+                     accuracy                           0.78       258
+                    macro avg       0.70      0.71      0.70       258
+                 weighted avg       0.79      0.78      0.78       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp10_neigh30_dist0.8):
+Accuracy: 0.7829
+Precision: 0.7851
+Recall: 0.7829
+F1 Score: 0.7820
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 10   4   0   1   3   1]
+ [  3  28   0   8   2   1]
+ [  0   2 106   0   1   0]
+ [  2   5   1  23   4   3]
+ [  0   2   1   4  21   5]
+ [  0   0   1   1   1  14]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp10_neigh30_dist0.8): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh5_dist0.1
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh5_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh5_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh5_dist0.1): 0.5800
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh5_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.27      0.31      0.29        42
+                 Glioblastoma       0.94      0.97      0.95       109
+                 Mixed glioma       0.25      0.37      0.30        38
+       Oligodendroglioma, NOS       0.26      0.27      0.26        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.29      0.32      0.30       258
+                 weighted avg       0.51      0.55      0.53       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh5_dist0.1):
+Accuracy: 0.5504
+Precision: 0.5101
+Recall: 0.5504
+F1 Score: 0.5282
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   5   1   9   4   0]
+ [  4  13   1  16   8   0]
+ [  0   0 106   0   1   2]
+ [  0  11   2  14  11   0]
+ [  0  10   2  12   9   0]
+ [  0   9   1   5   2   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh5_dist0.1): 0.36 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh5_dist0.5
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh5_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh5_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh5_dist0.5): 0.5517
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh5_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.32      0.40      0.36        42
+                 Glioblastoma       0.95      0.95      0.95       109
+                 Mixed glioma       0.25      0.26      0.26        38
+       Oligodendroglioma, NOS       0.34      0.55      0.42        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.58       258
+                    macro avg       0.31      0.36      0.33       258
+                 weighted avg       0.54      0.58      0.55       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh5_dist0.5):
+Accuracy: 0.5775
+Precision: 0.5356
+Recall: 0.5775
+F1 Score: 0.5527
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   8   0   6   4   1]
+ [  0  17   1  11  13   0]
+ [  0   0 104   2   2   1]
+ [  0  14   3  10  11   0]
+ [  0   7   0   7  18   1]
+ [  0   7   1   4   5   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh5_dist0.5): 0.48 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh5_dist0.8
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh5_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh5_dist0.8): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh5_dist0.8): 0.5583
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh5_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.36      0.45      0.40        42
+                 Glioblastoma       0.93      0.97      0.95       109
+                 Mixed glioma       0.20      0.26      0.23        38
+       Oligodendroglioma, NOS       0.27      0.33      0.30        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.57       258
+                    macro avg       0.29      0.34      0.31       258
+                 weighted avg       0.51      0.57      0.54       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh5_dist0.8):
+Accuracy: 0.5659
+Precision: 0.5150
+Recall: 0.5659
+F1 Score: 0.5383
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   3   0  13   3   0]
+ [  0  19   1   9  13   0]
+ [  0   1 106   2   0   0]
+ [  0  13   4  10  11   0]
+ [  0  11   2   9  11   0]
+ [  0   6   1   7   3   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh5_dist0.8): 0.47 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh15_dist0.1
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh15_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh15_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh15_dist0.1): 0.7267
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh15_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       1.00      0.05      0.10        19
+      Astrocytoma, anaplastic       0.79      0.79      0.79        42
+                 Glioblastoma       1.00      0.97      0.99       109
+                 Mixed glioma       0.46      0.68      0.55        38
+       Oligodendroglioma, NOS       0.68      0.79      0.73        33
+Oligodendroglioma, anaplastic       0.60      0.53      0.56        17
+
+                     accuracy                           0.78       258
+                    macro avg       0.76      0.64      0.62       258
+                 weighted avg       0.82      0.78      0.76       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh15_dist0.1):
+Accuracy: 0.7791
+Precision: 0.8195
+Recall: 0.7791
+F1 Score: 0.7641
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  1   3   0  15   0   0]
+ [  0  33   0   7   2   0]
+ [  0   0 106   0   3   0]
+ [  0   5   0  26   4   3]
+ [  0   1   0   3  26   3]
+ [  0   0   0   5   3   9]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh15_dist0.1): 0.30 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh15_dist0.5
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh15_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh15_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh15_dist0.5): 0.7567
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh15_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.16      0.24        19
+      Astrocytoma, anaplastic       0.83      0.81      0.82        42
+                 Glioblastoma       0.98      0.98      0.98       109
+                 Mixed glioma       0.56      0.71      0.63        38
+       Oligodendroglioma, NOS       0.67      0.79      0.72        33
+Oligodendroglioma, anaplastic       0.80      0.71      0.75        17
+
+                     accuracy                           0.81       258
+                    macro avg       0.72      0.69      0.69       258
+                 weighted avg       0.81      0.81      0.80       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh15_dist0.5):
+Accuracy: 0.8101
+Precision: 0.8074
+Recall: 0.8101
+F1 Score: 0.8001
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  3   1   0  12   3   0]
+ [  1  34   0   3   4   0]
+ [  0   2 107   0   0   0]
+ [  2   3   1  27   5   0]
+ [  0   1   1   2  26   3]
+ [  0   0   0   4   1  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh15_dist0.5): 0.30 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh15_dist0.8
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh15_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh15_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh15_dist0.8): 0.7833
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh15_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.67      0.53      0.59        19
+      Astrocytoma, anaplastic       0.67      0.83      0.74        42
+                 Glioblastoma       0.97      0.98      0.98       109
+                 Mixed glioma       0.69      0.58      0.63        38
+       Oligodendroglioma, NOS       0.70      0.70      0.70        33
+Oligodendroglioma, anaplastic       0.75      0.71      0.73        17
+
+                     accuracy                           0.81       258
+                    macro avg       0.74      0.72      0.73       258
+                 weighted avg       0.81      0.81      0.81       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh15_dist0.8):
+Accuracy: 0.8101
+Precision: 0.8095
+Recall: 0.8101
+F1 Score: 0.8070
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 10   3   0   4   2   0]
+ [  2  35   1   2   2   0]
+ [  0   2 107   0   0   0]
+ [  2   8   1  22   4   1]
+ [  0   4   1   2  23   3]
+ [  1   0   0   2   2  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh15_dist0.8): 0.32 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh30_dist0.1
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh30_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh30_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh30_dist0.1): 0.6900
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh30_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.36      0.21      0.27        19
+      Astrocytoma, anaplastic       0.53      0.62      0.57        42
+                 Glioblastoma       1.00      0.94      0.97       109
+                 Mixed glioma       0.43      0.58      0.49        38
+       Oligodendroglioma, NOS       0.46      0.33      0.39        33
+Oligodendroglioma, anaplastic       0.62      0.76      0.68        17
+
+                     accuracy                           0.69       258
+                    macro avg       0.57      0.57      0.56       258
+                 weighted avg       0.70      0.69      0.69       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh30_dist0.1):
+Accuracy: 0.6899
+Precision: 0.6986
+Recall: 0.6899
+F1 Score: 0.6884
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  4   9   0   5   0   1]
+ [  1  26   0  10   3   2]
+ [  1   2 102   2   2   0]
+ [  2   7   0  22   6   1]
+ [  3   4   0  11  11   4]
+ [  0   1   0   1   2  13]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh30_dist0.1): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh30_dist0.5
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh30_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh30_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh30_dist0.5): 0.7117
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh30_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.78      0.37      0.50        19
+      Astrocytoma, anaplastic       0.56      0.64      0.60        42
+                 Glioblastoma       0.95      0.94      0.95       109
+                 Mixed glioma       0.47      0.63      0.54        38
+       Oligodendroglioma, NOS       0.75      0.45      0.57        33
+Oligodendroglioma, anaplastic       0.64      0.82      0.72        17
+
+                     accuracy                           0.74       258
+                    macro avg       0.69      0.64      0.65       258
+                 weighted avg       0.76      0.74      0.73       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh30_dist0.5):
+Accuracy: 0.7364
+Precision: 0.7589
+Recall: 0.7364
+F1 Score: 0.7347
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   8   0   3   0   1]
+ [  2  27   1  12   0   0]
+ [  0   2 103   2   1   1]
+ [  0   8   2  24   3   1]
+ [  0   3   1   9  15   5]
+ [  0   0   1   1   1  14]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh30_dist0.5): 0.37 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp12_neigh30_dist0.8
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla umap_comp12_neigh30_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp12_neigh30_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp12_neigh30_dist0.8): 0.7250
+Raport klasyfikacji (klasyczny SVM - umap_comp12_neigh30_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.69      0.58      0.63        19
+      Astrocytoma, anaplastic       0.66      0.64      0.65        42
+                 Glioblastoma       0.98      0.97      0.98       109
+                 Mixed glioma       0.58      0.66      0.62        38
+       Oligodendroglioma, NOS       0.79      0.70      0.74        33
+Oligodendroglioma, anaplastic       0.48      0.59      0.53        17
+
+                     accuracy                           0.78       258
+                    macro avg       0.70      0.69      0.69       258
+                 weighted avg       0.79      0.78      0.79       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp12_neigh30_dist0.8):
+Accuracy: 0.7829
+Precision: 0.7909
+Recall: 0.7829
+F1 Score: 0.7854
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 11   4   1   3   0   0]
+ [  2  27   0   9   2   2]
+ [  0   2 106   0   0   1]
+ [  3   4   0  25   2   4]
+ [  0   1   1   4  23   4]
+ [  0   3   0   2   2  10]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp12_neigh30_dist0.8): 0.39 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh5_dist0.1
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh5_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh5_dist0.1): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (umap_comp14_neigh5_dist0.1): 0.5450
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh5_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.29      0.29      0.29        42
+                 Glioblastoma       0.94      0.96      0.95       109
+                 Mixed glioma       0.20      0.39      0.27        38
+       Oligodendroglioma, NOS       0.20      0.18      0.19        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.53       258
+                    macro avg       0.27      0.30      0.28       258
+                 weighted avg       0.50      0.53      0.51       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh5_dist0.1):
+Accuracy: 0.5349
+Precision: 0.4980
+Recall: 0.5349
+F1 Score: 0.5118
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   4   1  10   4   0]
+ [  0  12   1  23   6   0]
+ [  0   0 105   2   2   0]
+ [  0  10   4  15   9   0]
+ [  0  10   0  17   6   0]
+ [  0   6   1   7   3   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh5_dist0.1): 0.40 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh5_dist0.5
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh5_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh5_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh5_dist0.5): 0.5783
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh5_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.26      0.26      0.26        42
+                 Glioblastoma       0.96      1.00      0.98       109
+                 Mixed glioma       0.26      0.37      0.31        38
+       Oligodendroglioma, NOS       0.25      0.30      0.27        33
+Oligodendroglioma, anaplastic       0.12      0.06      0.08        17
+
+                     accuracy                           0.56       258
+                    macro avg       0.31      0.33      0.32       258
+                 weighted avg       0.52      0.56      0.54       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh5_dist0.5):
+Accuracy: 0.5620
+Precision: 0.5247
+Recall: 0.5620
+F1 Score: 0.5408
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   7   0   8   3   1]
+ [  0  11   1  15  13   2]
+ [  0   0 109   0   0   0]
+ [  0   8   3  14  10   3]
+ [  0  11   0  11  10   1]
+ [  0   6   1   5   4   1]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh5_dist0.5): 0.39 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh5_dist0.8
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh5_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh5_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh5_dist0.8): 0.5667
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh5_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.33      0.36      0.34        42
+                 Glioblastoma       0.98      0.99      0.99       109
+                 Mixed glioma       0.29      0.39      0.33        38
+       Oligodendroglioma, NOS       0.29      0.42      0.35        33
+Oligodendroglioma, anaplastic       0.33      0.06      0.10        17
+
+                     accuracy                           0.59       258
+                    macro avg       0.37      0.37      0.35       258
+                 weighted avg       0.57      0.59      0.57       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh5_dist0.8):
+Accuracy: 0.5930
+Precision: 0.5708
+Recall: 0.5930
+F1 Score: 0.5727
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0  10   0   7   2   0]
+ [  0  15   0  13  14   0]
+ [  0   0 108   0   0   1]
+ [  0   7   1  15  14   1]
+ [  0   9   0  10  14   0]
+ [  0   4   1   7   4   1]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh5_dist0.8): 0.46 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh15_dist0.1
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh15_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh15_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh15_dist0.1): 0.7700
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh15_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.78      0.37      0.50        19
+      Astrocytoma, anaplastic       0.63      0.79      0.70        42
+                 Glioblastoma       0.99      0.98      0.99       109
+                 Mixed glioma       0.57      0.63      0.60        38
+       Oligodendroglioma, NOS       0.72      0.64      0.68        33
+Oligodendroglioma, anaplastic       0.72      0.76      0.74        17
+
+                     accuracy                           0.79       258
+                    macro avg       0.74      0.69      0.70       258
+                 weighted avg       0.80      0.79      0.79       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh15_dist0.1):
+Accuracy: 0.7946
+Precision: 0.8035
+Recall: 0.7946
+F1 Score: 0.7917
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   2   0  10   0   0]
+ [  0  33   1   3   5   0]
+ [  0   1 107   0   1   0]
+ [  1  10   0  24   2   1]
+ [  0   4   0   4  21   4]
+ [  1   2   0   1   0  13]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh15_dist0.1): 0.31 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh15_dist0.5
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh15_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh15_dist0.5): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh15_dist0.5): 0.7950
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh15_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.50      0.32      0.39        19
+      Astrocytoma, anaplastic       0.79      0.88      0.83        42
+                 Glioblastoma       0.99      0.99      0.99       109
+                 Mixed glioma       0.68      0.68      0.68        38
+       Oligodendroglioma, NOS       0.70      0.79      0.74        33
+Oligodendroglioma, anaplastic       0.73      0.65      0.69        17
+
+                     accuracy                           0.83       258
+                    macro avg       0.73      0.72      0.72       258
+                 weighted avg       0.82      0.83      0.82       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh15_dist0.5):
+Accuracy: 0.8295
+Precision: 0.8226
+Recall: 0.8295
+F1 Score: 0.8236
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  6   2   0   7   4   0]
+ [  1  37   0   2   2   0]
+ [  0   1 108   0   0   0]
+ [  2   5   1  26   3   1]
+ [  1   2   0   1  26   3]
+ [  2   0   0   2   2  11]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh15_dist0.5): 0.31 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh15_dist0.8
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh15_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh15_dist0.8): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh15_dist0.8): 0.7917
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh15_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.60      0.47      0.53        19
+      Astrocytoma, anaplastic       0.84      0.86      0.85        42
+                 Glioblastoma       1.00      0.99      1.00       109
+                 Mixed glioma       0.68      0.84      0.75        38
+       Oligodendroglioma, NOS       0.86      0.76      0.81        33
+Oligodendroglioma, anaplastic       0.81      0.76      0.79        17
+
+                     accuracy                           0.86       258
+                    macro avg       0.80      0.78      0.79       258
+                 weighted avg       0.87      0.86      0.86       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh15_dist0.8):
+Accuracy: 0.8643
+Precision: 0.8670
+Recall: 0.8643
+F1 Score: 0.8634
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  9   2   0   7   1   0]
+ [  3  36   0   3   0   0]
+ [  0   1 108   0   0   0]
+ [  1   2   0  32   3   0]
+ [  1   2   0   2  25   3]
+ [  1   0   0   3   0  13]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh15_dist0.8): 0.33 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh30_dist0.1
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh30_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh30_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh30_dist0.1): 0.6783
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh30_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.33      0.16      0.21        19
+      Astrocytoma, anaplastic       0.50      0.67      0.57        42
+                 Glioblastoma       0.99      0.95      0.97       109
+                 Mixed glioma       0.43      0.61      0.50        38
+       Oligodendroglioma, NOS       0.58      0.42      0.49        33
+Oligodendroglioma, anaplastic       0.80      0.47      0.59        17
+
+                     accuracy                           0.70       258
+                    macro avg       0.61      0.55      0.56       258
+                 weighted avg       0.71      0.70      0.69       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh30_dist0.1):
+Accuracy: 0.6977
+Precision: 0.7145
+Recall: 0.6977
+F1 Score: 0.6950
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  3   9   0   7   0   0]
+ [  1  28   0  11   2   0]
+ [  2   3 104   0   0   0]
+ [  3   8   0  23   4   0]
+ [  0   6   1  10  14   2]
+ [  0   2   0   3   4   8]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh30_dist0.1): 0.40 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh30_dist0.5
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh30_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh30_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh30_dist0.5): 0.7050
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh30_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.57      0.21      0.31        19
+      Astrocytoma, anaplastic       0.52      0.60      0.56        42
+                 Glioblastoma       0.95      0.97      0.96       109
+                 Mixed glioma       0.55      0.61      0.57        38
+       Oligodendroglioma, NOS       0.59      0.48      0.53        33
+Oligodendroglioma, anaplastic       0.55      0.71      0.62        17
+
+                     accuracy                           0.72       258
+                    macro avg       0.62      0.60      0.59       258
+                 weighted avg       0.72      0.72      0.71       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh30_dist0.5):
+Accuracy: 0.7209
+Precision: 0.7191
+Recall: 0.7209
+F1 Score: 0.7118
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  4   9   0   4   1   1]
+ [  2  25   2   8   5   0]
+ [  0   1 106   0   1   1]
+ [  1   7   2  23   3   2]
+ [  0   4   2   5  16   6]
+ [  0   2   0   2   1  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh30_dist0.5): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp14_neigh30_dist0.8
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla umap_comp14_neigh30_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp14_neigh30_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp14_neigh30_dist0.8): 0.7317
+Raport klasyfikacji (klasyczny SVM - umap_comp14_neigh30_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.67      0.21      0.32        19
+      Astrocytoma, anaplastic       0.53      0.57      0.55        42
+                 Glioblastoma       0.96      0.97      0.97       109
+                 Mixed glioma       0.50      0.58      0.54        38
+       Oligodendroglioma, NOS       0.76      0.67      0.71        33
+Oligodendroglioma, anaplastic       0.50      0.71      0.59        17
+
+                     accuracy                           0.74       258
+                    macro avg       0.65      0.62      0.61       258
+                 weighted avg       0.75      0.74      0.73       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp14_neigh30_dist0.8):
+Accuracy: 0.7364
+Precision: 0.7467
+Recall: 0.7364
+F1 Score: 0.7307
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  4   8   0   5   1   1]
+ [  1  24   1  11   3   2]
+ [  0   2 106   0   0   1]
+ [  1   6   2  22   3   4]
+ [  0   3   1   3  22   4]
+ [  0   2   0   3   0  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp14_neigh30_dist0.8): 0.38 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh5_dist0.1
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh5_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh5_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh5_dist0.1): 0.5500
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh5_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.24      0.21      0.23        42
+                 Glioblastoma       0.92      0.99      0.95       109
+                 Mixed glioma       0.19      0.34      0.24        38
+       Oligodendroglioma, NOS       0.28      0.24      0.26        33
+Oligodendroglioma, anaplastic       0.20      0.06      0.09        17
+
+                     accuracy                           0.54       258
+                    macro avg       0.30      0.31      0.30       258
+                 weighted avg       0.50      0.54      0.51       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh5_dist0.1):
+Accuracy: 0.5388
+Precision: 0.5025
+Recall: 0.5388
+F1 Score: 0.5139
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   4   2   9   4   0]
+ [  0   9   1  27   4   1]
+ [  0   0 108   0   0   1]
+ [  0   8   5  13  10   2]
+ [  0   9   2  14   8   0]
+ [  0   7   0   6   3   1]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh5_dist0.1): 0.42 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh5_dist0.5
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh5_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh5_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh5_dist0.5): 0.5667
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh5_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.33      0.38      0.36        42
+                 Glioblastoma       0.92      1.00      0.96       109
+                 Mixed glioma       0.17      0.24      0.20        38
+       Oligodendroglioma, NOS       0.32      0.33      0.33        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.56       258
+                    macro avg       0.29      0.33      0.31       258
+                 weighted avg       0.51      0.56      0.53       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh5_dist0.5):
+Accuracy: 0.5620
+Precision: 0.5105
+Recall: 0.5620
+F1 Score: 0.5344
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   9   0   8   1   1]
+ [  0  16   2  17   6   1]
+ [  0   0 109   0   0   0]
+ [  0  14   5   9  10   0]
+ [  0   7   1  12  11   2]
+ [  0   2   1   8   6   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh5_dist0.5): 0.40 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh5_dist0.8
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh5_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh5_dist0.8): {'C': 1, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh5_dist0.8): 0.5550
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh5_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.30      0.29      0.29        42
+                 Glioblastoma       0.94      0.96      0.95       109
+                 Mixed glioma       0.20      0.34      0.25        38
+       Oligodendroglioma, NOS       0.26      0.33      0.29        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.55       258
+                    macro avg       0.28      0.32      0.30       258
+                 weighted avg       0.51      0.55      0.52       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh5_dist0.8):
+Accuracy: 0.5465
+Precision: 0.5083
+Recall: 0.5465
+F1 Score: 0.5242
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   4   0  10   5   0]
+ [  0  12   2  19   9   0]
+ [  0   2 105   2   0   0]
+ [  0   8   4  13  13   0]
+ [  0  10   1  11  11   0]
+ [  0   4   0   9   4   0]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh5_dist0.8): 0.42 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh15_dist0.1
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh15_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh15_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh15_dist0.1): 0.7500
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh15_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.75      0.16      0.26        19
+      Astrocytoma, anaplastic       0.71      0.81      0.76        42
+                 Glioblastoma       0.99      1.00      1.00       109
+                 Mixed glioma       0.59      0.76      0.67        38
+       Oligodendroglioma, NOS       0.74      0.70      0.72        33
+Oligodendroglioma, anaplastic       0.75      0.71      0.73        17
+
+                     accuracy                           0.81       258
+                    macro avg       0.76      0.69      0.69       258
+                 weighted avg       0.82      0.81      0.80       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh15_dist0.1):
+Accuracy: 0.8140
+Precision: 0.8207
+Recall: 0.8140
+F1 Score: 0.8008
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  3   3   0  12   1   0]
+ [  0  34   0   3   4   1]
+ [  0   0 109   0   0   0]
+ [  1   6   1  29   1   0]
+ [  0   4   0   3  23   3]
+ [  0   1   0   2   2  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh15_dist0.1): 0.32 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh15_dist0.5
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh15_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh15_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh15_dist0.5): 0.7783
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh15_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.60      0.32      0.41        19
+      Astrocytoma, anaplastic       0.82      0.76      0.79        42
+                 Glioblastoma       0.97      0.99      0.98       109
+                 Mixed glioma       0.58      0.76      0.66        38
+       Oligodendroglioma, NOS       0.80      0.85      0.82        33
+Oligodendroglioma, anaplastic       0.92      0.71      0.80        17
+
+                     accuracy                           0.83       258
+                    macro avg       0.78      0.73      0.74       258
+                 weighted avg       0.84      0.83      0.83       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh15_dist0.5):
+Accuracy: 0.8333
+Precision: 0.8374
+Recall: 0.8333
+F1 Score: 0.8290
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  6   1   0  10   2   0]
+ [  1  32   1   6   2   0]
+ [  0   1 108   0   0   0]
+ [  2   2   2  29   2   1]
+ [  0   2   0   3  28   0]
+ [  1   1   0   2   1  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh15_dist0.5): 0.33 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh15_dist0.8
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh15_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh15_dist0.8): {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh15_dist0.8): 0.8117
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh15_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.71      0.53      0.61        19
+      Astrocytoma, anaplastic       0.89      0.81      0.85        42
+                 Glioblastoma       0.99      1.00      1.00       109
+                 Mixed glioma       0.76      0.89      0.82        38
+       Oligodendroglioma, NOS       0.77      0.91      0.83        33
+Oligodendroglioma, anaplastic       1.00      0.71      0.83        17
+
+                     accuracy                           0.89       258
+                    macro avg       0.85      0.81      0.82       258
+                 weighted avg       0.89      0.89      0.89       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh15_dist0.8):
+Accuracy: 0.8876
+Precision: 0.8925
+Recall: 0.8876
+F1 Score: 0.8853
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 10   1   0   4   4   0]
+ [  3  34   1   3   1   0]
+ [  0   0 109   0   0   0]
+ [  0   1   0  34   3   0]
+ [  1   2   0   0  30   0]
+ [  0   0   0   4   1  12]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh15_dist0.8): 0.32 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh30_dist0.1
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh30_dist0.1...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh30_dist0.1): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh30_dist0.1): 0.6550
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh30_dist0.1):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.43      0.16      0.23        19
+      Astrocytoma, anaplastic       0.52      0.60      0.56        42
+                 Glioblastoma       0.98      0.94      0.96       109
+                 Mixed glioma       0.38      0.47      0.42        38
+       Oligodendroglioma, NOS       0.42      0.39      0.41        33
+Oligodendroglioma, anaplastic       0.45      0.53      0.49        17
+
+                     accuracy                           0.66       258
+                    macro avg       0.53      0.52      0.51       258
+                 weighted avg       0.67      0.66      0.66       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh30_dist0.1):
+Accuracy: 0.6628
+Precision: 0.6705
+Recall: 0.6628
+F1 Score: 0.6605
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  3   9   0   4   1   2]
+ [  2  25   0   8   6   1]
+ [  1   2 103   2   0   1]
+ [  0   8   1  18   7   4]
+ [  1   2   1  13  13   3]
+ [  0   2   0   2   4   9]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh30_dist0.1): 0.41 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh30_dist0.5
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh30_dist0.5...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh30_dist0.5): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh30_dist0.5): 0.7000
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh30_dist0.5):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.88      0.37      0.52        19
+      Astrocytoma, anaplastic       0.54      0.64      0.59        42
+                 Glioblastoma       0.92      0.97      0.95       109
+                 Mixed glioma       0.57      0.53      0.55        38
+       Oligodendroglioma, NOS       0.55      0.48      0.52        33
+Oligodendroglioma, anaplastic       0.71      0.88      0.79        17
+
+                     accuracy                           0.74       258
+                    macro avg       0.70      0.65      0.65       258
+                 weighted avg       0.74      0.74      0.73       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh30_dist0.5):
+Accuracy: 0.7403
+Precision: 0.7436
+Recall: 0.7403
+F1 Score: 0.7323
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  7   8   1   2   1   0]
+ [  1  27   2   6   6   0]
+ [  0   2 106   0   1   0]
+ [  0   8   3  20   4   3]
+ [  0   5   3   6  16   3]
+ [  0   0   0   1   1  15]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh30_dist0.5): 0.39 sekund
+
+Testowanie klasycznego SVM na wersji danych: umap_comp16_neigh30_dist0.8
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla umap_comp16_neigh30_dist0.8...
+Najlepsze parametry klasycznego SVM (umap_comp16_neigh30_dist0.8): {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+Dokładność klasycznego SVM (umap_comp16_neigh30_dist0.8): 0.7200
+Raport klasyfikacji (klasyczny SVM - umap_comp16_neigh30_dist0.8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.69      0.58      0.63        19
+      Astrocytoma, anaplastic       0.66      0.74      0.70        42
+                 Glioblastoma       0.94      0.98      0.96       109
+                 Mixed glioma       0.66      0.55      0.60        38
+       Oligodendroglioma, NOS       0.68      0.58      0.62        33
+Oligodendroglioma, anaplastic       0.67      0.82      0.74        17
+
+                     accuracy                           0.79       258
+                    macro avg       0.71      0.71      0.71       258
+                 weighted avg       0.78      0.79      0.78       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (umap_comp16_neigh30_dist0.8):
+Accuracy: 0.7868
+Precision: 0.7819
+Recall: 0.7868
+F1 Score: 0.7817
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 11   3   1   3   1   0]
+ [  1  31   2   5   1   2]
+ [  0   2 107   0   0   0]
+ [  4   5   1  21   4   3]
+ [  0   6   3   3  19   2]
+ [  0   0   0   0   3  14]]
+Czas trenowania i ewaluacji klasycznego SVM (umap_comp16_neigh30_dist0.8): 0.41 sekund
+
+Wyniki klasycznego SVM zapisane do: wyniki/dim_reduction/19082025/classic_svm_results_TCGA_GBM_LGG_Mutations_all.json
+
+======= SVM Z JĄDREM KWANTOWYM =======
+
+DEBUG - Wymiary danych treningowych: (600, 2)
+Pomijanie już przetestowanej kombinacji: Amplitude_l2, C=0.1
+Pomijanie już przetestowanej kombinacji: Amplitude_l2, C=1.0
+Pomijanie już przetestowanej kombinacji: Amplitude_l2, C=10.0
+Pomijanie już przetestowanej kombinacji: Amplitude_l1, C=0.1
+Pomijanie już przetestowanej kombinacji: Amplitude_l1, C=1.0
+Pomijanie już przetestowanej kombinacji: Amplitude_l1, C=10.0
+Pomijanie już przetestowanej kombinacji: Amplitude_min-max, C=0.1
+Pomijanie już przetestowanej kombinacji: Amplitude_min-max, C=1.0
+Pomijanie już przetestowanej kombinacji: Amplitude_min-max, C=10.0
+Najlepszy kwantowy SVM: Amplitude_min-max z C=0.1, dokładność: 0.4867
+Ewaluacja najlepszego modelu z kodowaniem amplitudowym (normalizacja: min-max)...
+Raport klasyfikacji (najlepszy kwantowy SVM z kodowaniem amplitudowym, normalizacja: min-max):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.27      0.88      0.42        42
+                 Glioblastoma       0.67      0.76      0.72       109
+                 Mixed glioma       0.00      0.00      0.00        38
+       Oligodendroglioma, NOS       0.00      0.00      0.00        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.47       258
+                    macro avg       0.16      0.27      0.19       258
+                 weighted avg       0.33      0.47      0.37       258
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM z kodowaniem amplitudowym (min-max):
+Accuracy: 0.4651
+Precision: 0.3297
+Recall: 0.4651
+F1 Score: 0.3704
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 0 19  0  0  0  0]
+ [ 0 37  5  0  0  0]
+ [ 0 26 83  0  0  0]
+ [ 0  6 32  0  0  0]
+ [ 0 31  2  0  0  0]
+ [ 0 16  1  0  0  0]]
+
+Całkowity czas dla kwantowego SVM: 4.82 sekund
+
+======= PODEJŚCIE HYBRYDOWE =======
+Używanie mniejszego zbioru danych dla ewaluacji: (240, 2)
+Tworzenie problemu QUBO dla optymalizacji hiperparametrów...
+Używanie 3 map cech w podejściu hybrydowym: ['Amplitude_l2', 'Amplitude_l1', 'Amplitude_min-max']
+Używanie wcześniej obliczonego wyniku dla Amplitude_l2, C=0.1: 0.4183
+Używanie wcześniej obliczonego wyniku dla Amplitude_l2, C=1.0: 0.4233
+Używanie wcześniej obliczonego wyniku dla Amplitude_l2, C=10.0: 0.4417
+Używanie wcześniej obliczonego wyniku dla Amplitude_l1, C=0.1: 0.4183
+Używanie wcześniej obliczonego wyniku dla Amplitude_l1, C=1.0: 0.4150
+Używanie wcześniej obliczonego wyniku dla Amplitude_l1, C=10.0: 0.4367
+Używanie wcześniej obliczonego wyniku dla Amplitude_min-max, C=0.1: 0.4867
+Używanie wcześniej obliczonego wyniku dla Amplitude_min-max, C=1.0: 0.4867
+Używanie wcześniej obliczonego wyniku dla Amplitude_min-max, C=10.0: 0.4867
+Czas tworzenia problemu QUBO: 0.00 sekund
+Rozwiązywanie problemu QUBO za pomocą wyżarzania kwantowego...
+Czas wyżarzania kwantowego: 0.02 sekund
+Optymalne hiperparametry z wyżarzania kwantowego: feature_map=Amplitude_min-max, C=10.0
+Trenowanie modelu hybrydowego z kodowaniem amplitudowym (normalizacja: min-max)...
+Czas trenowania modelu hybrydowego: 3.30 sekund
+Czas ewaluacji modelu hybrydowego: 1.44 sekund
+Dokładność ostatecznego modelu hybrydowego: 0.4651
+Raport klasyfikacji (model hybrydowy):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.00      0.00      0.00        19
+      Astrocytoma, anaplastic       0.27      0.88      0.42        42
+                 Glioblastoma       0.67      0.76      0.72       109
+                 Mixed glioma       0.00      0.00      0.00        38
+       Oligodendroglioma, NOS       0.00      0.00      0.00        33
+Oligodendroglioma, anaplastic       0.00      0.00      0.00        17
+
+                     accuracy                           0.47       258
+                    macro avg       0.16      0.27      0.19       258
+                 weighted avg       0.33      0.47      0.37       258
+
+
+Szczegółowe metryki dla modelu Model hybrydowy:
+Accuracy: 0.4651
+Precision: 0.3297
+Recall: 0.4651
+F1 Score: 0.3704
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 0 19  0  0  0  0]
+ [ 0 37  5  0  0  0]
+ [ 0 26 83  0  0  0]
+ [ 0  6 32  0  0  0]
+ [ 0 31  2  0  0  0]
+ [ 0 16  1  0  0  0]]
+
+Całkowity czas dla podejścia hybrydowego: 4.79 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 0.7868217054263565
+Kwantowy SVM (bez wyżarzania): 0.4867
+Model hybrydowy: 0.4651
+
+======= PORÓWNANIE CZASÓW WYKONANIA =======
+Czas przygotowania danych: 303.95 sekund
+Czas klasycznego SVM: 0.41 sekund
+Czas kwantowego SVM: 4.82 sekund
+Czas podejścia hybrydowego: 4.79 sekund
+
+======= ANALIZA ZNACZENIA CECH =======
+Wytrenowanie modelu na oryginalnych danych do analizy znaczenia cech...
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1531
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1353
+  Primary_Diagnosis_Mixed glioma: 0.1314
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.0663
+  Primary_Diagnosis_Glioblastoma: 0.0531
+
+Czas analizy znaczenia cech: 493.72 sekund
+
+======= KLUCZOWE MUTACJE ZWIĄZANE Z KLASYFIKACJĄ NOWOTWORÓW =======
+Kluczowe mutacje:
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1531
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1353
+  Primary_Diagnosis_Mixed glioma: 0.1314
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.0663
+  Primary_Diagnosis_Glioblastoma: 0.0531
+
+======= PODSUMOWANIE EKSPERYMENTU =======
+Data i czas zakończenia: 2025-08-19 09:49:01
+Całkowity czas eksperymentu: 4297.32 sekund (71.62 minut)
+
+======= PODSUMOWANIE METRYK =======
+Klasyczny SVM:
+  accuracy: 0.7868217054263565
+  precision: 0.781919905734979
+  recall: 0.7868217054263565
+  f1: 0.7817281930573251
+  roc_auc: N/A
+
+Kwantowy SVM:
+  accuracy: 0.46511627906976744
+  precision: 0.329705258292893
+  recall: 0.46511627906976744
+  f1: 0.37035155559784155
+  roc_auc: N/A
+
+Model hybrydowy:
+  accuracy: 0.46511627906976744
+  precision: 0.329705258292893
+  recall: 0.46511627906976744
+  f1: 0.37035155559784155
+  roc_auc: N/A

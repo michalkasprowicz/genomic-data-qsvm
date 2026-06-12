@@ -1,0 +1,506 @@
+======= ROZPOCZĘCIE EKSPERYMENTU DLA PLIKU: dane/TCGA_GBM_LGG_Mutations_clean.csv =======
+Wyniki będą zapisane w: wyniki/dim_reduction/29082025-clean/wyniki_svm_TCGA_GBM_LGG_Mutations_clean_20250829_092824.txt
+======= INFORMACJE O ŚRODOWISKU =======
+Data i czas rozpoczęcia: 2025-08-29 09:28:24
+Wersja NumPy: 1.24.3
+Wersja Pandas: 2.0.3
+Wersja scikit-learn: 1.3.0
+Wersja Qiskit: 0.25.1
+Wersja qiskit-machine-learning: 0.6.0
+Wersja dimod: 0.12.20
+Wersja neal: 0.6.0
+
+======= WYBRANE EKSPERYMENTY =======
+Klasyczny SVM: TAK
+Kwantowy SVM: TAK
+Podejście hybrydowe: TAK
+
+======= AKTYWOWANE MAPY CECH =======
+ZZ1: NIE
+ZZ2: NIE
+Pauli1: NIE
+Pauli2: NIE
+Z1: NIE
+Z2: NIE
+ZZ1_new: NIE
+ZZ2_new: NIE
+Amplitude_l2: TAK
+Amplitude_l1: TAK
+Amplitude_min-max: TAK
+
+======= PRZYGOTOWANIE DANYCH =======
+Wymiary oryginalnych danych: (858, 27)
+Unikalne wartości zmiennej docelowej: ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Rozkład klas: {'Glioblastoma': 360, 'Astrocytoma, anaplastic': 129, 'Mixed glioma': 128, 'Oligodendroglioma, NOS': 108, 'Oligodendroglioma, anaplastic': 75, 'Astrocytoma, NOS': 58}
+Wymiary danych po usunięciu kolumn identyfikacyjnych: (858, 24)
+Przekształcanie kolumn kategorycznych na binarne...
+Kolumny kategoryczne do przekształcenia: ['Gender', 'Primary_Diagnosis', 'Race', 'IDH1', 'TP53', 'ATRX', 'PTEN', 'EGFR', 'CIC', 'MUC16', 'PIK3CA', 'NF1', 'PIK3R1', 'FUBP1', 'RB1', 'NOTCH1', 'BCOR', 'CSMD3', 'SMARCA4', 'GRIN2A', 'IDH2', 'FAT4', 'PDGFRA']
+Kolumna Gender zawiera wartości: ['Male' 'Female']
+Kolumna Primary_Diagnosis zawiera wartości: ['Oligodendroglioma, NOS' 'Mixed glioma' 'Astrocytoma, NOS'
+ 'Astrocytoma, anaplastic' 'Oligodendroglioma, anaplastic' 'Glioblastoma']
+Kolumna Primary_Diagnosis zostanie zakodowana jako one-hot.
+Kolumna Race zawiera wartości: ['white' 'asian' 'black or african american' 'not reported'
+ 'american indian or alaska native']
+Kolumna Race zostanie zakodowana jako one-hot.
+Kolumna IDH1 zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna TP53 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna ATRX zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PTEN zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna EGFR zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna CIC zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna MUC16 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PIK3CA zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna NF1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PIK3R1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna FUBP1 zawiera wartości: ['MUTATED' 'NOT_MUTATED']
+Kolumna RB1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna NOTCH1 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna BCOR zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna CSMD3 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna SMARCA4 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna GRIN2A zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna IDH2 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna FAT4 zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Kolumna PDGFRA zawiera wartości: ['NOT_MUTATED' 'MUTATED']
+Wymiary danych po przekształceniu: (858, 31)
+Wypełnianie brakujących wartości...
+Wymiary danych wejściowych: (858, 31)
+Wymiary danych po skalowaniu: (858, 31)
+
+======= REDUKCJA WYMIAROWOŚCI =======
+
+Testowanie PCA z 8 komponentami...
+Wymiary danych po redukcji PCA: (858, 8)
+Wyjaśniona wariancja: 0.4679
+Czas wykonania PCA: 0.04 sekund
+
+Testowanie PCA z 10 komponentami...
+Wymiary danych po redukcji PCA: (858, 10)
+Wyjaśniona wariancja: 0.5407
+Czas wykonania PCA: 0.03 sekund
+
+Testowanie PCA z 12 komponentami...
+Wymiary danych po redukcji PCA: (858, 12)
+Wyjaśniona wariancja: 0.6090
+Czas wykonania PCA: 0.03 sekund
+
+Testowanie PCA z 14 komponentami...
+Wymiary danych po redukcji PCA: (858, 14)
+Wyjaśniona wariancja: 0.6728
+Czas wykonania PCA: 0.03 sekund
+
+Testowanie PCA z 16 komponentami...
+Wymiary danych po redukcji PCA: (858, 16)
+Wyjaśniona wariancja: 0.7340
+Czas wykonania PCA: 0.05 sekund
+
+Wyniki redukcji wymiarowości zapisane do: wyniki/dim_reduction/29082025-clean/dimension_reduction_results_TCGA_GBM_LGG_Mutations_clean.json
+Wybrano najlepszą wersję PCA na podstawie wyjaśnionej wariancji: pca_16 (0.7340)
+
+Wybrano najlepszą wersję redukcji wymiarowości: pca_16
+Wymiary domyślnego zbioru treningowego: (600, 16)
+Wymiary domyślnego zbioru testowego: (258, 16)
+
+Dostępne wersje zredukowanych danych:
+  pca_8: Train (600, 8), Test (258, 8)
+  pca_10: Train (600, 10), Test (258, 10)
+  pca_12: Train (600, 12), Test (258, 12)
+  pca_14: Train (600, 14), Test (258, 14)
+  pca_16: Train (600, 16), Test (258, 16)
+
+Czas przygotowania danych: 0.27 sekund
+
+======= KLASYCZNY SVM (BASELINE) =======
+
+Testowanie klasycznego SVM na wersji danych: default
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla default...
+Najlepsze parametry klasycznego SVM (default): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (default): 0.9867
+Raport klasyfikacji (klasyczny SVM - default):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.90      0.95      0.92        19
+      Astrocytoma, anaplastic       1.00      0.98      0.99        42
+                 Glioblastoma       0.99      0.99      0.99       109
+                 Mixed glioma       1.00      1.00      1.00        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.99       258
+                    macro avg       0.98      0.99      0.98       258
+                 weighted avg       0.99      0.99      0.99       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (default):
+Accuracy: 0.9884
+Precision: 0.9888
+Recall: 0.9884
+F1 Score: 0.9885
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 18   0   1   0   0   0]
+ [  1  41   0   0   0   0]
+ [  1   0 108   0   0   0]
+ [  0   0   0  38   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (default): 1.48 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_8
+Wymiary danych: X_train (600, 8), X_test (258, 8)
+Rozpoczęcie GridSearchCV dla pca_8...
+Najlepsze parametry klasycznego SVM (pca_8): {'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+Dokładność klasycznego SVM (pca_8): 0.9383
+Raport klasyfikacji (klasyczny SVM - pca_8):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.82      0.74      0.78        19
+      Astrocytoma, anaplastic       0.88      0.88      0.88        42
+                 Glioblastoma       0.95      0.95      0.95       109
+                 Mixed glioma       0.92      0.95      0.94        38
+       Oligodendroglioma, NOS       0.97      1.00      0.99        33
+Oligodendroglioma, anaplastic       1.00      0.94      0.97        17
+
+                     accuracy                           0.93       258
+                    macro avg       0.92      0.91      0.92       258
+                 weighted avg       0.93      0.93      0.93       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_8):
+Accuracy: 0.9302
+Precision: 0.9295
+Recall: 0.9302
+F1 Score: 0.9296
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 14   4   0   1   0   0]
+ [  0  37   5   0   0   0]
+ [  2   1 104   2   0   0]
+ [  1   0   1  36   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   1  16]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_8): 1.56 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_10
+Wymiary danych: X_train (600, 10), X_test (258, 10)
+Rozpoczęcie GridSearchCV dla pca_10...
+Najlepsze parametry klasycznego SVM (pca_10): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_10): 0.9767
+Raport klasyfikacji (klasyczny SVM - pca_10):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.95      0.95      0.95        19
+      Astrocytoma, anaplastic       1.00      0.98      0.99        42
+                 Glioblastoma       0.98      0.99      0.99       109
+                 Mixed glioma       0.97      1.00      0.99        38
+       Oligodendroglioma, NOS       1.00      0.97      0.98        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.98       258
+                    macro avg       0.98      0.98      0.98       258
+                 weighted avg       0.98      0.98      0.98       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_10):
+Accuracy: 0.9845
+Precision: 0.9847
+Recall: 0.9845
+F1 Score: 0.9845
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 18   0   0   1   0   0]
+ [  0  41   1   0   0   0]
+ [  1   0 108   0   0   0]
+ [  0   0   0  38   0   0]
+ [  0   0   1   0  32   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_10): 1.32 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_12
+Wymiary danych: X_train (600, 12), X_test (258, 12)
+Rozpoczęcie GridSearchCV dla pca_12...
+Najlepsze parametry klasycznego SVM (pca_12): {'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}
+Dokładność klasycznego SVM (pca_12): 0.9817
+Raport klasyfikacji (klasyczny SVM - pca_12):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.95      0.95      0.95        19
+      Astrocytoma, anaplastic       0.95      1.00      0.98        42
+                 Glioblastoma       0.98      0.97      0.98       109
+                 Mixed glioma       1.00      0.97      0.99        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.98       258
+                    macro avg       0.98      0.98      0.98       258
+                 weighted avg       0.98      0.98      0.98       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_12):
+Accuracy: 0.9806
+Precision: 0.9809
+Recall: 0.9806
+F1 Score: 0.9806
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 18   0   1   0   0   0]
+ [  0  42   0   0   0   0]
+ [  1   2 106   0   0   0]
+ [  0   0   1  37   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_12): 1.39 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_14
+Wymiary danych: X_train (600, 14), X_test (258, 14)
+Rozpoczęcie GridSearchCV dla pca_14...
+Najlepsze parametry klasycznego SVM (pca_14): {'C': 0.1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_14): 0.9833
+Raport klasyfikacji (klasyczny SVM - pca_14):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.90      0.95      0.92        19
+      Astrocytoma, anaplastic       1.00      1.00      1.00        42
+                 Glioblastoma       0.99      0.99      0.99       109
+                 Mixed glioma       1.00      0.97      0.99        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.99       258
+                    macro avg       0.98      0.99      0.98       258
+                 weighted avg       0.99      0.99      0.99       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_14):
+Accuracy: 0.9884
+Precision: 0.9888
+Recall: 0.9884
+F1 Score: 0.9885
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 18   0   1   0   0   0]
+ [  0  42   0   0   0   0]
+ [  1   0 108   0   0   0]
+ [  1   0   0  37   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_14): 1.44 sekund
+
+Testowanie klasycznego SVM na wersji danych: pca_16
+Wymiary danych: X_train (600, 16), X_test (258, 16)
+Rozpoczęcie GridSearchCV dla pca_16...
+Najlepsze parametry klasycznego SVM (pca_16): {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM (pca_16): 0.9867
+Raport klasyfikacji (klasyczny SVM - pca_16):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.90      0.95      0.92        19
+      Astrocytoma, anaplastic       1.00      0.98      0.99        42
+                 Glioblastoma       0.99      0.99      0.99       109
+                 Mixed glioma       1.00      1.00      1.00        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.99       258
+                    macro avg       0.98      0.99      0.98       258
+                 weighted avg       0.99      0.99      0.99       258
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM (pca_16):
+Accuracy: 0.9884
+Precision: 0.9888
+Recall: 0.9884
+F1 Score: 0.9885
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 18   0   1   0   0   0]
+ [  1  41   0   0   0   0]
+ [  1   0 108   0   0   0]
+ [  0   0   0  38   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+Czas trenowania i ewaluacji klasycznego SVM (pca_16): 1.44 sekund
+
+Wyniki klasycznego SVM zapisane do: wyniki/dim_reduction/29082025-clean/classic_svm_results_TCGA_GBM_LGG_Mutations_clean.json
+
+======= SVM Z JĄDREM KWANTOWYM =======
+Brak wyników w cache, używanie tymczasowych wyników.
+
+DEBUG - Wymiary danych treningowych: (600, 16)
+Testowanie Amplitude_l2 z C=0.1...
+Używanie kodowania amplitudowego z normalizacją l2...
+Dokładność kwantowego SVM z Amplitude_l2, C=0.1: 0.7200 (czas: 4.17 s)
+Testowanie Amplitude_l2 z C=1.0...
+Używanie kodowania amplitudowego z normalizacją l2...
+Dokładność kwantowego SVM z Amplitude_l2, C=1.0: 0.8967 (czas: 4.18 s)
+Testowanie Amplitude_l2 z C=10.0...
+Używanie kodowania amplitudowego z normalizacją l2...
+Dokładność kwantowego SVM z Amplitude_l2, C=10.0: 0.9267 (czas: 4.18 s)
+Testowanie Amplitude_l1 z C=0.1...
+Używanie kodowania amplitudowego z normalizacją l1...
+Dokładność kwantowego SVM z Amplitude_l1, C=0.1: 0.4183 (czas: 4.18 s)
+Testowanie Amplitude_l1 z C=1.0...
+Używanie kodowania amplitudowego z normalizacją l1...
+Dokładność kwantowego SVM z Amplitude_l1, C=1.0: 0.4183 (czas: 4.17 s)
+Testowanie Amplitude_l1 z C=10.0...
+Używanie kodowania amplitudowego z normalizacją l1...
+Dokładność kwantowego SVM z Amplitude_l1, C=10.0: 0.7317 (czas: 4.22 s)
+Testowanie Amplitude_min-max z C=0.1...
+Używanie kodowania amplitudowego z normalizacją min-max...
+Dokładność kwantowego SVM z Amplitude_min-max, C=0.1: 0.7767 (czas: 4.31 s)
+Testowanie Amplitude_min-max z C=1.0...
+Używanie kodowania amplitudowego z normalizacją min-max...
+Dokładność kwantowego SVM z Amplitude_min-max, C=1.0: 0.9533 (czas: 4.30 s)
+Testowanie Amplitude_min-max z C=10.0...
+Używanie kodowania amplitudowego z normalizacją min-max...
+Dokładność kwantowego SVM z Amplitude_min-max, C=10.0: 0.9733 (czas: 4.26 s)
+Najlepszy kwantowy SVM: Amplitude_min-max z C=10.0, dokładność: 0.9733
+Ewaluacja najlepszego modelu z kodowaniem amplitudowym (normalizacja: min-max)...
+Raport klasyfikacji (najlepszy kwantowy SVM z kodowaniem amplitudowym, normalizacja: min-max):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.90      1.00      0.95        19
+      Astrocytoma, anaplastic       0.91      0.95      0.93        42
+                 Glioblastoma       0.98      0.95      0.97       109
+                 Mixed glioma       1.00      0.97      0.99        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.97       258
+                    macro avg       0.97      0.98      0.97       258
+                 weighted avg       0.97      0.97      0.97       258
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM z kodowaniem amplitudowym (min-max):
+Accuracy: 0.9690
+Precision: 0.9702
+Recall: 0.9690
+F1 Score: 0.9692
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 19   0   0   0   0   0]
+ [  0  40   2   0   0   0]
+ [  1   4 104   0   0   0]
+ [  1   0   0  37   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+
+Całkowity czas dla kwantowego SVM: 41.16 sekund
+
+======= PODEJŚCIE HYBRYDOWE =======
+Używanie mniejszego zbioru danych dla ewaluacji: (240, 16)
+Tworzenie problemu QUBO dla optymalizacji hiperparametrów...
+Używanie 3 map cech w podejściu hybrydowym: ['Amplitude_l2', 'Amplitude_l1', 'Amplitude_min-max']
+Używanie wcześniej obliczonego wyniku dla Amplitude_l2, C=0.1: 0.7200
+Używanie wcześniej obliczonego wyniku dla Amplitude_l2, C=1.0: 0.8967
+Używanie wcześniej obliczonego wyniku dla Amplitude_l2, C=10.0: 0.9267
+Używanie wcześniej obliczonego wyniku dla Amplitude_l1, C=0.1: 0.4183
+Używanie wcześniej obliczonego wyniku dla Amplitude_l1, C=1.0: 0.4183
+Używanie wcześniej obliczonego wyniku dla Amplitude_l1, C=10.0: 0.7317
+Używanie wcześniej obliczonego wyniku dla Amplitude_min-max, C=0.1: 0.7767
+Używanie wcześniej obliczonego wyniku dla Amplitude_min-max, C=1.0: 0.9533
+Używanie wcześniej obliczonego wyniku dla Amplitude_min-max, C=10.0: 0.9733
+Czas tworzenia problemu QUBO: 0.00 sekund
+Rozwiązywanie problemu QUBO za pomocą wyżarzania kwantowego...
+Czas wyżarzania kwantowego: 0.03 sekund
+Optymalne hiperparametry z wyżarzania kwantowego: feature_map=Amplitude_min-max, C=10.0
+Trenowanie modelu hybrydowego z kodowaniem amplitudowym (normalizacja: min-max)...
+Czas trenowania modelu hybrydowego: 2.10 sekund
+Czas ewaluacji modelu hybrydowego: 0.91 sekund
+Dokładność ostatecznego modelu hybrydowego: 0.9690
+Raport klasyfikacji (model hybrydowy):
+                               precision    recall  f1-score   support
+
+             Astrocytoma, NOS       0.90      1.00      0.95        19
+      Astrocytoma, anaplastic       0.91      0.95      0.93        42
+                 Glioblastoma       0.98      0.95      0.97       109
+                 Mixed glioma       1.00      0.97      0.99        38
+       Oligodendroglioma, NOS       1.00      1.00      1.00        33
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        17
+
+                     accuracy                           0.97       258
+                    macro avg       0.97      0.98      0.97       258
+                 weighted avg       0.97      0.97      0.97       258
+
+
+Szczegółowe metryki dla modelu Model hybrydowy:
+Accuracy: 0.9690
+Precision: 0.9702
+Recall: 0.9690
+F1 Score: 0.9692
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[ 19   0   0   0   0   0]
+ [  0  40   2   0   0   0]
+ [  1   4 104   0   0   0]
+ [  1   0   0  37   0   0]
+ [  0   0   0   0  33   0]
+ [  0   0   0   0   0  17]]
+
+Całkowity czas dla podejścia hybrydowego: 3.07 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 0.9883720930232558
+Kwantowy SVM (bez wyżarzania): 0.9733
+Model hybrydowy: 0.9690
+
+======= PORÓWNANIE CZASÓW WYKONANIA =======
+Czas przygotowania danych: 0.27 sekund
+Czas klasycznego SVM: 1.44 sekund
+Czas kwantowego SVM: 41.16 sekund
+Czas podejścia hybrydowego: 3.07 sekund
+
+======= ANALIZA ZNACZENIA CECH =======
+Wytrenowanie modelu na oryginalnych danych do analizy znaczenia cech...
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Glioblastoma: 0.2725
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.2221
+  Primary_Diagnosis_Mixed glioma: 0.2202
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.2198
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.1264
+
+Czas analizy znaczenia cech: 3.03 sekund
+
+======= KLUCZOWE MUTACJE ZWIĄZANE Z KLASYFIKACJĄ NOWOTWORÓW =======
+Kluczowe mutacje:
+  Primary_Diagnosis_Glioblastoma: 0.2725
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.2221
+  Primary_Diagnosis_Mixed glioma: 0.2202
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.2198
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.1264
+
+======= PODSUMOWANIE EKSPERYMENTU =======
+Data i czas zakończenia: 2025-08-29 09:29:20
+Całkowity czas eksperymentu: 56.29 sekund (0.94 minut)
+
+======= PODSUMOWANIE METRYK =======
+Klasyczny SVM:
+  accuracy: 0.9883720930232558
+  precision: 0.9887596899224806
+  recall: 0.9883720930232558
+  f1: 0.9884978195429303
+  roc_auc: N/A
+
+Kwantowy SVM:
+  accuracy: 0.9689922480620154
+  precision: 0.9702158550337576
+  recall: 0.9689922480620154
+  f1: 0.9692413316507422
+  roc_auc: N/A
+
+Model hybrydowy:
+  accuracy: 0.9689922480620154
+  precision: 0.9702158550337576
+  recall: 0.9689922480620154
+  f1: 0.9692413316507422
+  roc_auc: N/A

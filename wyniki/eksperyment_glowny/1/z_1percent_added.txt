@@ -1,0 +1,105 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 0.9991701244813278
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+                           --       1.00      1.00      1.00         2
+             Astrocytoma, NOS       1.00      1.00      1.00        26
+      Astrocytoma, anaplastic       1.00      1.00      1.00        83
+                 Glioblastoma       1.00      1.00      1.00       222
+                 Mixed glioma       1.00      1.00      1.00        67
+       Oligodendroglioma, NOS       1.00      1.00      1.00        74
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        44
+
+                     accuracy                           1.00       518
+                    macro avg       1.00      1.00      1.00       518
+                 weighted avg       1.00      1.00      1.00       518
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  2   0   0   0   0   0   0]
+ [  0  26   0   0   0   0   0]
+ [  0   0  83   0   0   0   0]
+ [  0   0   0 222   0   0   0]
+ [  0   0   0   0  67   0   0]
+ [  0   0   0   0   0  74   0]
+ [  0   0   0   0   0   0  44]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 49.45 sekund
+
+======= KWANTOWY SVM Z Z FEATURE MAPS =======
+Testowanie 2 map cech: ['Z1', 'Z2']
+Testowanie Z1 z C=0.1...
+Dokładność kwantowego SVM z Z1, C=0.1: 0.5381 (czas: 35529.02 s)
+Testowanie Z1 z C=1.0...
+Dokładność kwantowego SVM z Z1, C=1.0: 0.8159 (czas: 36102.16 s)
+Testowanie Z1 z C=10.0...
+Dokładność kwantowego SVM z Z1, C=10.0: 0.8209 (czas: 36199.09 s)
+Testowanie Z2 z C=0.1...
+Dokładność kwantowego SVM z Z2, C=0.1: 0.5390 (czas: 54387.86 s)
+Testowanie Z2 z C=1.0...
+Dokładność kwantowego SVM z Z2, C=1.0: 0.8117 (czas: 52305.07 s)
+Testowanie Z2 z C=10.0...
+Dokładność kwantowego SVM z Z2, C=10.0: 0.8209 (czas: 52374.40 s)
+
+Najlepszy kwantowy SVM: Z1 z C=10.0, dokładność: 0.8209
+Raport klasyfikacji (najlepszy kwantowy SVM):
+                               precision    recall  f1-score   support
+
+                           --       1.00      0.50      0.67         2
+             Astrocytoma, NOS       1.00      0.88      0.94        26
+      Astrocytoma, anaplastic       1.00      0.81      0.89        83
+                 Glioblastoma       0.78      1.00      0.88       222
+                 Mixed glioma       1.00      0.82      0.90        67
+       Oligodendroglioma, NOS       1.00      0.66      0.80        74
+Oligodendroglioma, anaplastic       1.00      0.89      0.94        44
+
+                     accuracy                           0.88       518
+                    macro avg       0.97      0.79      0.86       518
+                 weighted avg       0.91      0.88      0.88       518
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM Z1:
+Accuracy: 0.8803
+Precision: 0.9064
+Recall: 0.8803
+F1 Score: 0.8792
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  1   0   0   1   0   0   0]
+ [  0  23   0   3   0   0   0]
+ [  0   0  67  16   0   0   0]
+ [  0   0   0 222   0   0   0]
+ [  0   0   0  12  55   0   0]
+ [  0   0   0  25   0  49   0]
+ [  0   0   0   5   0   0  39]]
+
+Całkowity czas dla kwantowego SVM: 273545.53 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 1.0000
+Kwantowy SVM: 0.8803
+
+======= ANALIZA ZNACZENIA CECH =======
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Glioblastoma: 0.2664
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1461
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1305
+  Primary_Diagnosis_Mixed glioma: 0.1195
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.0846
+  Primary_Diagnosis_Astrocytoma, NOS: 0.0486
+
+Czas analizy znaczenia cech: 656.17 sekund
+
+======= PODSUMOWANIE EKSPERYMENTU Z =======
+Data i czas zakończenia: 2025-08-10 22:41:41
+Całkowity czas eksperymentu: 1754858501.31 sekund

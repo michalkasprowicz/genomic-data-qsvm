@@ -1,0 +1,67 @@
+[
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 8
+        },
+        "dimensions": [
+            858,
+            8
+        ],
+        "explained_variance": 0.46793317923836897,
+        "execution_time": 0.0389556884765625,
+        "version_name": "pca_8"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 10
+        },
+        "dimensions": [
+            858,
+            10
+        ],
+        "explained_variance": 0.5406865166524053,
+        "execution_time": 0.026678800582885742,
+        "version_name": "pca_10"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 12
+        },
+        "dimensions": [
+            858,
+            12
+        ],
+        "explained_variance": 0.6089676509769071,
+        "execution_time": 0.029541492462158203,
+        "version_name": "pca_12"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 14
+        },
+        "dimensions": [
+            858,
+            14
+        ],
+        "explained_variance": 0.6728332461009283,
+        "execution_time": 0.03361010551452637,
+        "version_name": "pca_14"
+    },
+    {
+        "method": "PCA",
+        "parameters": {
+            "n_components": 16
+        },
+        "dimensions": [
+            858,
+            16
+        ],
+        "explained_variance": 0.734035589094475,
+        "execution_time": 0.04551839828491211,
+        "version_name": "pca_16"
+    }
+]

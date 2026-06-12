@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Środowiska wirtualne
+.venv/
+venv/
+env/
+qsvm-env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Sekrety
+.env
+*.pem
+*_token*
+
+# Logi tymczasowe
+*.log

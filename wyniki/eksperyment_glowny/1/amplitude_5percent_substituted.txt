@@ -1,0 +1,111 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 1.0
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+                           --       1.00      1.00      1.00         2
+             Astrocytoma, NOS       1.00      1.00      1.00        18
+      Astrocytoma, anaplastic       1.00      1.00      1.00        49
+                 Glioblastoma       1.00      1.00      1.00       103
+                 Mixed glioma       1.00      1.00      1.00        34
+       Oligodendroglioma, NOS       1.00      1.00      1.00        30
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        23
+
+                     accuracy                           1.00       259
+                    macro avg       1.00      1.00      1.00       259
+                 weighted avg       1.00      1.00      1.00       259
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  2   0   0   0   0   0   0]
+ [  0  18   0   0   0   0   0]
+ [  0   0  49   0   0   0   0]
+ [  0   0   0 103   0   0   0]
+ [  0   0   0   0  34   0   0]
+ [  0   0   0   0   0  30   0]
+ [  0   0   0   0   0   0  23]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 16.99 sekund
+
+======= KWANTOWY SVM Z AMPLITUDE ENCODING =======
+Testowanie Amplitude_l2 z C=0.1...
+Dokładność kwantowego SVM z Amplitude_l2, C=0.1: 0.7348 (czas: 2.98 s)
+Testowanie Amplitude_l2 z C=1.0...
+Dokładność kwantowego SVM z Amplitude_l2, C=1.0: 0.9287 (czas: 2.98 s)
+Testowanie Amplitude_l2 z C=10.0...
+Dokładność kwantowego SVM z Amplitude_l2, C=10.0: 0.9236 (czas: 3.33 s)
+Testowanie Amplitude_l1 z C=0.1...
+Dokładność kwantowego SVM z Amplitude_l1, C=0.1: 0.4000 (czas: 4.16 s)
+Testowanie Amplitude_l1 z C=1.0...
+Dokładność kwantowego SVM z Amplitude_l1, C=1.0: 0.4000 (czas: 3.75 s)
+Testowanie Amplitude_l1 z C=10.0...
+Dokładność kwantowego SVM z Amplitude_l1, C=10.0: 0.7596 (czas: 2.95 s)
+Testowanie Amplitude_min-max z C=0.1...
+Dokładność kwantowego SVM z Amplitude_min-max, C=0.1: 0.9719 (czas: 2.96 s)
+Testowanie Amplitude_min-max z C=1.0...
+Dokładność kwantowego SVM z Amplitude_min-max, C=1.0: 0.9669 (czas: 3.07 s)
+Testowanie Amplitude_min-max z C=10.0...
+Dokładność kwantowego SVM z Amplitude_min-max, C=10.0: 0.9652 (czas: 2.95 s)
+
+Najlepszy kwantowy SVM: Amplitude_min-max z C=0.1, dokładność: 0.9719
+Ewaluacja najlepszego modelu z kodowaniem amplitudowym (normalizacja: min-max)...
+Raport klasyfikacji (najlepszy kwantowy SVM z kodowaniem amplitudowym, normalizacja: min-max):
+                               precision    recall  f1-score   support
+
+                           --       0.00      0.00      0.00         2
+             Astrocytoma, NOS       0.95      1.00      0.97        18
+      Astrocytoma, anaplastic       1.00      0.96      0.98        49
+                 Glioblastoma       0.96      0.98      0.97       103
+                 Mixed glioma       0.97      1.00      0.99        34
+       Oligodendroglioma, NOS       1.00      1.00      1.00        30
+Oligodendroglioma, anaplastic       0.91      0.91      0.91        23
+
+                     accuracy                           0.97       259
+                    macro avg       0.83      0.84      0.83       259
+                 weighted avg       0.96      0.97      0.97       259
+
+
+Szczegółowe metryki dla modelu Kwantowy SVM z kodowaniem amplitudowym (min-max):
+Accuracy: 0.9691
+Precision: 0.9620
+Recall: 0.9691
+F1 Score: 0.9654
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  0   0   0   2   0   0   0]
+ [  0  18   0   0   0   0   0]
+ [  0   0  47   1   0   0   1]
+ [  0   0   0 101   1   0   1]
+ [  0   0   0   0  34   0   0]
+ [  0   0   0   0   0  30   0]
+ [  0   1   0   1   0   0  21]]
+
+Całkowity czas dla kwantowego SVM: 29.69 sekund
+
+======= PORÓWNANIE WYNIKÓW =======
+Klasyczny SVM: 1.0000
+Kwantowy SVM: 0.9691
+
+======= ANALIZA ZNACZENIA CECH =======
+Najważniejsze cechy dla klasyfikacji:
+  Primary_Diagnosis_Glioblastoma: 0.3398
+  Primary_Diagnosis_Astrocytoma, anaplastic: 0.1919
+  Primary_Diagnosis_Mixed glioma: 0.1548
+  Primary_Diagnosis_Oligodendroglioma, NOS: 0.1293
+  Primary_Diagnosis_Oligodendroglioma, anaplastic: 0.0958
+  Primary_Diagnosis_Astrocytoma, NOS: 0.0764
+
+Czas analizy znaczenia cech: 256.23 sekund
+
+======= PODSUMOWANIE EKSPERYMENTU AMPLITUDE =======
+Data i czas zakończenia: 2025-08-07 01:02:38
+Całkowity czas eksperymentu: 1754521358.24 sekund

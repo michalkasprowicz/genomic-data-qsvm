@@ -1,0 +1,93 @@
+======= KLASYCZNY SVM (BASELINE) =======
+Najlepsze parametry klasycznego SVM: {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Dokładność klasycznego SVM: 0.9983402489626556
+Raport klasyfikacji (klasyczny SVM):
+                               precision    recall  f1-score   support
+
+                           --       1.00      1.00      1.00         2
+             Astrocytoma, NOS       1.00      1.00      1.00        27
+      Astrocytoma, anaplastic       1.00      1.00      1.00        84
+                 Glioblastoma       1.00      1.00      1.00       220
+                 Mixed glioma       1.00      1.00      1.00        69
+       Oligodendroglioma, NOS       1.00      1.00      1.00        73
+Oligodendroglioma, anaplastic       1.00      1.00      1.00        43
+
+                     accuracy                           1.00       518
+                    macro avg       1.00      1.00      1.00       518
+                 weighted avg       1.00      1.00      1.00       518
+
+
+Szczegółowe metryki dla modelu Klasyczny SVM:
+Accuracy: 1.0000
+Precision: 1.0000
+Recall: 1.0000
+F1 Score: 1.0000
+ROC AUC: N/A
+
+Macierz pomyłek:
+[[  2   0   0   0   0   0   0]
+ [  0  27   0   0   0   0   0]
+ [  0   0  84   0   0   0   0]
+ [  0   0   0 220   0   0   0]
+ [  0   0   0   0  69   0   0]
+ [  0   0   0   0   0  73   0]
+ [  0   0   0   0   0   0  43]]
+
+Czas trenowania i ewaluacji klasycznego SVM: 50.84 sekund
+
+======= KWANTOWY SVM Z ZZ FEATURE MAPS =======
+Testowanie 2 map cech: ['ZZ1', 'ZZ2']
+Testowanie ZZ1 z C=0.1...
+  Wymiary danych: X_train_reduced (1206, 14)
+  Sprawdzenie NaN: 0
+  Sprawdzenie inf: 0
+  Zakres danych: [-5.5499, 14.8471]
+  Testowanie quantum kernel...
+  Test kernel shape: (2, 2)
+  Test kernel range: [0.0000, 1.0000]
+    Fold 1/10: train (1085, 14), val (121, 14)
+    Fold 1 score: 0.4545
+    Fold 2/10: train (1085, 14), val (121, 14)
+    Fold 2 score: 0.3884
+    Fold 3/10: train (1085, 14), val (121, 14)
+    Fold 3 score: 0.4132
+    Fold 4/10: train (1085, 14), val (121, 14)
+    Fold 4 score: 0.3471
+    Fold 5/10: train (1085, 14), val (121, 14)
+    Fold 5 score: 0.4132
+    Fold 6/10: train (1085, 14), val (121, 14)
+    Fold 6 score: 0.4298
+    Fold 7/10: train (1086, 14), val (120, 14)
+    Fold 7 score: 0.4333
+    Fold 8/10: train (1086, 14), val (120, 14)
+    Fold 8 score: 0.4417
+    Fold 9/10: train (1086, 14), val (120, 14)
+    Fold 9 score: 0.4083
+    Fold 10/10: train (1086, 14), val (120, 14)
+    Fold 10 score: 0.3833
+    Wszystkie scores: [0.45454545454545453, 0.3884297520661157, 0.4132231404958678, 0.34710743801652894, 0.4132231404958678, 0.4297520661157025, 0.43333333333333335, 0.44166666666666665, 0.4083333333333333, 0.38333333333333336]
+    Mean score: 0.4113 ± 0.0301
+Dokładność kwantowego SVM z ZZ1, C=0.1: 0.4113 (czas: 160747.59 s)
+Testowanie ZZ1 z C=1.0...
+  Wymiary danych: X_train_reduced (1206, 14)
+  Sprawdzenie NaN: 0
+  Sprawdzenie inf: 0
+  Zakres danych: [-5.5499, 14.8471]
+  Testowanie quantum kernel...
+  Test kernel shape: (2, 2)
+  Test kernel range: [0.0000, 1.0000]
+    Fold 1/10: train (1085, 14), val (121, 14)
+    Fold 1 score: 0.5207
+    Fold 2/10: train (1085, 14), val (121, 14)
+    Fold 2 score: 0.4711
+    Fold 3/10: train (1085, 14), val (121, 14)
+    Fold 3 score: 0.5289
+    Fold 4/10: train (1085, 14), val (121, 14)
+    Fold 4 score: 0.4463
+    Fold 5/10: train (1085, 14), val (121, 14)
+    Fold 5 score: 0.5041
+    Fold 6/10: train (1085, 14), val (121, 14)
+    Fold 6 score: 0.4793
+    Fold 7/10: train (1086, 14), val (120, 14)
+    Fold 7 score: 0.5167
+    Fold 8/10: train (1086, 14), val (120, 14)
